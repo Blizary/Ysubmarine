@@ -9,6 +9,8 @@ public class CameraMovement : MonoBehaviour
     public float cameraDistance;
     public float scrollSpeed;
     public float cameraSpeed;
+
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,9 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CameraMove();
-        CameraZoom();
+        transform.position = player.transform.position;
+       // CameraMove();
+        //CameraZoom();
     }
 
     /// <summary>
