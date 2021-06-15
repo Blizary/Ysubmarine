@@ -1,10 +1,10 @@
 Using pre-set license
-Built from '2020.3/staging' branch; Version is '2020.3.5f1 (8095aa901b9b) revision 8426922'; Using compiler version '192528614'; Build Type 'Release'
+Built from '2020.3/staging' branch; Version is '2020.3.11f1 (99c7afb366b3) revision 10078127'; Using compiler version '192528614'; Build Type 'Release'
 OS: 'Windows 10 Pro; OS build 19042.985; Version 2009; 64bit' Language: 'en' Physical Memory: 16331 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.3.5f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2020.3.11f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
@@ -15,14 +15,14 @@ C:/Users/HEI-Lab3/Documents/Personal/Ysubmarine/YSubmarine
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-64697
+57980
 Successfully changed project path to: C:/Users/HEI-Lab3/Documents/Personal/Ysubmarine/YSubmarine
 C:/Users/HEI-Lab3/Documents/Personal/Ysubmarine/YSubmarine
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 38.32 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 36.93 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2020.3.5f1 (8095aa901b9b)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/Resources/UnitySubsystems
+Initialize engine version: 2020.3.11f1 (99c7afb366b3)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/HEI-Lab3/Documents/Personal/Ysubmarine/YSubmarine/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
@@ -32,441 +32,102 @@ Direct3D:
     VRAM:     2988 MB
     Driver:   27.21.14.6611
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56836
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56684
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001567 seconds.
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001249 seconds.
 Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 33.64 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 37.11 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.772 seconds
+- Completed reload, in  0.759 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001053 seconds.
+Registered in 0.003031 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 38.23 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 33.49 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.825 seconds
+- Completed reload, in  0.884 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 0.62 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.45 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1930 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 87.9 MB.
-System memory in use after: 87.9 MB.
+Unloading 2084 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 92.8 MB.
+System memory in use after: 92.9 MB.
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 2376.
-Total: 2.025500 ms (FindLiveObjects: 0.286100 ms CreateObjectMapping: 0.116000 ms MarkObjects: 1.557300 ms  DeleteObjects: 0.064900 ms)
+Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 2522.
+Total: 1.879900 ms (FindLiveObjects: 0.175700 ms CreateObjectMapping: 0.067900 ms MarkObjects: 1.583500 ms  DeleteObjects: 0.051900 ms)
 
 ========================================================================
 Received Import Request.
   path: Assets/Art/BlockOuts/Rock 2.png
   artifactKey: Guid(2df0b70ca75fdd7498bee97f632169ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 2.png using Guid(2df0b70ca75fdd7498bee97f632169ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '500d47e84667f71c474b0d6481432969') in 0.100384 seconds
-  Import took 0.103294 seconds .
+Start importing Assets/Art/BlockOuts/Rock 2.png using Guid(2df0b70ca75fdd7498bee97f632169ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcc802d054dae54bc89e54575ef59253') in 0.086456 seconds
+  Import took 0.089058 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000187 seconds.
+  Time since last request: 0.000253 seconds.
   path: Assets/Art/BlockOuts/Rock 4.png
   artifactKey: Guid(5fdf924719e64dc46bdee72791c72dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 4.png using Guid(5fdf924719e64dc46bdee72791c72dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9b160f44e5de45fa069259be079c39b') in 0.009551 seconds
-  Import took 0.012139 seconds .
+Start importing Assets/Art/BlockOuts/Rock 4.png using Guid(5fdf924719e64dc46bdee72791c72dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd53034932ee0c90a2ee3e889cbcbb18e') in 0.008425 seconds
+  Import took 0.010892 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000237 seconds.
-  path: Assets/Art/BlockOuts
-  artifactKey: Guid(dbb13dfd9f9a99b40ab92aca0473ab45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts using Guid(dbb13dfd9f9a99b40ab92aca0473ab45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4b178244994f6fe6457f0ef130cac3b') in 0.005404 seconds
-  Import took 0.007851 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000194 seconds.
+  Time since last request: 0.000205 seconds.
   path: Assets/Art/BlockOuts/Torpedo.png
   artifactKey: Guid(a4c92acf0219c3542b02f2f96ec778e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Torpedo.png using Guid(a4c92acf0219c3542b02f2f96ec778e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03bdfe351cdf6184049b45e36ea80102') in 0.010002 seconds
-  Import took 0.012740 seconds .
+Start importing Assets/Art/BlockOuts/Torpedo.png using Guid(a4c92acf0219c3542b02f2f96ec778e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f97a5c5e6a405292c8bae837cdd351e') in 0.007378 seconds
+  Import took 0.009821 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000187 seconds.
+  Time since last request: 0.000229 seconds.
   path: Assets/Art/BlockOuts/Rock 3.png
   artifactKey: Guid(1034d04daa76aa045b036da1e2cdcfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 3.png using Guid(1034d04daa76aa045b036da1e2cdcfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8389ce6701b91e4ce571296cecb310c9') in 0.011339 seconds
-  Import took 0.014202 seconds .
+Start importing Assets/Art/BlockOuts/Rock 3.png using Guid(1034d04daa76aa045b036da1e2cdcfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79e6896c90164eb77dee61989fd5eb3a') in 0.008712 seconds
+  Import took 0.011343 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000197 seconds.
+  Time since last request: 0.000230 seconds.
   path: Assets/Art/BlockOuts/Rock 5.png
   artifactKey: Guid(58d67ccbe3ff96f42933c05a6a063f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 5.png using Guid(58d67ccbe3ff96f42933c05a6a063f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b1e894a6e56fccdd7ad4e2cd4e2dff9') in 0.009750 seconds
-  Import took 0.012209 seconds .
+Start importing Assets/Art/BlockOuts/Rock 5.png using Guid(58d67ccbe3ff96f42933c05a6a063f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e680f871f5e318ac2fe2b7b53c5345f') in 0.008130 seconds
+  Import took 0.010802 seconds .
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000193 seconds.
   path: Assets/Art/BlockOuts/Rock 1.png
   artifactKey: Guid(a4e3b4dcb17282145869b1b8204a4bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 1.png using Guid(a4e3b4dcb17282145869b1b8204a4bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ad2773e7d133da9a6d9a76ab128b4be') in 0.009691 seconds
-  Import took 0.012410 seconds .
+Start importing Assets/Art/BlockOuts/Rock 1.png using Guid(a4e3b4dcb17282145869b1b8204a4bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b1aed51e1904a412aed52f7bc236001') in 0.008723 seconds
+  Import took 0.011272 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000239 seconds.
+  Time since last request: 0.000184 seconds.
   path: Assets/Art/BlockOuts/Creature 1.png
   artifactKey: Guid(e1539618503272949aa4ea158afab54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Creature 1.png using Guid(e1539618503272949aa4ea158afab54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9cf5516e2d029e85c7d8ef3dcaece05') in 0.010561 seconds
-  Import took 0.013663 seconds .
+Start importing Assets/Art/BlockOuts/Creature 1.png using Guid(e1539618503272949aa4ea158afab54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d9fe0acf44ada2f333a2491a6844842') in 0.008216 seconds
+  Import took 0.010689 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000249 seconds.
+  Time since last request: 0.000203 seconds.
   path: Assets/Art/BlockOuts/Submarine.png
   artifactKey: Guid(822e5657686fd1341970f94247398d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Submarine.png using Guid(822e5657686fd1341970f94247398d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac6abe44a723932eff6e9f03e0d13ed5') in 0.010305 seconds
-  Import took 0.013608 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 11.997965 seconds.
-  path: Assets/Art/BlockOuts/Creature 1.png
-  artifactKey: Guid(e1539618503272949aa4ea158afab54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Creature 1.png using Guid(e1539618503272949aa4ea158afab54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ec95192edbbed01ff0112f4710f4dd2') in 0.012086 seconds
-  Import took 0.014981 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000204 seconds.
-  path: Assets/Art/BlockOuts/Rock 2.png
-  artifactKey: Guid(2df0b70ca75fdd7498bee97f632169ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 2.png using Guid(2df0b70ca75fdd7498bee97f632169ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fb9e25f2b643adea390cab6ca093506') in 0.010501 seconds
-  Import took 0.013435 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000219 seconds.
-  path: Assets/Art/BlockOuts/Rock 4.png
-  artifactKey: Guid(5fdf924719e64dc46bdee72791c72dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 4.png using Guid(5fdf924719e64dc46bdee72791c72dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a83b10c8817d1406de3ebf5ac2742900') in 0.012473 seconds
-  Import took 0.014817 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000249 seconds.
-  path: Assets/Art/BlockOuts/Torpedo.png
-  artifactKey: Guid(a4c92acf0219c3542b02f2f96ec778e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Torpedo.png using Guid(a4c92acf0219c3542b02f2f96ec778e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0447d47f978cd990ddffb20987903c6a') in 0.009922 seconds
-  Import took 0.013021 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000225 seconds.
-  path: Assets/Art/BlockOuts/Rock 3.png
-  artifactKey: Guid(1034d04daa76aa045b036da1e2cdcfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 3.png using Guid(1034d04daa76aa045b036da1e2cdcfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb8d5abbaf615918adf6dd6fd930815d') in 0.012452 seconds
-  Import took 0.015009 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000227 seconds.
-  path: Assets/Art/BlockOuts/Rock 5.png
-  artifactKey: Guid(58d67ccbe3ff96f42933c05a6a063f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 5.png using Guid(58d67ccbe3ff96f42933c05a6a063f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1467e541761572b6f6cc0a4acf036205') in 0.011610 seconds
-  Import took 0.014141 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000185 seconds.
-  path: Assets/Art/BlockOuts/Rock 1.png
-  artifactKey: Guid(a4e3b4dcb17282145869b1b8204a4bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 1.png using Guid(a4e3b4dcb17282145869b1b8204a4bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9abe53fb5975f35f33bd2ce0e023903') in 0.014286 seconds
-  Import took 0.016693 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000185 seconds.
-  path: Assets/Art/BlockOuts/Submarine.png
-  artifactKey: Guid(822e5657686fd1341970f94247398d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Submarine.png using Guid(822e5657686fd1341970f94247398d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e9e4c9baa383ece5339aa3d7daaed3f') in 0.015943 seconds
-  Import took 0.018817 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 20.525147 seconds.
-  path: Assets/Scenes/Prototype.unity
-  artifactKey: Guid(5c10460c00114c148b059c52494e3629) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Prototype.unity using Guid(5c10460c00114c148b059c52494e3629) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e2e6e7c579864b8e97ab92cc67f5cd9') in 0.007221 seconds
-  Import took 0.009861 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 422.893643 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/9-Sliced.png
-  artifactKey: Guid(71ebafeef3c03457483266a33ab2b270) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/9-Sliced.png using Guid(71ebafeef3c03457483266a33ab2b270) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82147327b3a096ef58977456c52e8d18') in 0.016470 seconds
-  Import took 0.019410 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000252 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonPointed-Top.png
-  artifactKey: Guid(eed45a33cd08446c8b88325cf82fc52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonPointed-Top.png using Guid(eed45a33cd08446c8b88325cf82fc52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d089ae725df014d691463aadca777de') in 0.018601 seconds
-  Import took 0.021636 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000229 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonPointed-TopWithBorder.png
-  artifactKey: Guid(4b2a04fdbe0ef4d8da8f90eaca817cd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonPointed-TopWithBorder.png using Guid(4b2a04fdbe0ef4d8da8f90eaca817cd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bfbb5a367ef690964131e7218b508f4') in 0.014395 seconds
-  Import took 0.016681 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000201 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonFlat-TopWithBorder.png
-  artifactKey: Guid(a9716c16a44a94eed9b5c90fbf4d9bdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonFlat-TopWithBorder.png using Guid(a9716c16a44a94eed9b5c90fbf4d9bdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3725396938671aca493bbe71a44fd834') in 0.015149 seconds
-  Import took 0.017751 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000208 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Capsule.png
-  artifactKey: Guid(bd3cb4af8406d4436a2ae8c2aafe1f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Capsule.png using Guid(bd3cb4af8406d4436a2ae8c2aafe1f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04e7c387f3e6b7859a0410947b93d7ea') in 0.014041 seconds
-  Import took 0.016914 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000200 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonFlat-Top.png
-  artifactKey: Guid(16037dbd798344f57a526d53d48f5ead) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/HexagonFlat-Top.png using Guid(16037dbd798344f57a526d53d48f5ead) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f83459a94d0a7812af372747b3b89962') in 0.012728 seconds
-  Import took 0.016005 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000269 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/CircleMask.png
-  artifactKey: Guid(87aaca0a643d54397ba969dab4fc8875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/CircleMask.png using Guid(87aaca0a643d54397ba969dab4fc8875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1714b3ce6dd76235ffaebb2144b45694') in 0.013587 seconds
-  Import took 0.016094 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000252 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/9-SlicedWithBorder.png
-  artifactKey: Guid(cc35afd292fc349128b36a291fb3a165) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/9-SlicedWithBorder.png using Guid(cc35afd292fc349128b36a291fb3a165) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '501af9e8f66c88ce202f6ad0a3f6c07b') in 0.016352 seconds
-  Import took 0.019045 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000248 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/9-Sliced.png
-  artifactKey: Guid(71ebafeef3c03457483266a33ab2b270) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/9-Sliced.png using Guid(71ebafeef3c03457483266a33ab2b270) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82147327b3a096ef58977456c52e8d18') in 0.015993 seconds
-  Import took 0.018603 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000242 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png
-  artifactKey: Guid(48e93eef0688c4a259cb0eddcd8661f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png using Guid(48e93eef0688c4a259cb0eddcd8661f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00f0922ad1876a6e19667d5e5ec4ead5') in 0.010722 seconds
-  Import took 0.013338 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000237 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Circle.png
-  artifactKey: Guid(ebe73ca9363db456bacf42c025bb4847) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Circle.png using Guid(ebe73ca9363db456bacf42c025bb4847) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d1676ccdc7b67b1998d067cb08fc5e0') in 0.011529 seconds
-  Import took 0.014144 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000232 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/CircleWithBorder.png
-  artifactKey: Guid(4adeaf2d2b1c7417e89f026626d8264f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/CircleWithBorder.png using Guid(4adeaf2d2b1c7417e89f026626d8264f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76c0126f6a3db46c31e7f3992e8e3b6a') in 0.013884 seconds
-  Import took 0.016660 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000225 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/SquareWithBorder.png
-  artifactKey: Guid(db750325989564987a34393247d883b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/SquareWithBorder.png using Guid(db750325989564987a34393247d883b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fe1de98909a051f53050a2d4dfffbd0') in 0.017600 seconds
-  Import took 0.020833 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000179 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/IsometricDiamond.png
-  artifactKey: Guid(045b15ec09bba42448d89db77fa6f20a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/IsometricDiamond.png using Guid(045b15ec09bba42448d89db77fa6f20a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '032ca563fdb0076dfa7c65049422e027') in 0.012516 seconds
-  Import took 0.015471 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000215 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/CapsuleWithBorder.png
-  artifactKey: Guid(34587324d412940a79d530020c957dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/CapsuleWithBorder.png using Guid(34587324d412940a79d530020c957dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21789d1aec5971522268445a18e08923') in 0.010459 seconds
-  Import took 0.013251 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000175 seconds.
-  path: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/IsometricDiamondWithBorder.png
-  artifactKey: Guid(0d267bc78a0864eb48358689b29ed20a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/IsometricDiamondWithBorder.png using Guid(0d267bc78a0864eb48358689b29ed20a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29fdb1cd8fdfb6d8a02e1bfcd0c0c24e') in 0.009989 seconds
-  Import took 0.012371 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 51.356740 seconds.
-  path: Assets/Art/BlockOuts/Torpedo.png
-  artifactKey: Guid(a4c92acf0219c3542b02f2f96ec778e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Torpedo.png using Guid(a4c92acf0219c3542b02f2f96ec778e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a88fd2ddc9edf84359b77a5669872a7') in 0.008563 seconds
-  Import took 0.011208 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.003433 seconds.
-  path: Assets/Art/BlockOuts/Creature 1.png
-  artifactKey: Guid(e1539618503272949aa4ea158afab54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Creature 1.png using Guid(e1539618503272949aa4ea158afab54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf8d226c166dcb981663f2e29d515d6a') in 0.008600 seconds
-  Import took 0.011047 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000222 seconds.
-  path: Assets/Art/BlockOuts/Rock 2.png
-  artifactKey: Guid(2df0b70ca75fdd7498bee97f632169ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 2.png using Guid(2df0b70ca75fdd7498bee97f632169ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f260a22c5cf4334ca4a1ea3c90161596') in 0.007943 seconds
-  Import took 0.010301 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000267 seconds.
-  path: Assets/Art/BlockOuts/Rock 4.png
-  artifactKey: Guid(5fdf924719e64dc46bdee72791c72dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 4.png using Guid(5fdf924719e64dc46bdee72791c72dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b75fbe4044af47da8915cbbd9367108') in 0.008393 seconds
-  Import took 0.010803 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000240 seconds.
-  path: Assets/Art/BlockOuts/Rock 3.png
-  artifactKey: Guid(1034d04daa76aa045b036da1e2cdcfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 3.png using Guid(1034d04daa76aa045b036da1e2cdcfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49069521de99dd1f5525b5b4555a1210') in 0.007935 seconds
-  Import took 0.010218 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000180 seconds.
-  path: Assets/Art/BlockOuts/Rock 5.png
-  artifactKey: Guid(58d67ccbe3ff96f42933c05a6a063f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 5.png using Guid(58d67ccbe3ff96f42933c05a6a063f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '801c8af9905cdd2db917768f94ae41fc') in 0.008403 seconds
-  Import took 0.011028 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000232 seconds.
-  path: Assets/Art/BlockOuts/Rock 1.png
-  artifactKey: Guid(a4e3b4dcb17282145869b1b8204a4bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Rock 1.png using Guid(a4e3b4dcb17282145869b1b8204a4bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2250ec4222e8d555f9bbdb303296cfc') in 0.007969 seconds
-  Import took 0.010387 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000244 seconds.
-  path: Assets/Art/BlockOuts/Submarine.png
-  artifactKey: Guid(822e5657686fd1341970f94247398d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/BlockOuts/Submarine.png using Guid(822e5657686fd1341970f94247398d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5590f6b524bee5625f3131d6f946ecf0') in 0.009812 seconds
-  Import took 0.012135 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 104.068112 seconds.
-  path: Assets/Prefab
-  artifactKey: Guid(842d666006405fa4d939e8d5f93141ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab using Guid(842d666006405fa4d939e8d5f93141ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '997030fd01292d9a3d74e9a710cfd528') in 0.005309 seconds
-  Import took 0.007903 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.489693 seconds.
-  path: Assets/Prefab/BlockOuts
-  artifactKey: Guid(3761d1d28f7e38c42bc005ab779807c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/BlockOuts using Guid(3761d1d28f7e38c42bc005ab779807c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd587e98fd69246b427c7be521094dd57') in 0.001949 seconds
-  Import took 0.004439 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.099803 seconds.
-  path: Assets/Prefab/BlockOuts/Rock 4.prefab
-  artifactKey: Guid(6ad84a41002c9c64c92c4c3c78124482) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/BlockOuts/Rock 4.prefab using Guid(6ad84a41002c9c64c92c4c3c78124482) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a8afd38edb33b9a9d36f3fd1ff09fc9') in 0.030512 seconds
-  Import took 0.033074 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 99.132963 seconds.
-  path: Assets/Prefab/BlockOuts/Rock 5.prefab
-  artifactKey: Guid(e1f536a6f5f260f4199dd7bed25408d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/BlockOuts/Rock 5.prefab using Guid(e1f536a6f5f260f4199dd7bed25408d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '572d2d27926afcca426719af5babafe1') in 0.009728 seconds
-  Import took 0.012495 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 73.182964 seconds.
-  path: Assets/Prefab/BlockOuts/Rock 3.prefab
-  artifactKey: Guid(caa9975addc6efe4b982ae4d4c22662a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/BlockOuts/Rock 3.prefab using Guid(caa9975addc6efe4b982ae4d4c22662a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4387da986d8a9375e68769f97b4d3cf5') in 0.009641 seconds
-  Import took 0.012402 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001568 seconds.
-  path: Assets/Prefab/BlockOuts/Rock 3.prefab
-  artifactKey: Guid(caa9975addc6efe4b982ae4d4c22662a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/BlockOuts/Rock 3.prefab using Guid(caa9975addc6efe4b982ae4d4c22662a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4387da986d8a9375e68769f97b4d3cf5') in 0.006119 seconds
-  Import took 0.008756 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 56.186383 seconds.
-  path: Assets/Prefab/BlockOuts/Rock 2.prefab
-  artifactKey: Guid(ed89f0a7e8d207649b9377d9ab571632) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/BlockOuts/Rock 2.prefab using Guid(ed89f0a7e8d207649b9377d9ab571632) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '036e60cbb3f1d3d7b7c5a5650bb4d2a5') in 0.008397 seconds
-  Import took 0.011535 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 79.630093 seconds.
-  path: Assets/Prefab/BlockOuts/Rock 1.prefab
-  artifactKey: Guid(50cc71c7371dcd340b116ffe2eb45092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/BlockOuts/Rock 1.prefab using Guid(50cc71c7371dcd340b116ffe2eb45092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2d0aaa28b4e8e5a9955cbf55469f194') in 0.009555 seconds
-  Import took 0.012205 seconds .
+Start importing Assets/Art/BlockOuts/Submarine.png using Guid(822e5657686fd1341970f94247398d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e379a4a2e3db4a23213f38079430d0ac') in 0.009984 seconds
+  Import took 0.012813 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
