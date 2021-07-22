@@ -74,4 +74,22 @@ public class SimpleController : MonoBehaviour
         }
 
     }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        cityPopUp.SetActive(true);
+        if (Input.GetKey("up"))
+        {
+            //Its not working, I will try and do it with GetButtonDown
+            //After getting button down, make a pop up appear with some words
+            Debug.Log("Entering City!");
+        }
+        //Debug.Log("Found a city!");
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        cityPopUp.SetActive(false);
+        //Debug.Log("No city found");
+    }*/
 }
