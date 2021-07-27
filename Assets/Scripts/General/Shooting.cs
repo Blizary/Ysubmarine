@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class Shooting : MonoBehaviour
 {
@@ -15,25 +17,26 @@ public class Shooting : MonoBehaviour
     public int currentAmmo;
     public float reloadTime = 2f;
     private bool isReloading = false;
-    Text bulletText;
+    public TextMeshProUGUI bulletText;
 
     public int ConeofVision = 6;
 
     private void Start()
     {
         currentAmmo = maxAmmo;
-
-        bulletText = GetComponent<Text>();
-        bulletText.text = currentAmmo.ToString(currentAmmo + " / 6");
+        
     }
     // Update is called once per frame
     void Update()
     {
+
+
         if (isReloading)
             return;
 
         if(currentAmmo <= 0)
         {
+            bulletText.text = "" + currentAmmo.ToString() + " / " + maxAmmo.ToString();
             StartCoroutine(Reload());
             return;
         }
@@ -47,6 +50,7 @@ public class Shooting : MonoBehaviour
                 Debug.Log("pew pew!");
                 Shoot();
             }*/
+            bulletText.text = "" + currentAmmo.ToString() + " / " + maxAmmo.ToString();
             Shoot();
         }
     }
@@ -57,6 +61,7 @@ public class Shooting : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
         isReloading = false;
+        bulletText.text = "" + currentAmmo.ToString() + " / " + maxAmmo.ToString();
     }
 
     void Shoot()
