@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WFCController : MonoBehaviour
+public class WFCOBJController : MonoBehaviour
 {
     public List<WFCScriptableOBJ> dataList; // list of all the available pieces in the board
     [Header("Settings")]
