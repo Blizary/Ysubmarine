@@ -43,6 +43,7 @@ public class WFCOBJController : MonoBehaviour
     public List<GameObject> availableTileOBJ;
     public List<GameObject> sampleMaps;
 
+    private Dictionary<GameObject, WFCOBJ> virtualTiles = new Dictionary<GameObject, WFCOBJ>();
 
 
 
@@ -51,6 +52,8 @@ public class WFCOBJController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         checkedTiles = 0;
         waveFunctionComplete = false;
         numOfsamples = sampleTilemap.Count;
