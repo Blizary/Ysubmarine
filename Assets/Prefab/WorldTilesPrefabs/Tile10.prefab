@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1935245694119677169}
   - component: {fileID: 5436900737812127197}
   - component: {fileID: 8271334741095056733}
+  - component: {fileID: 1397800116}
+  - component: {fileID: -176702528989345940}
   m_Layer: 0
   m_Name: Tile10
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6969691730721707625}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -460,3 +462,111 @@ PolygonCollider2D:
       - {x: 2.7949998, y: -5.955}
       - {x: 2.8149998, y: -5.895}
       - {x: 2.855, y: -5.795}
+--- !u!114 &1397800116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969691730721707625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5783dbbad6a59184fa58aa75d79bcc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowType: 3
+  shadowLayer: 0
+  shadowDistance: 0
+  shadowDistanceMin: 1.44
+  shadowDistanceMax: 3.45
+  shadowTranslucency: 0.323
+  maskType: 5
+  maskLit: 2
+  maskPivot: 0
+  maskLayer: 0
+  maskLitCustom: 1
+  maskTranslucency: 1
+  isStatic: 0
+  bumpMapMode:
+    type: 0
+    textureType: 0
+    texture: {fileID: 0}
+    sprite: {fileID: 0}
+    invertX: 0
+    invertY: 0
+    depth: 1
+    spriteRenderer: {fileID: 5436900737812127197}
+  applyToChildren: 0
+  usingEvents: 0
+  mainShape:
+    shadowType: 3
+    maskType: 5
+    maskPivot: 0
+    shadowDistance: 0
+    shadowTranslucency: 0.323
+    maskTranslucency: 1
+    isStatic: 0
+    transform: {fileID: 1935245694119677169}
+  shapes:
+  - shadowType: 3
+    maskType: 5
+    maskPivot: 0
+    shadowDistance: 0
+    shadowTranslucency: 0.323
+    maskTranslucency: 1
+    isStatic: 0
+    transform: {fileID: 1935245694119677169}
+--- !u!114 &-176702528989345940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969691730721707625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5783dbbad6a59184fa58aa75d79bcc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowType: 3
+  shadowLayer: 0
+  shadowDistance: 0
+  shadowDistanceMin: 1.44
+  shadowDistanceMax: 3.45
+  shadowTranslucency: 0.323
+  maskType: 5
+  maskLit: 2
+  maskPivot: 0
+  maskLayer: 0
+  maskLitCustom: 1
+  maskTranslucency: 1
+  isStatic: 0
+  bumpMapMode:
+    type: 0
+    textureType: 0
+    texture: {fileID: 0}
+    sprite: {fileID: 0}
+    invertX: 0
+    invertY: 0
+    depth: 1
+    spriteRenderer: {fileID: 0}
+  applyToChildren: 0
+  usingEvents: 0
+  mainShape:
+    shadowType: 3
+    maskType: 5
+    maskPivot: 0
+    shadowDistance: 0
+    shadowTranslucency: 0.323
+    maskTranslucency: 1
+    isStatic: 0
+    transform: {fileID: 0}
+  shapes:
+  - shadowType: 3
+    maskType: 5
+    maskPivot: 0
+    shadowDistance: 0
+    shadowTranslucency: 0.323
+    maskTranslucency: 1
+    isStatic: 0
+    transform: {fileID: 0}

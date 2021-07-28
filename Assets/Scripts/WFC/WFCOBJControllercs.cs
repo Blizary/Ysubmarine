@@ -17,6 +17,8 @@ public class WFCOBJController : MonoBehaviour
     public List<Tilemap>sampleTilemap; //tilemap that holds the sample for the WFC
     public float objSize; // the size of the obj present in the samples they need to cubes
 
+    
+
     [Header("Solution")]
     public Tilemap solution;// gameobj where the solution will go
     public int solutionSize;// number of tiles in the solution, it is a square
@@ -36,6 +38,16 @@ public class WFCOBJController : MonoBehaviour
     private List<Vector2Int> waterQueu;
     private float numOfsamples;//stores the number of samples given and its used to calculate probabilities
     [HideInInspector] public bool waveFunctionComplete;
+
+    // NEW ALGO
+    public List<GameObject> availableTileOBJ;
+    public List<GameObject> sampleMaps;
+
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19cefa3bf552f94390d1c272b19ea6e, type: 3}
   m_Name: Light Sprite Profile
   m_EditorClassIdentifier: 
-  bufferPresets:
+  lightmapPresets:
     list:
-    - name: 'Preset (Id: 1)'
+    - name: Default
       sortingLayer:
         name: Default
-        Order: 0
+        Order: 1
       darknessColor: {r: 0, g: 0, b: 0, a: 1}
       lightingResolution: 1
       dayLayers:
@@ -25,7 +25,7 @@ MonoBehaviour:
         - layer: 0
           type: 0
           sorting: 0
-      nightLayers:
+      lightLayers:
         list:
         - layer: 0
           type: 0
@@ -41,40 +41,40 @@ MonoBehaviour:
           sortingIgnore: 0
           shadowEffect: 0
           shadowEffectLayer: 0
-          maskEffect: 0
-          maskEffectDistance: 1
+          maskLit: 0
+          maskLitDistance: 1
+  eventPresets:
+    list:
+    - name: Disabled
+      layerSetting:
+        list:
+        - layerID: 0
+    - name: Default
+      layerSetting:
+        list:
+        - layerID: 0
   qualitySettings:
     HDR: 0
-    fixedLightTextureSize: 1
+    lightTextureSize: 1
+    lightEffectTextureSize: 1
+    lightFilterMode: 1
     updateMethod: 0
-    managerInstance: 0
+    coreAxis: 0
+    projection: 0
   dayLightingSettings:
-    enable: 1
     alpha: 1
     direction: 270
     height: 1
-    softness:
-      enable: 1
-      intensity: 0.5
     bumpMap:
       height: 1
       strength: 1
-  fogOfWar:
-    enabled: 0
-    bufferID: 0
-    resolution: 1
-    shaderMode: 0
-    sortingLayer:
-      name: Default
-      Order: 0
   layers:
-    lightLayers:
+    colliderLayers:
       names:
       - Default
-    nightLayers:
+    lightLayers:
       names:
       - Default
     dayLayers:
       names:
       - Default
-  disable: 0

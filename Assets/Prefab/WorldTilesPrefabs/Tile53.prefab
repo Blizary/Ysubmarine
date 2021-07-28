@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4848365129727287153}
   - component: {fileID: 1360163756952997469}
   - component: {fileID: 3123856359553177309}
+  - component: {fileID: -7748825250764945691}
   m_Layer: 0
   m_Name: Tile53
   m_TagString: Untagged
@@ -361,3 +362,57 @@ PolygonCollider2D:
       - {x: 2.405, y: 3.085}
       - {x: 2.5249999, y: 3.205}
       - {x: 2.685, y: 3.225}
+--- !u!114 &-7748825250764945691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119338330824869353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5783dbbad6a59184fa58aa75d79bcc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowType: 3
+  shadowLayer: 0
+  shadowDistance: 0
+  shadowDistanceMin: 1.44
+  shadowDistanceMax: 3.45
+  shadowTranslucency: 0.323
+  maskType: 5
+  maskLit: 2
+  maskPivot: 0
+  maskLayer: 0
+  maskLitCustom: 1
+  maskTranslucency: 1
+  isStatic: 0
+  bumpMapMode:
+    type: 0
+    textureType: 0
+    texture: {fileID: 0}
+    sprite: {fileID: 0}
+    invertX: 0
+    invertY: 0
+    depth: 1
+    spriteRenderer: {fileID: 0}
+  applyToChildren: 0
+  usingEvents: 0
+  mainShape:
+    shadowType: 3
+    maskType: 5
+    maskPivot: 0
+    shadowDistance: 0
+    shadowTranslucency: 0.323
+    maskTranslucency: 1
+    isStatic: 0
+    transform: {fileID: 0}
+  shapes:
+  - shadowType: 3
+    maskType: 5
+    maskPivot: 0
+    shadowDistance: 0
+    shadowTranslucency: 0.323
+    maskTranslucency: 1
+    isStatic: 0
+    transform: {fileID: 0}
