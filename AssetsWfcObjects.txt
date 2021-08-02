@@ -1,0 +1,1 @@
+{"original":0,"probability":0.0,"connectUp":[10,5],"connectDown":[1],"connectLeft":[2,3,7],"connectRight":[10]}
