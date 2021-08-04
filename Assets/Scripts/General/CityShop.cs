@@ -8,7 +8,7 @@ public class CityShop : MonoBehaviour
     //Pop up
     public GameObject cityPopUp;
 
-    //public GameObject player;
+    public GameObject player;
 
     public bool isInCity;
     public GameObject shopInventory;
@@ -17,6 +17,9 @@ public class CityShop : MonoBehaviour
     {
         if(isInCity)
         {
+            Debug.Log("No shooting!");
+            player.GetComponent<Shooting>().enabled = false;
+
             if(shopInventory.activeInHierarchy)
             {
                 if (Input.GetKeyDown(KeyCode.E))
@@ -34,6 +37,9 @@ public class CityShop : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log("You can shoot!");
+        player.GetComponent<Shooting>().enabled = true;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
