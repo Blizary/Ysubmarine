@@ -9,6 +9,8 @@ public class SimpleController : MonoBehaviour
 
     public bool physicsController;
 
+    public Animator animator;
+
 	public Rigidbody2D rb;
 
 	public Vector2 movement;
@@ -18,8 +20,10 @@ public class SimpleController : MonoBehaviour
 
     private void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal"); //Rotation
+        movement.y = Input.GetAxisRaw("Vertical"); //Up and Down
+
+        animator.SetFloat("Speed", Mathf.Abs(movement.y));
 
         if (movement.x > 0)
         {
