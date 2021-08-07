@@ -69,6 +69,7 @@ MonoBehaviour:
     colliderLayers:
       names:
       - Default
+      - Rocks
     lightLayers:
       names:
       - Default
