@@ -496,7 +496,7 @@ MonoBehaviour:
     invertX: 0
     invertY: 0
     depth: 1
-    spriteRenderer: {fileID: 0}
+    spriteRenderer: {fileID: 477698164715589430}
   applyToChildren: 0
   usingEvents: 0
   mainShape:
@@ -507,7 +507,7 @@ MonoBehaviour:
     shadowTranslucency: 0.323
     maskTranslucency: 1
     isStatic: 0
-    transform: {fileID: 0}
+    transform: {fileID: 6271684891062623770}
   shapes:
   - shadowType: 3
     maskType: 5
@@ -516,4 +516,4 @@ MonoBehaviour:
     shadowTranslucency: 0.323
     maskTranslucency: 1
     isStatic: 0
-    transform: {fileID: 0}
+    transform: {fileID: 6271684891062623770}

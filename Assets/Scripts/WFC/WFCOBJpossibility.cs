@@ -57,8 +57,7 @@ public class WFCOBJpossibility
         }
         else if (availableOptions.Count<1)
         {
-            Debug.LogError("No solution found backtracking!");
-            Debug.Break();
+            entropy = -1;
         }
         else
         {

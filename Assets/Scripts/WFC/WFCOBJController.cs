@@ -45,7 +45,7 @@ public class WFCOBJController : MonoBehaviour
     private bool ispropagating;
     private bool generationgWater;
     public float checkedTiles;//number of tiles checked during sample update that is used to calculate probabilities
-    private List<Vector2Int> waterQueu;
+    public List<Vector2Int> waterQueu;
     private float numOfsamples;//stores the number of samples given and its used to calculate probabilities
     [HideInInspector] public bool waveFunctionComplete;
 
@@ -58,12 +58,15 @@ public class WFCOBJController : MonoBehaviour
     private Dictionary<int, WFCOBJ> virtualTiles = new Dictionary<int, WFCOBJ>();
     public List<Vector2Int> propagateQueu;//stores the tiles that need to be propagate while they wait for their turn
     public List<WFCOBJpossibility> entropyOrder;// used to organize the tiles by entropy
+    public GameObject debugHost;
     public GameObject debugWorld;
+    public GameObject debugWorldLast;
+
+    public List<WFCChoice> worldStates;
 
 
 
 
-    
 
 
 
@@ -625,12 +628,11 @@ public class WFCOBJController : MonoBehaviour
         Container readConteiner = JsonUtility.FromJson<Container>(jsons);
         foreach (WFCOBJ readOBJ in readConteiner.content)
         {
-            Debug.Log("read an wfcobj");
             readList.Add(readOBJ);
         }
 
         //Update dictionary
-        foreach(WFCOBJ availableOBJ in readList)
+        foreach (WFCOBJ availableOBJ in readList)
         {
             virtualTiles.Add(availableOBJ.original, availableOBJ);
         }
@@ -651,6 +653,25 @@ public class WFCOBJController : MonoBehaviour
             }
         }
 
+        if (surroundedByWater)
+        {
+            //make the boarders of the tilemap water
+            for (int i = 0; i < columSize; i++)
+            {
+                for (int j = 0; j < lineSize; j++)
+                {
+                    if (j == 0 || i == 0 || j == lineSize - 1 || i == columSize - 1)
+                    {
+                        waterQueu.Add(new Vector2Int(i, j));
+                    }
+
+                }
+            }
+            generationgWater = true;
+        }
+
+        worldStates = new List<WFCChoice>();
+        //Debug.Break();
 
         UpdateDebugWorld();
     }
@@ -673,22 +694,22 @@ public class WFCOBJController : MonoBehaviour
         Dictionary<int, WFCOBJ> checkingTiles = new Dictionary<int, WFCOBJ>();
 
         //checks each children 
-        foreach(Transform world in exampleworlds.transform)
+        foreach (Transform world in exampleworlds.transform)
         {
             //generate a virtual matrix of the world
             int[,] exampleWorld = new int[lineSize, columSize];
             int currentChild = 0;
-            for (int i = 0;i< lineSize;i++)
+            for (int i = 0; i < lineSize; i++)
             {
-                for(int j = 0; j<columSize;j++)
+                for (int j = 0; j < columSize; j++)
                 {
                     //validade that the tile is available in the list of tiles
-                    if(verifyUniqueTile.Contains(world.GetChild(currentChild).GetChild(0).gameObject.name))
+                    if (verifyUniqueTile.Contains(world.GetChild(currentChild).GetChild(0).gameObject.name))
                     {
                         int pos = verifyUniqueTile.IndexOf(world.GetChild(currentChild).GetChild(0).gameObject.name);
                         exampleWorld[i, j] = pos;
                         //Debug.Log("Tile was already in the list");
-                        
+
                     }
                     else
                     {
@@ -696,22 +717,23 @@ public class WFCOBJController : MonoBehaviour
                         availableTileOBJ.Add(world.GetChild(currentChild).GetChild(0).gameObject);
                         exampleWorld[i, j] = availableTileOBJ.Count - 1;
                         //Debug.Log("Added a new tile number: "+ exampleWorld[i, j]);
-                        
+
                     }
                     currentChild += 1;
                 }
-               
+
             }
+
 
             //check connections
             for (int i = 0; i < lineSize; i++)
             {
                 for (int j = 0; j < columSize; j++)
                 {
-                    
+
                     //check if this obj already exist in the dictionary
                     WFCOBJ neighbourUpdates;
-                    if(checkingTiles.ContainsKey(exampleWorld[i, j]))
+                    if (checkingTiles.ContainsKey(exampleWorld[i, j]))
                     {
                         neighbourUpdates = checkingTiles[exampleWorld[i, j]];
                     }
@@ -723,51 +745,56 @@ public class WFCOBJController : MonoBehaviour
                         neighbourUpdates.tileName = verifyUniqueTile[exampleWorld[i, j]];
                     }
 
-
+                    Debug.Log("" + i + "," + j);
                     //limitations of checks
                     //top limitation
-                    if(i!=0)
+                    if (i != 0)
                     {
                         //Check top neighbour
-                        if(!neighbourUpdates.connectUp.Contains(exampleWorld[i-1, j]))
+                        if (!neighbourUpdates.connectUp.Contains(exampleWorld[i - 1, j]))
                         {
                             neighbourUpdates.connectUp.Add(exampleWorld[i - 1, j]);
+                            Debug.Log("connection Top: " + exampleWorld[i - 1, j]);
                         }
                     }
 
                     //bottom limitation
-                    if(i!=lineSize-1)
+                    if (i < lineSize - 1)
                     {
                         //check bottom neighbour
                         if (!neighbourUpdates.connectDown.Contains(exampleWorld[i + 1, j]))
                         {
                             neighbourUpdates.connectDown.Add(exampleWorld[i + 1, j]);
+                            Debug.Log("connection bottum: " + exampleWorld[i + 1, j]);
                         }
 
+                    }
+
+                    //left limitation
+                    if (j != 0)
+                    {
+                        //check right neightbour
+                        if (!neighbourUpdates.connectLeft.Contains(exampleWorld[i, j - 1]))
+                        {
+                            neighbourUpdates.connectLeft.Add(exampleWorld[i, j - 1]);
+                            Debug.Log("connection Right: " + exampleWorld[i, j - 1]);
+                        }
                     }
 
                     //right limitation
-                    if(j!=0)
-                    {
-                        //check right neightbour
-                        if (!neighbourUpdates.connectRight.Contains(exampleWorld[i, j-1]))
-                        {
-                            neighbourUpdates.connectRight.Add(exampleWorld[i, j - 1]);
-                        }
-                    }
-
-                    //top limitation
-                    if(j!=columSize-1)
+                    if (j < columSize - 1)
                     {
                         //check left neightbour
-                        if (!neighbourUpdates.connectLeft.Contains(exampleWorld[i, j+1]))
+                        if (!neighbourUpdates.connectRight.Contains(exampleWorld[i, j + 1]))
                         {
-                            neighbourUpdates.connectLeft.Add(exampleWorld[i, j + 1]);
+                            neighbourUpdates.connectRight.Add(exampleWorld[i, j + 1]);
+                            Debug.Log("connection left: " + exampleWorld[i, j + 1]);
                         }
                     }
 
                     //Update the dictionary
                     checkingTiles[exampleWorld[i, j]] = neighbourUpdates;
+
                 }
             }
         }
@@ -804,7 +831,7 @@ public class WFCOBJController : MonoBehaviour
     {
         if (!ispropagating)
         {
-    
+
             if (propagateQueu.Count != 0)
             {
                 Propagate(propagateQueu[0].x, propagateQueu[0].y);
@@ -812,28 +839,40 @@ public class WFCOBJController : MonoBehaviour
             }
             else
             {
-                /*if (generationgWater)
+                if (generationgWater)
                 {
                     if (waterQueu.Count != 0)
                     {
-                        WFCScriptableOBJ waterScriptable = FindWFCScriptableObj(water);
-                        solution.SetTile(new Vector3Int(waterQueu[0].x, waterQueu[0].y, 0), water);//set the boards to water
-                        possibilites[waterQueu[0].x, waterQueu[0].y].CopyConnectionData(waterScriptable);//get the data to the possibility 
-                        propagateQueu.Add(possibilites[waterQueu[0].x, waterQueu[0].y]);//queu the propagate
-                        possibilityList.Remove(possibilites[waterQueu[0].x, waterQueu[0].y]);//remove it from the list of possibilities since it has been choosen
-                        waterScriptable.probability -= 1;
+                        WFCOBJpossibility waterTile = world[waterQueu[0].x, waterQueu[0].y];
+                        waterTile.availableOptions.Clear();
+                        waterTile.availableOptions.Add(0);
+                        waterTile.CheckIfChoosen();
+                        entropyOrder.Remove(waterTile);
                         waterQueu.RemoveAt(0);
-                        NewPropagate();
+                        propagateQueu.Add(waterTile.location);
+                        //Debug.Break();
                     }
                     else
                     {
+                        for (int i = 0; i < columSize; i++)
+                        {
+                            for (int j = 0; j < lineSize; j++)
+                            {
+                                if(world[i,j].availableOptions.Count!=1)
+                                {
+                                    //remove null options
+                                    world[i, j].availableOptions.Remove(0);
+                                }
+
+                            }
+                        }
                         generationgWater = false;
                     }
                 }
                 else
-                {*/
+                {
                     if (entropyOrder.Count != 0)
-                    { 
+                    {
                         CollapseBaseOnProbability(entropyOrder[0]);
                     }
                     else
@@ -844,7 +883,7 @@ public class WFCOBJController : MonoBehaviour
                         Debug.Log("wave function has collapsed!");
 
                     }
-               // }
+                }
 
 
             }
@@ -855,17 +894,17 @@ public class WFCOBJController : MonoBehaviour
     }
 
 
-    void Propagate(int i,int j)
+    void Propagate(int i, int j)
     {
         Debug.Log("Propagating at [" + i + "][" + j + "]");
         //remove options on the neighbour that doesnt correspond to 
         //the allowed tiles listed in te WFCscriptableOBj for the list of available tiles
-   
+
         List<int> newPossibilites = new List<int>();
 
         List<WFCOBJ> currentWFCOBJ = new List<WFCOBJ>();
         currentWFCOBJ = GetWFCOBJ(world[i, j].availableOptions);
-     
+        bool interrupt = false; // variable used to stop the rest of the propagate in case 1 fails
 
         //down neighbour
         if (i + 1 < lineSize)//is within the size of the grid
@@ -875,7 +914,7 @@ public class WFCOBJController : MonoBehaviour
                 //get alll the connection available to the right of this obj
                 List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Down);
 
-                if(connections.Count!=readList.Count)
+                if (connections.Count != readList.Count)
                 {
                     //updates the available option on the next tile and also checks if there where changes 
                     //made and if more propagation is needed
@@ -883,12 +922,19 @@ public class WFCOBJController : MonoBehaviour
                     {
                         //add to queu
                         Debug.Log("Added [" + (i + 1) + "][" + j + "] to the list of propagate");
-                        
+
+                        float entropy = world[i + 1, j].CheckIfChoosen();
                         //Check if it has been choosen and update its entropy
-                        if (world[i + 1, j].CheckIfChoosen() > 0)
+                        if (entropy > 0)
                         {
                             propagateQueu.Add(new Vector2Int(i + 1, j));
-                           // entropyOrder.Remove(world[i + 1, j]);
+                            // entropyOrder.Remove(world[i + 1, j]);
+                        }
+                        else if (entropy < 0)
+                        {
+                            Debug.LogError("No solution found backtracking!");
+                            ResetWorldToLastChoice();
+                            interrupt = true;
                         }
                     }
 
@@ -901,135 +947,166 @@ public class WFCOBJController : MonoBehaviour
                     Debug.Log("Entropy of tile [" + (i + 1) + "][" + j + "] is " + world[i + 1, j].entropy);
                     Debug.Log("[" + (i + 1) + "][" + j + "] : has been choose = " + world[i + 1, j].hasBeenChoosen);
                 }
-                
+
             }
 
         }
 
 
-
-        //up neightbour
-        if (i - 1 >= 0)
+        if (!interrupt)
         {
-            if (!world[i - 1, j].hasBeenChoosen)//tile to the right is not yet set
+            //up neightbour
+            if (i - 1 >= 0)
             {
-                //get alll the connection available to the left of this obj
-                List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Up);
-
-                if (connections.Count != readList.Count)
+                if (!world[i - 1, j].hasBeenChoosen)//tile to the right is not yet set
                 {
-                    //updates the available option on the next tile and also checks if there where changes 
-                    //made and if more propagation is needed
-                    if (world[i - 1, j].UpdateOptions(connections))
+                    List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Up);
+
+                    if (connections.Count != readList.Count)
                     {
-                        //add to queu
-                        Debug.Log("Added [" + (i - 1) + "][" + j + "] to the list of propagate");
-                        
-                        //Check if it has been choosen and update its entropy
-                        if (world[i - 1, j].CheckIfChoosen() > 0)
+                        //updates the available option on the next tile and also checks if there where changes 
+                        //made and if more propagation is needed
+                        if (world[i - 1, j].UpdateOptions(connections))
                         {
-                            propagateQueu.Add(new Vector2Int(i - 1, j));
-                            //entropyOrder.Remove(world[i - 1, j]);
+                            //add to queu
+                            Debug.Log("Added [" + (i - 1) + "][" + j + "] to the list of propagate");
+
+                            float entropy = world[i - 1, j].CheckIfChoosen();
+                            //Check if it has been choosen and update its entropy
+                            if (entropy > 0)
+                            {
+                                propagateQueu.Add(new Vector2Int(i - 1, j));
+                                // entropyOrder.Remove(world[i - 1, j]);
+                            }
+                            else if (entropy < 0)
+                            {
+                                Debug.LogError("No solution found backtracking!");
+                                ResetWorldToLastChoice();
+                                interrupt = true;
+                            }
                         }
-                    }
-                    
-                    string availableString = "Available options: ";
-                    foreach (int point in world[i - 1, j].availableOptions)
-                    {
-                        availableString += "" + point + ", ";
-                    }
-                    Debug.Log(availableString);
-                    Debug.Log("Entropy of tile [" + (i - 1) + "][" + j + "] is " + world[i - 1, j].entropy);
-                    Debug.Log("[" + (i - 1) + "][" + j + "] : has been choose = " + world[i - 1, j].hasBeenChoosen);
-                }
-               
-            }
-        }
 
-
-        //right neightbour
-        if (j + 1 < columSize)
-        {
-            if (!world[i , j+1].hasBeenChoosen)//tile to the right is not yet set
-            {
-                //get alll the connection available to the left of this obj
-                List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Right);
-
-                if (connections.Count != readList.Count)
-                {
-                    //updates the available option on the next tile and also checks if there where changes 
-                    //made and if more propagation is needed
-                    if (world[i, j + 1].UpdateOptions(connections))
-                    {
-                        //add to queu
-                        Debug.Log("Added [" + i + "][" + (j + 1) + "] to the list of propagate");
-                        
-                        //Check if it has been choosen and update its entropy
-                        if (world[i, j + 1].CheckIfChoosen() > 0)
+                        string availableString = "Available options: ";
+                        foreach (int point in world[i - 1, j].availableOptions)
                         {
-                            propagateQueu.Add(new Vector2Int(i, j + 1));
-                            //entropyOrder.Remove(world[i, j + 1]);
+                            availableString += "" + point + ", ";
                         }
+                        Debug.Log(availableString);
+                        Debug.Log("Entropy of tile [" + (i - 1) + "][" + j + "] is " + world[i - 1, j].entropy);
+                        Debug.Log("[" + (i + 1) + "][" + j + "] : has been choose = " + world[i - 1, j].hasBeenChoosen);
                     }
-                    
-                    string availableString = "Available options: ";
-                    foreach (int point in world[i, j + 1].availableOptions)
-                    {
-                        availableString += "" + point + ", ";
-                    }
-                    Debug.Log(availableString);
-                    Debug.Log("Entropy of tile [" + i + "][" + (j + 1) + "] is " + world[i, j + 1].entropy);
-                    Debug.Log("[" + i + "][" + (j + 1) + "] : has been choose = " + world[i, j + 1].hasBeenChoosen);
-                }
-              
-            }
-        }
-
-
-        //left neightbour
-        if (j - 1 >= 0)
-        {
-            if (!world[i, j-1].hasBeenChoosen)//tile to the right is not yet set
-            {
-                //get alll the connection available to the left of this obj
-                List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Left);
-
-                if (connections.Count != readList.Count)
-                {
-                    //updates the available option on the next tile and also checks if there where changes 
-                    //made and if more propagation is needed
-                    if (world[i, j - 1].UpdateOptions(connections))
-                    {
-                        //add to queu
-                        Debug.Log("Added [" + i + "][" + (j - 1) + "] to the list of propagate"); 
-                        //Check if it has been choosen and update its entropy
-                        if (world[i, j - 1].CheckIfChoosen() > 0)
-                        {
-                            propagateQueu.Add(new Vector2Int(i, j - 1));
-                            //entropyOrder.Remove(world[i, j - 1]);
-                        }
-                     
-                    }
-                    
-                    string availableString = "Available options: ";
-                    foreach (int point in world[i, j - 1].availableOptions)
-                    {
-                        availableString += "" + point + ", ";
-                    }
-                    Debug.Log(availableString);
-                    Debug.Log("Entropy of tile [" + i + "][" + (j - 1) + "] is " + world[i, j - 1].entropy);
-                    Debug.Log("[" + i + "][" + (j - 1) + "] : has been choose = " + world[i, j - 1].hasBeenChoosen);
                 }
             }
-              
+        }
+
+
+
+        if (!interrupt)
+        {
+            //right neightbour
+            if (j + 1 < columSize)
+            {
+                if (!world[i, j + 1].hasBeenChoosen)//tile to the right is not yet set
+                {
+                    //get alll the connection available to the left of this obj
+                    List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Right);
+
+                    if (connections.Count != readList.Count)
+                    {
+                        //updates the available option on the next tile and also checks if there where changes 
+                        //made and if more propagation is needed
+                        if (world[i, j + 1].UpdateOptions(connections))
+                        {
+                            //add to queu
+                            Debug.Log("Added [" + i + "][" + (j + 1) + "] to the list of propagate");
+
+                            float entropy = world[i, j + 1].CheckIfChoosen();
+                            //Check if it has been choosen and update its entropy
+                            if (entropy > 0)
+                            {
+                                propagateQueu.Add(new Vector2Int(i, j + 1));
+                                // entropyOrder.Remove(world[i + 1, j]);
+                            }
+                            else if (entropy < 0)
+                            {
+                                Debug.LogError("No solution found backtracking!");
+                                ResetWorldToLastChoice();
+                                interrupt = true;
+                            }
+                        }
+
+                        string availableString = "Available options: ";
+                        foreach (int point in world[i, j + 1].availableOptions)
+                        {
+                            availableString += "" + point + ", ";
+                        }
+                        Debug.Log(availableString);
+                        Debug.Log("Entropy of tile [" + i + "][" + (j + 1) + "] is " + world[i, j + 1].entropy);
+                        Debug.Log("[" + i + "][" + (j + 1) + "] : has been choose = " + world[i, j + 1].hasBeenChoosen);
+                    }
+
+                }
+            }
+        }
+
+
+        if (!interrupt)
+        {
+            //left neightbour
+            if (j - 1 >= 0)
+            {
+                if (!world[i, j - 1].hasBeenChoosen)//tile to the right is not yet set
+                {
+                    //get alll the connection available to the left of this obj
+                    List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Left);
+
+                    if (connections.Count != readList.Count)
+                    {
+                        //updates the available option on the next tile and also checks if there where changes 
+                        //made and if more propagation is needed
+                        if (world[i, j - 1].UpdateOptions(connections))
+                        {
+                            //add to queu
+                            Debug.Log("Added [" + i + "][" + (j - 1) + "] to the list of propagate");
+
+                            float entropy = world[i, j - 1].CheckIfChoosen();
+                            //Check if it has been choosen and update its entropy
+                            if (entropy > 0)
+                            {
+                                propagateQueu.Add(new Vector2Int(i, j - 1));
+                                // entropyOrder.Remove(world[i - 1, j]);
+                            }
+                            else if (entropy < 0)
+                            {
+                                Debug.LogError("No solution found backtracking!");
+                                ResetWorldToLastChoice();
+                                interrupt = true;
+                            }
+                        }
+
+                        string availableString = "Available options: ";
+                        foreach (int point in world[i, j - 1].availableOptions)
+                        {
+                            availableString += "" + point + ", ";
+                        }
+                        Debug.Log(availableString);
+                        Debug.Log("Entropy of tile [" + i + "][" + (j - 1) + "] is " + world[i, j - 1].entropy);
+                        Debug.Log("[" + i + "][" + (j - 1) + "] : has been choose = " + world[i, j - 1].hasBeenChoosen);
+                    }
+                }
+            }
+
+
 
         }
 
-        
-        OrganizebyEntropy();
-        propagateQueu.RemoveAt(0);
-        UpdateDebugWorld();
-       // Debug.Break();
+        if (!interrupt)
+        {
+            OrganizebyEntropy();
+            propagateQueu.RemoveAt(0);
+            UpdateDebugWorld();
+        }
+        //Debug.Break();
 
     }
 
@@ -1039,7 +1116,7 @@ public class WFCOBJController : MonoBehaviour
     /// </summary>
     /// <param name="currentpossibilities"></param>
     /// <returns></returns>
-    List<WFCOBJ> GetWFCOBJ (List<int> currentpossibilities)
+    List<WFCOBJ> GetWFCOBJ(List<int> currentpossibilities)
     {
         List<WFCOBJ> outList = new List<WFCOBJ>();
         foreach (int p in currentpossibilities)
@@ -1056,13 +1133,13 @@ public class WFCOBJController : MonoBehaviour
     /// <param name="currentWFCOBJ"></param>
     /// <param name="side"></param>
     /// <returns></returns>
-    List<int> Connections (List<WFCOBJ> currentWFCOBJ,ConnectionSide side)
+    List<int> Connections(List<WFCOBJ> currentWFCOBJ, ConnectionSide side)
     {
         List<int> connections = new List<int>();
-        
-        foreach(WFCOBJ obj in currentWFCOBJ)
+
+        foreach (WFCOBJ obj in currentWFCOBJ)
         {
-            switch(side)
+            switch (side)
             {
                 case ConnectionSide.Down:
                     connections = AddValuesToListOfInt(connections, obj.connectDown);
@@ -1090,7 +1167,7 @@ public class WFCOBJController : MonoBehaviour
     /// <param name="originalList"></param>
     /// <param name="newList"></param>
     /// <returns></returns>
-    private List<int> AddValuesToListOfInt(List<int> originalList,List<int> newList)
+    private List<int> AddValuesToListOfInt(List<int> originalList, List<int> newList)
     {
         foreach (int connectOBJ in newList)
         {
@@ -1110,25 +1187,66 @@ public class WFCOBJController : MonoBehaviour
 
     void OrganizebyEntropy()
     {
-        
+
         entropyOrder.Sort(SortByEntropy);
 
     }
 
     void CollapseBaseOnProbability(WFCOBJpossibility _tile)
     {
+        //Debug.Break();
+        WFCChoice choice = new WFCChoice();
+        bool choicemade = _tile.availableOptions.Count != 1;
+        //check if a choice will be made or if it was a tile with a already choosen option
+        if (choicemade)
+        {
+            //create a save of the current world state
+            choice.stateOfWorld = new WFCOBJpossibility[lineSize, columSize];
+            for (int i = 0; i < columSize; i++)
+            {
+                for (int j = 0; j < lineSize; j++)
+                {
+                    WFCOBJpossibility a = new WFCOBJpossibility();
+                    a.availableOptions = new List<int>();
+                    foreach(int point in world[i,j].availableOptions)
+                    {
+                        a.availableOptions.Add(point);
+                    }
+                    a.location = world[i, j].location;
+                    a.hasBeenChoosen = world[i, j].hasBeenChoosen;
+                    a.entropy = world[i, j].entropy;
+                    choice.stateOfWorld[i, j] = a;
+                }
+            }
+            UpdateDebugWorld();
+           // Debug.Break();
+            choice.pos = _tile.location;
+            choice.availabeOptions = _tile.availableOptions.Count;
+            choice.stateOfEntropy = new List<WFCOBJpossibility>();
+
+            foreach(WFCOBJpossibility possi in entropyOrder)
+            {
+                choice.stateOfEntropy.Add(possi);
+            }
+        }
+
+
+
+
+
         Debug.Log("PULLED TILE FROM ENTROPY");
         if (trueRandom)
         {
             int randomObj;
             List<int> newAvailable = new List<int>();
-            int rand =Random.Range(0, _tile.availableOptions.Count-1);
+            int rand = Random.Range(0, _tile.availableOptions.Count - 1);
             randomObj = _tile.availableOptions[rand];
+            choice.decision = randomObj;
             newAvailable.Add(randomObj);
             _tile.availableOptions.Clear();
             _tile.availableOptions.Add(newAvailable[0]);
             _tile.CheckIfChoosen();
-           
+
         }
         else
         {
@@ -1136,11 +1254,17 @@ public class WFCOBJController : MonoBehaviour
             List<int> newAvailable = new List<int>();
             int rand = Random.Range(0, _tile.availableOptions.Count - 1);
             randomObj = _tile.availableOptions[rand];
+            choice.decision = randomObj;
             newAvailable.Add(randomObj);
             _tile.availableOptions.Clear();
             _tile.availableOptions.Add(newAvailable[0]);
             _tile.CheckIfChoosen();
-           
+
+        }
+
+        if (choicemade)
+        {
+            worldStates.Add(choice);
         }
 
         Debug.Log(_tile.availableOptions[0]);
@@ -1148,6 +1272,7 @@ public class WFCOBJController : MonoBehaviour
         Debug.Log(_tile.entropy);
         entropyOrder.Remove(_tile);
         propagateQueu.Add(_tile.location);
+        //Debug.Break();
 
     }
 
@@ -1169,12 +1294,11 @@ public class WFCOBJController : MonoBehaviour
                 currentChild += 1;
             }
 
-           
         }
     }
 
 
-   void UpdateDebugWorld()
+    void UpdateDebugWorld()
     {
         int currentChild = 0;
         for (int i = 0; i < lineSize; i++)
@@ -1193,6 +1317,89 @@ public class WFCOBJController : MonoBehaviour
 
             
         }
+
+        if(worldStates.Count!=0)
+        {
+            currentChild = 0;
+            for (int i = 0; i < lineSize; i++)
+            {
+                for (int j = 0; j < columSize; j++)
+                {
+                    string availableString = "[" + i + "][" + j + "] -- ";
+                    foreach (int point in worldStates[worldStates.Count-1].stateOfWorld[i, j].availableOptions)
+                    {
+                        availableString += "" + point + ", ";
+                    }
+
+                    debugWorldLast.transform.GetChild(currentChild).GetComponent<TextMeshProUGUI>().text = availableString;
+                    currentChild += 1;
+                }
+
+
+            }
+        }
+        
+    }
+
+
+    void ResetWorldToLastChoice()
+    {
+        //Debug.Break();
+
+        for (int i = 0; i < columSize; i++)
+        {
+            for (int j = 0; j < lineSize; j++)
+            {
+                WFCOBJpossibility a = new WFCOBJpossibility();
+                a.availableOptions = new List<int>();
+                foreach (int point in worldStates[worldStates.Count - 1].stateOfWorld[i, j].availableOptions)
+                {
+                    a.availableOptions.Add(point);
+                }
+                a.location = worldStates[worldStates.Count - 1].stateOfWorld[i, j].location;
+                a.hasBeenChoosen = worldStates[worldStates.Count - 1].stateOfWorld[i, j].hasBeenChoosen;
+                a.entropy = worldStates[worldStates.Count - 1].stateOfWorld[i, j].entropy;
+                world[i, j] = a;
+            }
+        }
+
+       
+
+        UpdateDebugWorld();
+        //Debug.Break();
+        Vector2Int pos = worldStates[worldStates.Count - 1].pos;
+        world[pos.x, pos.y].availableOptions.Remove(worldStates[worldStates.Count - 1].decision);
+        //reset the entropy list
+        entropyOrder.Clear();
+        //Debug.Break();
+        for (int i = 0; i < lineSize; i++)
+        {
+            for (int j = 0; j < columSize; j++)
+            {
+                entropyOrder.Add(world[i, j]);
+            }
+        }
+
+
+        /*
+        foreach (WFCOBJpossibility possi in worldStates[worldStates.Count - 1].stateOfEntropy)
+        {
+            if(possi.entropy<0)
+            {
+                //reset entropy
+                entropyOrder.Add(world[possi.location.x, possi.location.y]);
+            }
+            else
+            {
+                entropyOrder.Add(possi);
+            }
+
+        }
+        */
+
+        propagateQueu.Clear();
+        worldStates.RemoveAt(worldStates.Count - 1);
+        //Debug.Break();
     }
 
 
