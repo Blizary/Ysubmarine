@@ -6,6 +6,10 @@ TagManager:
   tags:
   - citytrigger
   - coneVision
+  - PlayerSpawn
+  - EnemySpawn
+  - CitySpawn
+  - LightSpawn
   layers:
   - Default
   - TransparentFX

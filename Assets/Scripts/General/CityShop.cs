@@ -13,6 +13,12 @@ public class CityShop : MonoBehaviour
     public bool isInCity;
     public GameObject shopInventory;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+
     void Update()
     {
         if(isInCity)
