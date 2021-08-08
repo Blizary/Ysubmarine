@@ -7,15 +7,18 @@ public class WorldManager : MonoBehaviour
     [Header("Info")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject cityPrefab;
+    [SerializeField] private GameObject beaconPrefab;
     [SerializeField] private GameObject loadscreen;
 
     [Header("Settings")]
     [SerializeField] private int numOfCities;
+    [SerializeField] private int numOfBeacons;
 
     [Header("Lists")]
     [SerializeField] private List<GameObject> playerSpawns;
     [SerializeField] private List<GameObject> citySpawns;
     [SerializeField] private List<GameObject> enemySpawns;
+    [SerializeField] private List<GameObject> beaconSpawns;
 
 
     private bool waveFunctionComplete = false;
@@ -38,6 +41,7 @@ public class WorldManager : MonoBehaviour
         FindAllSpawns();
         SetPlayerPos();
         SetCities();
+        SetBeacons();
         loadscreen.GetComponent<Animator>().SetBool("WFCComplete", true);
         waveFunctionComplete = true;
     }
@@ -62,6 +66,11 @@ public class WorldManager : MonoBehaviour
             enemySpawns.Add(enemyS);
         }
 
+        foreach (GameObject beaconS in GameObject.FindGameObjectsWithTag("BeaconSpawn"))
+        {
+            beaconSpawns.Add(beaconS);
+        }
+
     }
 
     private void SetPlayerPos()
@@ -77,6 +86,16 @@ public class WorldManager : MonoBehaviour
         {
             int randomSpawn = Random.Range(0, citySpawns.Count - 1);
             Instantiate(cityPrefab, citySpawns[randomSpawn].transform.position, Quaternion.identity, this.transform);
+            citySpawns.RemoveAt(randomSpawn);
+        }
+    }
+
+    private void SetBeacons()
+    {
+        for (int i = 0; i < numOfBeacons; i++)
+        {
+            int randomSpawn = Random.Range(0, beaconSpawns.Count - 1);
+            Instantiate(beaconPrefab, beaconSpawns[randomSpawn].transform.position, Quaternion.identity, this.transform);
             citySpawns.RemoveAt(randomSpawn);
         }
     }
