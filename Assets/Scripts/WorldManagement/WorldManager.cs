@@ -96,7 +96,7 @@ public class WorldManager : MonoBehaviour
         {
             int randomSpawn = Random.Range(0, beaconSpawns.Count - 1);
             Instantiate(beaconPrefab, beaconSpawns[randomSpawn].transform.position, Quaternion.identity, this.transform);
-            citySpawns.RemoveAt(randomSpawn);
+            beaconSpawns.RemoveAt(randomSpawn);
         }
     }
 }
