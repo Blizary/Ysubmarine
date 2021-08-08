@@ -34,7 +34,7 @@ public class WFCOBJpossibility
                 newoptions.Add(option);
             }
         }
-        Debug.Log("list count: " + availableOptions.Count + " - " + newoptions.Count);
+        //Debug.Log("list count: " + availableOptions.Count + " - " + newoptions.Count);
         if(availableOptions.Count == newoptions.Count)
         {
             return false;//values remained the same

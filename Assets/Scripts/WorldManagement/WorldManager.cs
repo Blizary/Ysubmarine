@@ -7,6 +7,7 @@ public class WorldManager : MonoBehaviour
     [Header("Info")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject cityPrefab;
+    [SerializeField] private GameObject loadscreen;
 
     [Header("Settings")]
     [SerializeField] private int numOfCities;
@@ -37,8 +38,11 @@ public class WorldManager : MonoBehaviour
         FindAllSpawns();
         SetPlayerPos();
         SetCities();
+        loadscreen.GetComponent<Animator>().SetBool("WFCComplete", true);
         waveFunctionComplete = true;
     }
+
+
 
 
     private void FindAllSpawns()

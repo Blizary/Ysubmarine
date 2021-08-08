@@ -44,7 +44,7 @@ public class CityShop : MonoBehaviour
             }
         }
 
-        Debug.Log("You can shoot!");
+        //Debug.Log("You can shoot!");
         player.GetComponent<Shooting>().enabled = true;
     }
 
