@@ -78,7 +78,7 @@ MonoBehaviour:
   eventPresetId: 0
   nightLayer: 0
   occlusionLayer: 1
-  color: {r: 0.9245283, g: 0.04028531, b: 0.030526895, a: 0.142}
+  color: {r: 0.03137254, g: 0.13014129, b: 0.9254902, a: 0.142}
   size: 0.1
   coreSize: 4.81
   falloff: 1.02
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1591790270097169076, guid: 48d9c8666a4de9141b5c19ec03a665d0,
+  m_Sprite: {fileID: 5777301978546479081, guid: 5121c3d4d6bfbe64d905ea333813b8e5,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -274,8 +274,8 @@ MonoBehaviour:
   eventPresetId: 0
   nightLayer: 0
   occlusionLayer: 1
-  color: {r: 0.9254902, g: 0.65133613, b: 0.28235295, a: 0.15}
-  size: 3
+  color: {r: 0.9009434, g: 0.9626947, b: 1, a: 0.15}
+  size: 7.6
   coreSize: 4.81
   falloff: 1.02
   spotAngle: 360
@@ -349,7 +349,7 @@ MonoBehaviour:
   eventPresetId: 0
   nightLayer: 0
   occlusionLayer: 1
-  color: {r: 0.9245283, g: 0.04028531, b: 0.030526895, a: 0.142}
+  color: {r: 0.03137254, g: 0.08270277, b: 0.9254902, a: 0.142}
   size: 0.1
   coreSize: 4.81
   falloff: 1.02
