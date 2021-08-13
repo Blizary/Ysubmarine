@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using LightTilemapCollider;
+using FunkyCode.Utilities;
 
 namespace Rendering.Night {
 	

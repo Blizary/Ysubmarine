@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
-namespace SpriteExtension {
-		
-	[System.Serializable]
-	public class PhysicsShape {
+namespace SpriteExtension
+{		
+	[System.Serializable] //???
+	public class PhysicsShape
+	{
 		private List<Polygon2> polygons = null; 
 
 		private MeshObject shapeMeshObject = null;
@@ -57,5 +59,4 @@ namespace SpriteExtension {
 			return(shapeMeshObject);
 		}
 	}
-
 }

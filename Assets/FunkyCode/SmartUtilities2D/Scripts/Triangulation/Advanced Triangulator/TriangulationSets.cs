@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-
-namespace Polygon2DTriangulation
+namespace FunkyCode.Utilities.Polygon2DTriangulation
 {
 	public class PointSet : Point2DList, ITriangulatable, IEnumerable<TriangulationPoint>, IList<TriangulationPoint>
 	{

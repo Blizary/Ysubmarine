@@ -6,6 +6,7 @@ using LightingSettings;
 using EventHandling;
 using UnityEngine.Events;
 using LightSettings;
+using FunkyCode.Utilities;
 
 [ExecuteInEditMode]
 public class LightCollider2D : MonoBehaviour {
@@ -48,8 +49,7 @@ public class LightCollider2D : MonoBehaviour {
 	public bool applyToChildren = false;
 
 	public event CollisionEvent2D collisionEvents;
-	public bool usingEvents = false;
-	
+
 	public LightColliderShape mainShape = new LightColliderShape();
 	public List<LightColliderShape> shapes = new List<LightColliderShape>();
 
@@ -91,8 +91,6 @@ public class LightCollider2D : MonoBehaviour {
 		collisionEvents += collisionEvent;
 
 		ListEventReceivers.Add(this);
-
-		usingEvents = true;
 	}
 
 	public void RemoveEvent(CollisionEvent2D collisionEvent) {
@@ -365,21 +363,24 @@ public class LightCollider2D : MonoBehaviour {
 					Gizmos.color = Color.green;
 					GizmosHelper.DrawIsoRect(transform.position, mainShape.GetIsoWorldRect());
 				} else {
-					Gizmos.color = new Color(0, 1f, 1f, 0.25f);
+					Gizmos.color = new Color(0, 1f, 1f, 0.5f);
 					GizmosHelper.DrawRect(transform.position, mainShape.GetWorldRect());
 				}
 				
 			break;
 		}
 
-		Vector2? pivotPoint = mainShape.GetPivotPoint();
+		if (Lighting2D.ProjectSettings.editorView.drawIcons == EditorIcons.Enabled) {
+	
+			Vector2? pivotPoint = mainShape.GetPivotPoint();
 
-		if (pivotPoint != null) {
-			Vector3 pos = transform.position;
-			pos.x = pivotPoint.Value.x;
-			pos.y = pivotPoint.Value.y;
+			if (pivotPoint != null) {
+				Vector3 pos = transform.position;
+				pos.x = pivotPoint.Value.x;
+				pos.y = pivotPoint.Value.y;
 
-			Gizmos.DrawIcon(pos, "circle_v2", true);
+				Gizmos.DrawIcon(pos, "circle_v2", true);
+			}
 		}
 	}
 }

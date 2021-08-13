@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
-namespace LightShape {
-
+namespace LightShape
+{
     public class SpritePhysicsShape : Base {
         
         private Sprite sprite;

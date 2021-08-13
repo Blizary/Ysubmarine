@@ -113,20 +113,21 @@ public class ProfileEditor {
 
 			EditorGUI.indentLevel++;
 
-			int bufferCount = EditorGUILayout.IntSlider ("Count", lightPresetList.list.Length, 1, 4);
+			int presetCount = EditorGUILayout.IntSlider ("Count", lightPresetList.list.Length, 1, 8);
 
-			if (bufferCount !=lightPresetList.list.Length) {
+			if (presetCount !=lightPresetList.list.Length) {
 				int oldCount = lightPresetList.list.Length;
 
-				System.Array.Resize(ref lightPresetList.list, bufferCount);
+				System.Array.Resize(ref lightPresetList.list, presetCount);
 
-				for(int i = oldCount; i < bufferCount; i++) {
+				for(int i = oldCount; i < presetCount; i++) {
 					lightPresetList.list[i] = new LightPreset(i);
 				}
 			}
 
 			for(int i = 0; i < lightPresetList.list.Length; i++) {
 				LightPreset lightPreset = lightPresetList.list[i];
+				
 				bool fold = GUIFoldout.Draw( "Preset " + (i + 1) + " (" + lightPreset.name + ")", lightPreset);
 
 				if (fold == false) {

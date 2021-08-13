@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightShape;
+using FunkyCode.Utilities;
 
 [System.Serializable]
 public class LightColliderShape {
@@ -138,11 +139,12 @@ public class LightColliderShape {
 		LightShape.Base shadowShape = GetShadowShape();
 		LightShape.Base maskShape = GetMaskShape();
 
+		/*
 		if (maskShape != null && shadowShape != null) {
 			if (maskShape == shadowShape) {
 				return(shadowShape.GetWorldRect().Overlaps(rect));
 			}	
-		}
+		}*/
 
 		if (shadowShape != null) {
 			bool result = shadowShape.GetWorldRect().Overlaps(rect);

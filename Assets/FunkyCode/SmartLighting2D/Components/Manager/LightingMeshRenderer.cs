@@ -40,6 +40,13 @@ public class LightingMeshRenderer : LightingMonoBehaviour {
 				
 			break;
 
+			case MeshModeShader.AdditiveBlur:
+				if (materials[0] == null) {
+					materials[0] = LightingMaterial.Load("Light2D/Internal/MeshModeAdditiveBlur").Get();
+				}
+				
+			break;
+
 			case MeshModeShader.Alpha:
 				if (materials[0] == null) {
 					materials[0] = LightingMaterial.Load("Light2D/Internal/MeshModeAlpha").Get();
@@ -223,6 +230,9 @@ public class LightingMeshRenderer : LightingMonoBehaviour {
 			return;
 		}
 
+		if (meshModeShader == MeshModeShader.AdditiveBlur) {
+			materials[0].SetFloat("_radius", id.glowMode.glowRadius*10);
+		}
 
 		float rotation = id.lightSpriteTransform.rotation;
 		if (id.lightSpriteTransform.applyRotation) {

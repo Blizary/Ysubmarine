@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using FunkyCode.Utilities;
 
 namespace Rendering.Light.Shadow {
 
     public static class Soft {
         
-       	private static Pair2D pair = Pair2D.Zero();
+       	private static Pair2 pair = Pair2.Zero();
 		private static EdgePass pass = new EdgePass();
 
         public static void Draw(List<Polygon2> polygons, float shadowTranslucency) {
@@ -25,6 +26,15 @@ namespace Rendering.Light.Shadow {
 		}
 
 		static private void ShadowForVertex(Polygon2 polygon, Vector2 position) {
+			bool ignoreInside = ShadowEngine.ignoreInside;
+
+			if (ignoreInside) {
+				// change to sides of vertices?
+				if (Math2D.PointInPoly(-position, polygon)) { 
+					return;
+				}
+			}
+
 			Vector2[] pointsList = polygon.points;
 			int pointsCount = pointsList.Length;
 
@@ -35,7 +45,7 @@ namespace Rendering.Light.Shadow {
 				pair.B.x = pointsList[(x + 2) % pointsCount].x + position.x;
 				pair.B.y = pointsList[(x + 2) % pointsCount].y + position.y;
 
-				Pair2D edge_world = pair;
+				Pair2 edge_world = pair;
 
 				Vector2 edgePosition;
 				edgePosition.x = (float)(pair.A.x + pair.B.x) / 2;
@@ -43,7 +53,7 @@ namespace Rendering.Light.Shadow {
 
 				float edgeRotation = (float)Math.Atan2(pair.B.y - pair.A.y, pair.B.x - pair.A.x);
 
-				float edgeSize = (float)Vector2D.Distance(pair.A, pair.B) / 2;
+				float edgeSize = Vector2.Distance(pair.A, pair.B) / 2;
 
 				pass.edgePosition = edgePosition;
 				pass.edgeRotation = edgeRotation;
@@ -56,7 +66,16 @@ namespace Rendering.Light.Shadow {
 			}
 		}
 
-		static private void ShadowForObject(Polygon2 polygon, Vector2 position, float shadowTranslucency) {
+		static private void ShadowForObject(Polygon2 polygon, Vector2 position, float shadowTranslucency) {	
+			bool ignoreInside = ShadowEngine.ignoreInside;
+
+			if (ignoreInside) {
+				// change to sides of vertices?
+				if (Math2D.PointInPoly(-position, polygon)) { 
+					return;
+				}
+			}
+
 			Vector2[] pointsList = polygon.points;
 			int pointsCount = pointsList.Length;
 
@@ -70,7 +89,7 @@ namespace Rendering.Light.Shadow {
 			pair.B.x = SoftShadowSorter.maxPoint.x + position.x;
 			pair.B.y = SoftShadowSorter.maxPoint.y + position.y;
 
-			Pair2D edge_world = pair;
+			Pair2 edge_world = pair;
 
 			Vector2 edgePosition;
 			edgePosition.x = (float)(pair.A.x + pair.B.x) / 2;
@@ -78,7 +97,7 @@ namespace Rendering.Light.Shadow {
 
 			float edgeRotation = (float)Math.Atan2(pair.B.y - pair.A.y, pair.B.x - pair.A.x);
 
-			float edgeSize = (float)Vector2D.Distance(pair.A, pair.B) / 2;
+			float edgeSize = (float)Vector2.Distance(pair.A, pair.B) / 2;
 
 			pass.edgePosition = edgePosition;
 			pass.edgeRotation = edgeRotation;

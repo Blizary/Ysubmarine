@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//
+using FunkyCode.Utilities;
+
 namespace LightShape {
 		
 	public class Collider3DShape : Base {

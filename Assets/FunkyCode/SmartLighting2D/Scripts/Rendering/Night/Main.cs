@@ -11,8 +11,10 @@ namespace Rendering.Night {
 		static Pass pass = new Pass();
 
 		public static void Draw(Camera camera, LightmapPreset lightmapPreset) {
-			DarknessColor(camera, lightmapPreset);
-
+			if (Rendering.Day.Main.IsDrawing(camera, lightmapPreset)) {
+				DarknessColor(camera, lightmapPreset);
+			}
+			
 			LightingLayerSetting[] layerSettings = lightmapPreset.lightLayers.Get();
 			
 			if (layerSettings == null) {
@@ -56,6 +58,26 @@ namespace Rendering.Night {
 				Vector2 size = LightingRender2D.GetSize(camera);
 
 				Universal.Texture.Quad.Draw(material, Vector2.zero, size, cameraRotation, 0);
+			}
+		}
+
+		public static Color ClearColor(Camera camera, LightmapPreset lightmapPreset) {
+			if (Rendering.Day.Main.IsDrawing(camera, lightmapPreset)) {
+				return(Color.white);
+			}
+			Color color = lightmapPreset.darknessColor;
+			float alpha = color.a;
+
+			if (alpha > 0) {
+				Color returnColor = Color.white;
+
+				returnColor.r = alpha * color.r + (1 - alpha) * returnColor.r;
+				returnColor.g = alpha * color.g + (1 - alpha) * returnColor.g;
+				returnColor.b = alpha * color.b + (1 - alpha) * returnColor.b;
+				
+				return(returnColor);
+			} else {
+				return(Color.white);
 			}
 		}		
 	}

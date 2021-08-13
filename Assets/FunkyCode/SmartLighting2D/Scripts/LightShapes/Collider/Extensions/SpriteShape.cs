@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LightShape;
+using FunkyCode.Utilities;
 
-namespace LightShape {
-		
-	public class SpriteShape : Base {
+namespace LightShape
+{		
+	public class SpriteShape : Base
+	{
 		private Sprite originalSprite;
 		private SpriteRenderer spriteRenderer;
 
@@ -29,9 +30,10 @@ namespace LightShape {
         	return(rectPolygon);
 		}
 
-		public override List<Polygon2> GetPolygonsLocal() {
-
-			if (LocalPolygons == null) {
+		public override List<Polygon2> GetPolygonsLocal()
+		{
+			if (LocalPolygons == null)
+			{
 				LocalPolygons = new List<Polygon2>();
 
 				if (spriteRenderer == null) {
@@ -167,11 +169,11 @@ namespace LightShape {
 					WorldPolygons = WorldCache;
 
 					if (spriteRenderer.drawMode == SpriteDrawMode.Tiled && spriteRenderer.tileMode == SpriteTileMode.Continuous) {
-
-						float rot = transform.eulerAngles.z;
+						
 						Vector2 size = transform.lossyScale * spriteRenderer.size * 0.5f;
 						Vector2 pos = transform.position;
 
+						float rot = transform.eulerAngles.z;
 						rot = rot * Mathf.Deg2Rad + Mathf.PI;
 
 						float rectAngle = Mathf.Atan2(size.y, size.x);
@@ -192,10 +194,10 @@ namespace LightShape {
 			
 						SpriteTransform spriteTransform = new SpriteTransform(virtualSpriteRenderer, position, scale, rotation);
 
-						float rot = spriteTransform.rotation;
 						Vector2 size = spriteTransform.scale;
 						Vector2 pos = spriteTransform.position;
 
+						float rot = spriteTransform.rotation;
 						rot = rot * Mathf.Deg2Rad + Mathf.PI;
 
 						float rectAngle = Mathf.Atan2(size.y, size.x);
@@ -214,8 +216,7 @@ namespace LightShape {
 					polygon.points[2] = v3;
 					polygon.points[3] = v4;
 
-				}
-				
+				}	
 			}
 
 			return(WorldPolygons);
@@ -238,6 +239,10 @@ namespace LightShape {
 
 			if (spriteRenderer == null) {
 				spriteRenderer = transform.GetComponent<SpriteRenderer>();
+
+				if (spriteRenderer == null) {
+					// sprite renderer does not exist in this game object - DEBUG LOG IT
+				}
 			}
 			
 			return(spriteRenderer);

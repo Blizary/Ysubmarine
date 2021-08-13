@@ -166,11 +166,11 @@ public class Light2D : LightingMonoBehaviour {
 
 	public bool InAnyCamera() {
 		LightingManager2D manager = LightingManager2D.Get();
-		CameraSettings[] cameraSettings = manager.cameraSettings;
+		LightingCameras lightingCameras = manager.cameras;
 
 		Rect lightRect = GetWorldRect();
 
-		for(int i = 0; i < cameraSettings.Length; i++) {
+		for(int i = 0; i < lightingCameras.Length; i++) {
 			Camera camera = manager.GetCamera(i);
 
 			if (camera == null) {
@@ -342,8 +342,10 @@ public class Light2D : LightingMonoBehaviour {
 		if (Lighting2D.ProjectSettings.editorView.drawGizmos == EditorDrawGizmos.Disabled) {
 			return;
 		}
-		
-		Gizmos.DrawIcon(transform.position, "light_v2", true);
+
+		if (Lighting2D.ProjectSettings.editorView.drawIcons == EditorIcons.Enabled) {
+			Gizmos.DrawIcon(transform.position, "light_v2", true);
+		}
 
 		if (Lighting2D.ProjectSettings.editorView.drawGizmos != EditorDrawGizmos.Always) {
 			return;

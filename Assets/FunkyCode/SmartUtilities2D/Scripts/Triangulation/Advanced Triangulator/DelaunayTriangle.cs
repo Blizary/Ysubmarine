@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace Polygon2DTriangulation
+namespace FunkyCode.Utilities.Polygon2DTriangulation
 {
 	public class DelaunayTriangle
 	{

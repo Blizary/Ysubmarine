@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightTilemapCollider;
+using FunkyCode.Utilities;
 
 namespace Rendering.Light.Shadow {
 

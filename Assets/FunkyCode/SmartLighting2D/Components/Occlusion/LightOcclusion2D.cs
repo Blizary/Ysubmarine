@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
 [ExecuteInEditMode]
 public class LightOcclusion2D : MonoBehaviour {

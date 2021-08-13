@@ -43,11 +43,11 @@ namespace Rendering {
                 LightingManager2D manager = LightingManager2D.Get();
                 int settingsID = buffer.cameraSettings.id;
 
-                if (settingsID >= manager.cameraSettings.Length) {
+                if (settingsID >= manager.cameras.Length) {
                     return(false);
                 }
 
-                CameraSettings cameraSetting = manager.cameraSettings[settingsID];
+                CameraSettings cameraSetting = manager.cameras.Get(settingsID);
 
                 int bufferId = buffer.cameraLightmap.id;
 
@@ -128,13 +128,15 @@ namespace Rendering {
 
             float sizeY = camera.orthographicSize;
             float sizeX = sizeY * ( (float)camera.pixelWidth / camera.pixelHeight );
+
+            LightmapPreset lightmapPreset = buffer.GetLightmapPreset();
+
+            GL.Clear(true, true, Rendering.Night.Main.ClearColor(camera, lightmapPreset)); // Clear Darkness Color
             
             GL.LoadPixelMatrix( -sizeX, sizeX, -sizeY, sizeY );
             GL.MultMatrix(matrix);
 
             GL.PushMatrix();
-          
-            LightmapPreset lightmapPreset = buffer.GetLightmapPreset();
             
             Rendering.Day.Main.Draw(camera, lightmapPreset);
         
@@ -172,8 +174,8 @@ namespace Rendering {
 
                 int bufferID = buffer.cameraLightmap.bufferID;
                 
-                if (bufferID < Lighting2D.BufferPresets.Length) {
-                    idName = Lighting2D.BufferPresets[bufferID].name + ", ";
+                if (bufferID < Lighting2D.LightmapPresets.Length) {
+                    idName = Lighting2D.LightmapPresets[bufferID].name + ", ";
                 }
 
                 Camera camera = buffer.cameraSettings.GetCamera();

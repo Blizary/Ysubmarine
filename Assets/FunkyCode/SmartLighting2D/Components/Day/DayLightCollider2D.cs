@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightingSettings;
+using FunkyCode.Utilities;
 
 [ExecuteInEditMode]
 public class DayLightCollider2D : MonoBehaviour {
 	public enum ShadowType {None, SpritePhysicsShape, Collider2D, SpriteOffset, SpriteProjection, SpriteProjectionShape, SpriteProjectionCollider, FillCollider2D}; 
 	public enum MaskType {None, Sprite, BumpedSprite};
+	public enum MaskLit {Lit, LitAbove}
+
 
 	public int shadowLayer = 0;
 	public int maskLayer = 0;
@@ -22,6 +25,8 @@ public class DayLightCollider2D : MonoBehaviour {
 
 	[Range(0, 1)]
 	public float shadowTranslucency = 0;
+
+	public MaskLit maskLit = MaskLit.Lit;
 
 	public DayLightColliderShape mainShape = new DayLightColliderShape();
 	public List<DayLightColliderShape> shapes = new List<DayLightColliderShape>();
@@ -49,9 +54,9 @@ public class DayLightCollider2D : MonoBehaviour {
 
 	public bool InAnyCamera() {
 		LightingManager2D manager = LightingManager2D.Get();
-		CameraSettings[] cameraSettings = manager.cameraSettings;
+		LightingCameras lightingCameras = manager.cameras;
 
-		for(int i = 0; i < cameraSettings.Length; i++) {
+		for(int i = 0; i < lightingCameras.Length; i++) {
 			Camera camera = manager.GetCamera(i);
 
 			if (camera == null) {

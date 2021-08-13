@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
 namespace Rendering.Light.Shadow {
 
@@ -16,7 +17,7 @@ namespace Rendering.Light.Shadow {
             foreach(LightColliderShape shape in id.shapes) {
                 List<Polygon2> polygons = shape.GetPolygonsWorld();
                 
-                ShadowEngine.Draw(polygons, shape.shadowDistance, id.shadowTranslucency);
+                ShadowEngine.Draw(polygons, shape.shadowDistance, shape.shadowTranslucency);
             }
         }
     }

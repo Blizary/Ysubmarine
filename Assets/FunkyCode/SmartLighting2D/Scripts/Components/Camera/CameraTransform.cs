@@ -1,19 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
 public class CameraTransform
 {
-    // List Maybe?
-    //public static Dictionary<Camera, CameraTransform> dictionary = new Dictionary<Camera, CameraTransform>();
-
     public static List<CameraTransform> list = new List<CameraTransform>();
 
-
     private Camera camera = null;
-    private Polygon2D worldPolygon = null;
+
+    private Polygon2 worldPolygon = null;
     private Rect worldRect = new Rect();
-    private Polygon2D polygon = null;
+
+    private Polygon2 polygon = null;
 
     private Vector2 position = Vector2.zero;
     private float rotation = 0;
@@ -23,9 +22,11 @@ public class CameraTransform
     // Change
     public static float GetRadius(Camera camera) {
         float cameraRadius = camera.orthographicSize;
+
         if (camera.pixelWidth > camera.pixelHeight) {
             cameraRadius *= (float)camera.pixelWidth / camera.pixelHeight;
         }
+
         cameraRadius = Mathf.Sqrt(cameraRadius * cameraRadius + cameraRadius * cameraRadius);
 
         return(cameraRadius);
@@ -118,7 +119,7 @@ public class CameraTransform
 
 
 
-    private Polygon2D WorldPolyon() {
+    private Polygon2 WorldPolyon() {
         if (worldPolygon != null) {
             return(worldPolygon);
         }
@@ -134,20 +135,20 @@ public class CameraTransform
 
         worldPolygon = Polygon();
 
-        worldPolygon.pointsList[0].x = x;
-        worldPolygon.pointsList[0].y = y;
+        worldPolygon.points[0].x = x;
+        worldPolygon.points[0].y = y;
 
-        worldPolygon.pointsList[1].x = x + sizeX;
-        worldPolygon.pointsList[1].y = y;
+        worldPolygon.points[1].x = x + sizeX;
+        worldPolygon.points[1].y = y;
 
-        worldPolygon.pointsList[2].x = x + sizeX;
-        worldPolygon.pointsList[2].y = y + sizeY;
+        worldPolygon.points[2].x = x + sizeX;
+        worldPolygon.points[2].y = y + sizeY;
 
-        worldPolygon.pointsList[3].x = x;
-        worldPolygon.pointsList[3].y = y + sizeY;
+        worldPolygon.points[3].x = x;
+        worldPolygon.points[3].y = y + sizeY;
 
-        worldPolygon.ToRotationItself(rotation * Mathf.Deg2Rad);
-        worldPolygon.ToOffsetItself(position);
+        worldPolygon.ToRotationSelf(rotation * Mathf.Deg2Rad);
+        worldPolygon.ToOffsetSelf(position);
 
         worldRect = worldPolygon.GetRect();
 
@@ -160,16 +161,15 @@ public class CameraTransform
         return(worldRect);
     }
     
-    private Polygon2D Polygon() {
+    private Polygon2 Polygon() {
         if (polygon == null) {
-            polygon = new Polygon2D();
-            polygon.AddPoint(0, 0);
-            polygon.AddPoint(0, 0);
-            polygon.AddPoint(0, 0);
-            polygon.AddPoint(0, 0);
+            polygon = new Polygon2(4);
+            polygon.points[0] = Vector2.zero;
+            polygon.points[1] = Vector2.zero;
+            polygon.points[2] = Vector2.zero;
+            polygon.points[3] = Vector2.zero;
         }
 
         return(polygon);
     }
-  
 }

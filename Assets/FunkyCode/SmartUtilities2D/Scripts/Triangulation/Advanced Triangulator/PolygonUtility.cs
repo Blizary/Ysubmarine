@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace Polygon2DTriangulation
+namespace FunkyCode.Utilities.Polygon2DTriangulation
 {
 	public class PolygonUtil
 	{

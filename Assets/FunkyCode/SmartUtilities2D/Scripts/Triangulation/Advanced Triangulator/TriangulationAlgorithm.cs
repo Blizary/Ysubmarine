@@ -3,7 +3,7 @@ using System.Collections;
 using System.Text;
 using System;
 
-namespace Polygon2DTriangulation
+namespace FunkyCode.Utilities.Polygon2DTriangulation
 {
 	public enum TriangulationAlgorithm { DTSweep }
 	public enum Orientation { CW, CCW, Collinear }

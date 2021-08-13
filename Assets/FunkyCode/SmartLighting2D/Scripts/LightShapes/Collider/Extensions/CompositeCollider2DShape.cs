@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightShape;
+using FunkyCode.Utilities;
 
 namespace LightShape {
 

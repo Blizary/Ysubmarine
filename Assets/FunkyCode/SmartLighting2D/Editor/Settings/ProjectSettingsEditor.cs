@@ -99,6 +99,9 @@ public class ProjectSettingsEditor {
 
             mainProfile.editorView.drawGizmosChunks = (EditorChunks)EditorGUILayout.EnumPopup("Gizmos Chunks", mainProfile.editorView.drawGizmosChunks);
 
+            mainProfile.editorView.drawIcons = (EditorIcons)EditorGUILayout.EnumPopup("Gizmos Icons", mainProfile.editorView.drawIcons);
+
+
             EditorGUILayout.Space();
 
             mainProfile.editorView.gameViewLayer = EditorGUILayout.LayerField("Game Layer (Default)", mainProfile.editorView.gameViewLayer);

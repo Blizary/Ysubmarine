@@ -52,8 +52,8 @@ SubShader{
 		#pragma multi_compile __ UNITY_UI_CLIP_RECT
 		#pragma multi_compile __ UNITY_UI_ALPHACLIP
 
-
 		#include "UnityCG.cginc"
+		#include "../../LitShaders/LitCore.cginc"
 
 		struct appdata_t {
 			float4 vertex		: POSITION;
@@ -82,16 +82,6 @@ SubShader{
 		uniform float		_MaskSoftnessX;
 		uniform float		_MaskSoftnessY;
 
-		// Cam 1
-		sampler2D _Cam1_Texture;
-		vector _Cam1_Rect;
-		float _Cam1_Rotation;
-
-			// Cam 2
-		sampler2D _Cam2_Texture;
-		vector _Cam2_Rect;
-		float _Cam2_Rotation;
-
 		float2 UnpackUV(float uv)
 		{
 			float2 output;
@@ -99,50 +89,6 @@ SubShader{
 			output.y = uv - 4096 * output.x;
 
 			return output * 0.001953125;
-		}
-
-		bool InCamera (float2 pos, float2 rectPos, float2 rectSize) {
-			rectPos -= rectSize / 2;
-			return (pos.x < rectPos.x || pos.x > rectPos.x + rectSize.x || pos.y < rectPos.y || pos.y > rectPos.y + rectSize.y) == false;
-		}
-
-		float2 TransformToCamera(float2 pos, float rotation) {
-			float angle = atan2(pos.y,  pos.x) - rotation;
-			float dist = sqrt(pos.x *  pos.x +  pos.y *  pos.y);
-
-			pos.x = cos(angle) * dist;
-			pos.y = sin(angle) * dist;
-
-			return(pos);
-		}
-
-		fixed4 GetPixelByID(float id, float2 texcoord) {
-			if (id < 0.5f) {
-				return(tex2D (_Cam1_Texture, texcoord));
-			} else if (id < 1.5f) {
-				return(tex2D (_Cam2_Texture, texcoord));
-			}
-			
-			return(fixed4(0, 0, 0, 0));
-		}
-
-		fixed4 OutputColor(v2f IN, float2 posInCamera, float2 cameraSize, float id) {
-			float2 texcoord = (posInCamera + cameraSize / 2) / cameraSize;
-		
-			fixed4 lightPixel = GetPixelByID(id, texcoord);
-
-			fixed4 spritePixel = tex2D(_MainTex, IN.texcoord0);
-			spritePixel = fixed4 (tex2D(_FaceTex, IN.texcoord1).rgb * IN.color.rgb, IN.color.a * spritePixel.a);
-
-			float multiplier = (lightPixel.r + lightPixel.g + lightPixel.b) / 3;
-
-			spritePixel.a *= multiplier;
-
-			if (spritePixel.a > 1) {
-				spritePixel.a = 1;
-			}
-
-			return spritePixel;
 		}
 
 		v2f vert (appdata_t v)
@@ -177,29 +123,9 @@ SubShader{
 
 		fixed4 frag (v2f IN) : SV_Target
 		{
-			fixed4 col = tex2D(_MainTex, IN.texcoord0);
-			col = fixed4 (tex2D(_FaceTex, IN.texcoord1).rgb * IN.color.rgb, IN.color.a * col.a);
-			fixed4 c = col;
-
-			if (_Cam1_Rect.z > 0) {
-				float2 camera_1_Size = float2(_Cam1_Rect.z, _Cam1_Rect.w);
-				float2 posInCamera1 = TransformToCamera(IN.worldPos - float2(_Cam1_Rect.x, _Cam1_Rect.y),  _Cam1_Rotation);
-
-				if (InCamera(posInCamera1, float2(0, 0), camera_1_Size)) {
-					c = OutputColor(IN, posInCamera1, camera_1_Size, 0);
-				}
-			}
-
-			if (_Cam2_Rect.z > 0) {
-				float2 camera_2_Size = float2(_Cam2_Rect.z, _Cam2_Rect.w);
-				float2 posInCamera2 = TransformToCamera(IN.worldPos - float2(_Cam2_Rect.x, _Cam2_Rect.y),  _Cam2_Rotation);
-				
-				if (InCamera(posInCamera2, float2(0, 0), camera_2_Size)) {
-					c = OutputColor(IN, posInCamera2, camera_2_Size, 1);
-				}
-			}
-
-			fixed4 color = c;
+			fixed4 color = tex2D(_MainTex, IN.texcoord0);
+		
+			color = Lighting_FogOfWar(color, IN.worldPos);
 		
 			// Alternative implementation to UnityGet2DClipping with support for softness.
 			#if UNITY_UI_CLIP_RECT

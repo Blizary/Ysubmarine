@@ -19,6 +19,7 @@ public class DayLightCollider2DEditor : Editor {
 	SerializedProperty shadowTranslucency;
 
 	SerializedProperty maskType;
+	SerializedProperty maskLit;
 	SerializedProperty maskLayer;
 
 	SerializedProperty applyToChildren;
@@ -35,6 +36,7 @@ public class DayLightCollider2DEditor : Editor {
 
 		maskType = serializedObject.FindProperty("maskType");
 		maskLayer = serializedObject.FindProperty("maskLayer");
+		maskLit = serializedObject.FindProperty("maskLit");
 
 		applyToChildren = serializedObject.FindProperty("applyToChildren");
 
@@ -92,6 +94,8 @@ public class DayLightCollider2DEditor : Editor {
 			if (script.mainShape.maskType == DayLightCollider2D.MaskType.BumpedSprite) {
 				GUIBumpMapMode.DrawDay(script.normalMapMode);
 			}
+
+			EditorGUILayout.PropertyField(maskLit, new GUIContent ("Mask Lit"));
 
 		EditorGUI.EndDisabledGroup();
 

@@ -27,39 +27,71 @@ public class LayerSetting {
 	}
 }
 
+public class DayMaskColor {
+	public static Color Get(DayLightCollider2D id) {
+		if (id.maskLit == DayLightCollider2D.MaskLit.LitAbove) {
+			return(LitAbove());
+		}
+
+		return(new Color(1, 1, 1, 1));
+	}
+
+	public static Color LitAbove() {
+		float q = Mathf.Cos((Lighting2D.DayLightingSettings.direction + 90) * Mathf.Deg2Rad) * 2;
+
+		if (q > 1) {
+			q = 1;
+		} else if (q < 0) {
+			q = 0;
+		}
+
+		return(new Color(q, q, q, 1));
+	}
+}
+
 public class LayerSettingColor {
 
 	// Light Collider
 	 public static Color Get(LightColliderShape lightShape, Vector2 position, LayerSetting layerSetting, MaskLit maskLit, float maskTranslucency, float maskLitCustom) {
+		switch(maskLit) {
+			case MaskLit.Unlit:
 
-		if (maskLit == MaskLit.Unlit) {
-			return(Color.black);
+				return(Color.black);
+
+			case MaskLit.Isometric: 
+				Rect rect = lightShape.GetIsoWorldRect();
+				if (rect.width < rect.height) {
+
+					float x = position.y + position.x / 2;
+					return(LitAbove(x, layerSetting));
+				} else {
+
+					float y = position.y - position.x / 2;	
+					return(LitAbove(y, layerSetting));
+				}
+			
+			case MaskLit.Custom:
+
+				return(new Color(maskLitCustom, maskLitCustom, maskLitCustom, 1));
+			
+			case MaskLit.LitAbove:
+
+				return(LitAbove(position.y, layerSetting));
 		}
 
-		if (maskLit == MaskLit.Isometric) {
-			Rect rect = lightShape.GetIsoWorldRect();
-			if (rect.width < rect.height) {
+		switch(layerSetting.maskLit) {
+			case LightLayerMaskLit.AboveLit:
 
-				float x = position.y + position.x / 2;
-				return(LitAbove(x, layerSetting));
-			} else {
+				 return(LitAbove(position.y, layerSetting));
 
-				float y = position.y - position.x / 2;	
-				return(LitAbove(y, layerSetting));
-			}
+			case LightLayerMaskLit.NeverLit:
+
+				return(Color.black);
+
+			default:
+			
+				return(new Color(1, 1, 1, maskTranslucency));	
 		}
-
-		if (maskLit == MaskLit.Custom) {
-			return(new Color(maskLitCustom, maskLitCustom, maskLitCustom, 1));
-		}
-
-		if (layerSetting.maskLit == LightLayerMaskLit.AboveLit) {
-            return(LitAbove(position.y, layerSetting));
-        } else if (layerSetting.maskLit == LightLayerMaskLit.NeverLit) {
-			return(Color.black);
-		} else {
-            return(new Color(1, 1, 1, maskTranslucency));
-        }
 	}
 
 	// Light Tilemap

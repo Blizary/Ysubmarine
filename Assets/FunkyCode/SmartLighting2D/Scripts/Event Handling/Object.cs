@@ -13,10 +13,6 @@ namespace EventHandling {
 		public List<LightCollider2D> listenersInLightColliders = new List<LightCollider2D>();
 
 		public void Update(Light2D light, EventPreset eventPreset) {
-			if (light == null) {
-				return;
-			}
-
 			listenersInLight.Clear();
 
 			// Get Event Receivers

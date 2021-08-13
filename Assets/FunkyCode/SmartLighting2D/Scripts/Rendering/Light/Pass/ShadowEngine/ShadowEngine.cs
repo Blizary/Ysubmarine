@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightSettings;
+using FunkyCode.Utilities;
 
 namespace Rendering.Light {
 
