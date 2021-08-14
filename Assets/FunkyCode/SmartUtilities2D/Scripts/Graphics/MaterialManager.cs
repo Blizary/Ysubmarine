@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utilities {
+namespace FunkyCode.Utilities {
 	public class MaterialManager {
 		static SmartMaterial vertexLit = null;
 		static SmartMaterial additive = null;

@@ -4,31 +4,22 @@ using UnityEngine;
 using LightingSettings;
 
 public static class Lighting2D {
-	public const int VERSION = 20210600;
-	public const string VERSION_STRING = "2021.6.0";
+	public const int VERSION = 20210701;
+	public const string VERSION_STRING = "2021.7.1";
 
 	static public Lighting2DMaterials materials = new Lighting2DMaterials();
 
 	// Disable
-
-	static public bool disable {
-		// set => Profile.disable = value;
-		get => false;
-	}
+	static public bool disable => false;
 
 	// Buffer Settings
-	static public LightmapPreset[] BufferPresets {
-		get => Profile.lightmapPresets.list;
-	}
+	static public LightmapPreset[] LightmapPresets => Profile.lightmapPresets.list;
 
 	// Common Settings
-	static public LightingSettings.QualitySettings QualitySettings {
-		get => Profile.qualitySettings;
-	}
+	static public LightingSettings.QualitySettings QualitySettings => Profile.qualitySettings;
+	
 	// Day Settings
-	static public DayLightingSettings DayLightingSettings {
-		get => Profile.dayLightingSettings;
-	}
+	static public DayLightingSettings DayLightingSettings => Profile.dayLightingSettings;
 
 	static public RenderingMode RenderingMode {
 		get {
@@ -40,21 +31,17 @@ public static class Lighting2D {
 		}
 	}
 
-	static public CoreAxis CoreAxis {
-		get {
-			return(Profile.qualitySettings.coreAxis);
-		}
-	}
+	static public CoreAxis CoreAxis => Profile.qualitySettings.coreAxis;
 
 	// Set & Get API
 	static public Color DarknessColor {
-		get { return BufferPresets[0].darknessColor; }
-		set { BufferPresets[0].darknessColor = value; }
+		get { return LightmapPresets[0].darknessColor; }
+		set { LightmapPresets[0].darknessColor = value; }
 	}
 
 	static public float Resolution {
-		get { return BufferPresets[0].lightingResolution; }
-		set { BufferPresets[0].lightingResolution = value; }
+		get { return LightmapPresets[0].lightingResolution; }
+		set { LightmapPresets[0].lightingResolution = value; }
 	}
 
 	// Methods
@@ -103,13 +90,6 @@ public static class Lighting2D {
 				return(projectSettings);
 			}
 
-			//MyScriptableObjectClass asset = ScriptableObject.CreateInstance<MyScriptableObjectClass>();
-
-			//AssetDatabase.CreateAsset(asset, "Assets/NewScripableObject.asset");
-			//AssetDatabase.SaveAssets();
-
-			//EditorUtility.FocusProjectWindow();
-
 			projectSettings = Resources.Load("Settings/Project Settings") as ProjectSettings;
 
 			if (projectSettings == null) {
@@ -121,3 +101,10 @@ public static class Lighting2D {
 		}
 	}
 }
+
+//MyScriptableObjectClass asset = ScriptableObject.CreateInstance<MyScriptableObjectClass>();
+
+//AssetDatabase.CreateAsset(asset, "Assets/NewScripableObject.asset");
+//AssetDatabase.SaveAssets();
+
+//EditorUtility.FocusProjectWindow();

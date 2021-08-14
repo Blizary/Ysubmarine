@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using LightTilemapCollider;
+using FunkyCode.Utilities;
 
 #if UNITY_2017_4_OR_NEWER
 

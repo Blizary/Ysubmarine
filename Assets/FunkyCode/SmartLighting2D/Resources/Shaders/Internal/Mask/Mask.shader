@@ -30,7 +30,6 @@
 			#include "UnityCG.cginc"
 		
 			sampler2D _MainTex;
-			//float4 _SecTex_ST;
 
 			struct appdata_t {
 				float4 vertex   : POSITION;

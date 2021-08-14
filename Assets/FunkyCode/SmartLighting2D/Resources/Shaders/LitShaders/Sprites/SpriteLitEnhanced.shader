@@ -6,8 +6,6 @@
 		_Color ("Tint", Color) = (1,1,1,1)
 		_Lit ("Lit", Range(0,1)) = 1
         _Max ("Max", Range(0,1)) = 1
-
-		// _LinearColor ("LinearColor", Float) = 0
 	}
 
 	SubShader
@@ -34,6 +32,7 @@
 			#pragma fragment frag
 
 			#include "UnityCG.cginc"
+			#include "../../LitShaders/LitCore.cginc"
 			
 			struct appdata_t
 			{
@@ -51,21 +50,8 @@
 			};
 			
 			fixed4 _Color;
-			float _Lit;
             float _Max;
 			sampler2D _MainTex;
-
-			// float _LinearColor;
-			
-             // Cam 1
-			sampler2D _Cam1_Texture;
-            vector _Cam1_Rect;
-            float _Cam1_Rotation;
-
-			 // Cam 2
-			sampler2D _Cam2_Texture;
-			vector _Cam2_Rect;
-            float _Cam2_Rotation;
 
 			v2f vert(appdata_t IN)
 			{
@@ -80,88 +66,22 @@
 				return OUT;
 			}
 
-            bool InCamera (float2 pos, float2 rectPos, float2 rectSize) {
-				rectPos -= rectSize / 2;
-                return (pos.x < rectPos.x || pos.x > rectPos.x + rectSize.x || pos.y < rectPos.y || pos.y > rectPos.y + rectSize.y) == false;
-            }
+			fixed4 OutputColor(fixed4 spritePixel, v2f IN) {
+				fixed4 lightPixel = LightColor(IN.worldPos);
 
-			float2 TransformToCamera(float2 pos, float rotation) {
-				float c = cos(-rotation);
-				float s = sin(-rotation);
-		
-				float x = pos.x;
-				float y = pos.y;
+				lightPixel = lerp(lightPixel, 1, 1 - _Lit);
+				lightPixel = min(lightPixel, fixed4(_Max, _Max, _Max, 1));
 
-				pos.x = x * c - y * s;
-				pos.y = x * s + y * c;
-
-                return(pos);
-            }
-
-			fixed4 LightColor(float id, float2 texcoord) {
-				if (id < 0.5f) {
-					return(tex2D (_Cam1_Texture, texcoord));
-				} else if (id < 1.5f) {
-					return(tex2D (_Cam2_Texture, texcoord));
-				}
-				
-				return(fixed4(0, 0, 0, 0));
-			}
-
-			fixed4 InputColor(v2f IN) {
-				return(tex2D (_MainTex, IN.texcoord) * IN.color);
-			}
-
-			fixed4 OutputColor(v2f IN, float2 posInCamera, float2 cameraSize, float id) {
-				float2 texcoord = (posInCamera + cameraSize / 2) / cameraSize;
-			
-				fixed4 lightPixel = LightColor(id, texcoord);
-				fixed4 spritePixel = InputColor(IN);
-
-				lightPixel = lerp(lightPixel, fixed4(1, 1, 1, 1), 1 - _Lit);
-
-                if (lightPixel.r > _Max) {
-                    lightPixel.r = _Max;
-                }
-
-                if (lightPixel.g > _Max) {
-                    lightPixel.g = _Max;
-                }
-
-                if (lightPixel.b > _Max) {
-                    lightPixel.b = _Max;
-                }
-
-				spritePixel = spritePixel * lightPixel;
-				spritePixel.rgb *= spritePixel.a; 
-				
-				//spritePixel.rgb =  pow(spritePixel.rgb, 1/2.2);
-				
-				return spritePixel;
+				return spritePixel * lightPixel;
 			}
         
 			fixed4 frag(v2f IN) : SV_Target
 			{
-                if (_Cam1_Rect.z > 0) {
-					float2 camera_1_Size = float2(_Cam1_Rect.z, _Cam1_Rect.w);
-					float2 posInCamera1 = TransformToCamera(IN.worldPos - float2(_Cam1_Rect.x, _Cam1_Rect.y),  _Cam1_Rotation);
+				fixed4 spritePixel = tex2D (_MainTex, IN.texcoord) * IN.color;
 
-					if (InCamera(posInCamera1, float2(0, 0), camera_1_Size)) {
-                    	return OutputColor(IN, posInCamera1, camera_1_Size, 0);
-					}
-				}
-
-				if (_Cam2_Rect.z > 0) {
-					float2 camera_2_Size = float2(_Cam2_Rect.z, _Cam2_Rect.w);
-					float2 posInCamera2 = TransformToCamera(IN.worldPos - float2(_Cam2_Rect.x, _Cam2_Rect.y),  _Cam2_Rotation);
-					
-					if (InCamera(posInCamera2, float2(0, 0), camera_2_Size)) {
-						return OutputColor(IN, posInCamera2, camera_2_Size, 1);
-					}
-                }
-
-				fixed4 spritePixel = InputColor(IN);
+				spritePixel = OutputColor(spritePixel, IN);
 				spritePixel.rgb *= spritePixel.a; 
+
 				return spritePixel;
 			}
 

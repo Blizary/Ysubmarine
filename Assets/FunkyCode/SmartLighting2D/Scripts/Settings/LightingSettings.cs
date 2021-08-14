@@ -133,8 +133,9 @@ namespace LightingSettings {
 		public EditorGizmosBounds drawGizmosBounds = EditorGizmosBounds.None;
 		public EditorChunks drawGizmosChunks = EditorChunks.Disabled;
 		public EditorShadowCasters drawGizmosShadowCasters = EditorShadowCasters.Disabled;
-		
-		
+
+		public EditorIcons drawIcons = EditorIcons.Disabled;
+	
 		public int sceneViewLayer = 0;
 
 		public int gameViewLayer = 0;
@@ -268,6 +269,11 @@ namespace LightingSettings {
 	}
 
 	public enum EditorShadowCasters {
+		Disabled,
+		Enabled
+	}
+
+	public enum EditorIcons {
 		Disabled,
 		Enabled
 	}

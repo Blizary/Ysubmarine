@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightingSettings;
+using FunkyCode.Utilities;
 
 namespace EventHandling {
     public class LightTilemap : Base {

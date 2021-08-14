@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
-namespace LightShape {
-		
-	public class Collider2DShape : Base {
+namespace LightShape
+{		
+	public class Collider2DShape : Base
+	{
 		public bool edgeCollider2D = false;
 				
 		public override List<MeshObject> GetMeshes() {

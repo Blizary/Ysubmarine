@@ -11,7 +11,8 @@ using LightingSettings;
 public class LightingManager2D : LightingMonoBehaviour {
 	private static LightingManager2D instance;
 
-	public CameraSettings[] cameraSettings = new CameraSettings[1];
+	[SerializeField]
+	public LightingCameras cameras = new LightingCameras();
 
 	public bool debug = false;
 	public int version = 0;
@@ -20,15 +21,21 @@ public class LightingManager2D : LightingMonoBehaviour {
 	public LightingSettings.Profile setProfile;
     public LightingSettings.Profile profile;
 
+	// editor foldouts (avoid reseting after compiling script)
+	public bool[] foldout_cameras = new bool[10];
+
+	public bool[,] foldout_lightmapPresets = new bool[10, 10];
+	public bool[,] foldout_lightmapMaterials= new bool[10, 10];
+
 	// Sets Lighting Main Profile Settings for Lighting2D at the start of the scene
 	private static bool initialized = false; 
 
 	public Camera GetCamera(int id) {
-		if (cameraSettings.Length <= id) {
+		if (cameras.Length <= id) {
 			return(null);
 		}
 
-		return(cameraSettings[id].GetCamera());
+		return(cameras.Get(id).GetCamera());
 	}
 
 	public static void ForceUpdate() {
@@ -49,27 +56,21 @@ public class LightingManager2D : LightingMonoBehaviour {
 		gameObject.name = "Lighting Manager 2D";
 
 		instance = gameObject.AddComponent<LightingManager2D>();
-		instance.Initialize();
+
+		instance.transform.position = Vector3.zero;
+
+		instance.version = Lighting2D.VERSION;
+
+		instance.version_string = Lighting2D.VERSION_STRING;
 
 		return(instance);
 	}
 
-	public void Initialize () {
-		instance = this;
-
-		transform.position = Vector3.zero;
-
-		version = Lighting2D.VERSION;
-
-		version_string = Lighting2D.VERSION_STRING;
-
-		if (cameraSettings == null) {
-			cameraSettings = new CameraSettings[1];
-			cameraSettings[0] = new CameraSettings();
-		}
-	}
-
 	public void Awake() {
+		if (cameras == null) {
+			cameras = new LightingCameras();
+		}
+		
 		if (instance != null && instance != this) {
 
 			switch(Lighting2D.ProjectSettings.managerInstance) {
@@ -98,8 +99,6 @@ public class LightingManager2D : LightingMonoBehaviour {
 					}
 				break;
 			}
-			
-
 		}
 
 		LightingManager2D.initialized = false;
@@ -218,7 +217,7 @@ public class LightingManager2D : LightingMonoBehaviour {
 			return;
 		}
 
-		if (cameraSettings.Length < 1) {
+		if (cameras.Length < 1) {
 			return;
 		}
 
@@ -237,13 +236,14 @@ public class LightingManager2D : LightingMonoBehaviour {
 		}
 	}
 
-	public void UpdateMainBuffers() {
+	public void UpdateMainBuffers()
+	{
+		// should reset materials
+		CameraMaterials.ResetShaders();
 	
-		for(int i = 0; i < cameraSettings.Length; i++) {
-			CameraSettings cameraSetting = cameraSettings[i];
+		for(int i = 0; i < cameras.Length; i++) {
+			CameraSettings cameraSetting = cameras.Get(i);
 
-			// For Each Buffer Preset
-			
 			for(int b = 0; b < cameraSetting.Lightmaps.Length; b++) {
 				CameraLightmap bufferPreset = cameraSetting.GetLightmap(b);
 
@@ -349,8 +349,8 @@ public class LightingManager2D : LightingMonoBehaviour {
 	}
 
 	public bool IsSceneView() {
-		for(int i = 0; i < cameraSettings.Length; i++) {
-			CameraSettings cameraSetting = cameraSettings[i];
+		for(int i = 0; i < cameras.Length; i++) {
+			CameraSettings cameraSetting = cameras.Get(i);
 
 			if (cameraSetting.cameraType == CameraSettings.CameraType.SceneView) {
 				for(int b = 0; b < cameraSetting.Lightmaps.Length; b++) {
@@ -409,8 +409,8 @@ public class LightingManager2D : LightingMonoBehaviour {
 		UpdateProfile();
 		UpdateMaterials();
 
-		for(int i = 0; i < cameraSettings.Length; i++) {
-			CameraSettings cameraSetting = cameraSettings[i];
+		for(int i = 0; i < cameras.Length; i++) {
+			CameraSettings cameraSetting = cameras.Get(i);
 
 			for(int b = 0; b < cameraSetting.Lightmaps.Length; b++) {
 				CameraLightmap bufferPreset = cameraSetting.GetLightmap(b);
@@ -470,8 +470,8 @@ public class LightingManager2D : LightingMonoBehaviour {
 		Gizmos.color = new Color(0, 1f, 1f);
 
 		if (Lighting2D.ProjectSettings.editorView.drawGizmosBounds == EditorGizmosBounds.Rectangle) {
-			for(int i = 0; i < cameraSettings.Length; i++) {
-				CameraSettings cameraSetting = cameraSettings[i];
+			for(int i = 0; i < cameras.Length; i++) {
+				CameraSettings cameraSetting = cameras.Get(i);
 
 				Camera camera = cameraSetting.GetCamera();
 

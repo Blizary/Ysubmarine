@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LightTilemapCollider;
 using LightingSettings;
+using FunkyCode.Utilities;
 
 public class DayLightingTile {
 	public List<Polygon2> polygons;
@@ -20,9 +21,9 @@ public class DayLightingTile {
 
   	public bool InAnyCamera() {
 		LightingManager2D manager = LightingManager2D.Get();
-		CameraSettings[] cameraSettings = manager.cameraSettings;
+		LightingCameras lightingCameras = manager.cameras;
 
-		for(int i = 0; i < cameraSettings.Length; i++) {
+		for(int i = 0; i < lightingCameras.Length; i++) {
 			Camera camera = manager.GetCamera(i);
 
 			if (camera == null) {

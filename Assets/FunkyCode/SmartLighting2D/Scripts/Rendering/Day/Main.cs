@@ -4,33 +4,43 @@ using UnityEngine;
 using LightingSettings;
 using LightSettings;
 
-namespace Rendering.Day {
-	
-	public static class Main {
-
+namespace Rendering.Day
+{	
+	public static class Main
+	{
 		static Pass pass = new Pass();
 
-		public static void Draw(Camera camera, LightmapPreset lightmapPreset) {
+		public static bool IsDrawing(Camera camera, LightmapPreset lightmapPreset) {
 			if (Lighting2D.DayLightingSettings.alpha == 0) {
-				return;
+				return(false);
 			}
 
 			if (lightmapPreset == null) {
-				return;
+				return(false);
 			}
 
 			LightingLayerSetting[] layerSettings = lightmapPreset.dayLayers.Get();
 
 			if (layerSettings.Length < 1) {
+				return(false);
+			}
+
+			return(true);
+		}
+
+		public static void Draw(Camera camera, LightmapPreset lightmapPreset) {
+			if (!IsDrawing(camera, lightmapPreset)) {
 				return;
 			}
 
+			LightingLayerSetting[] layerSettings = lightmapPreset.dayLayers.Get();
+		
 			for(int i = 0; i < layerSettings.Length; i++) {
 				LightingLayerSetting dayLayer = layerSettings[i];
 
 				LayerSorting sorting = dayLayer.sorting;
 
-				if (pass.Setup(dayLayer, camera) == false) {
+				if (!pass.Setup(dayLayer, camera)) {
 					continue;
 				}
 

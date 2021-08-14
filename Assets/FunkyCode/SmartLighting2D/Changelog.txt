@@ -1,4 +1,30 @@
-﻿---- 2021.6.0 [02.06.2021]
+﻿--- 2021.7.1 [02.07.2021]
+Added: FunkyCode.Utilities namespace
+Changed: Lighting Manager: Lightmap batches reduced from 2 to 1
+
+
+--- 2021.7.0 [01.07.2021]
+Added: SL2D shader API assists to implement lighting into any shader
+Added: Mesh Mode: Additive Blur mode
+Added: Light Collider: Mask Unlit option
+Added: Soft Convex Shadow: considers "ignore light when inside collider" option
+Fixed: Sprite Lit shader typo caused artifacts with transparent sprites
+Fixed: Lighting Manager 2D: fixed serialization issues
+Changed: Reduced GC calls when using event handling
+
+
+--- 2021.6.1 [15.06.2021]
+Added: Project Settings: Option to disable gizmo icons
+Added: Day Light Collider: Lit Above
+Changed: Lighting Manager: Layer selection tweaks
+Changed: Improved Lit/FoW Shader implementation workflow
+Changed: Lighting Manager: Layer selection tweaks
+Changed: Lit materials rework
+Fixed: Material system applied disabled camera values
+Fixed: Lighting Manager: Constructor did not initialized lightmaps
+
+
+--- 2021.6.0 [02.06.2021]
 Added: Lighting Manager: Lightmap shader output selection
 Added: Light Collider: "is static" property
 Added: Legacy GPU shadow works with "Ignore When Inside Collider" option
@@ -9,7 +35,7 @@ Fixed: Rendering Mode "OnPostRender" caused additional draw calls
 Changed: UI: Light Presets shows name when unfolded
 
 
----- 2021.4.1 [23.04.2021]
+--- 2021.4.1 [23.04.2021]
 Fixed: Mac metal API froze when using specific shader
 Fixed: Tilemap chunks error
 Fixed: Default lighting settings caused light layers to invisible in some projects
@@ -17,7 +43,7 @@ Added: Additional Shader Graph demos
 Added: Lighting Sub Shader Graph
 
 
----- 2021.4.0 [16.04.2021]
+--- 2021.4.0 [16.04.2021]
 Added: Shader Graph API
 Added: Shader Graph Demos
 Added: Secondary textures (SL2D materials)

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using FunkyCode.Utilities;
 
 namespace LightTilemapCollider {
 	

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightingSettings;
+using FunkyCode.Utilities;
 
 public static class GizmosHelper {
 
@@ -75,37 +76,7 @@ public static class GizmosHelper {
 		}
     }
 
-    static public void DrawPolygons(List<Polygon2D> polygons, Vector3 position) {
-		if (polygons == null) {
-			return;
-		}
-		
-        foreach(Polygon2D polygon in polygons) {
-            DrawPolygon(polygon, position);
-        }
-    }
-
-	static public void DrawPolygon(Polygon2D polygon, Vector3 position) {
-		if (polygon == null) {
-			return;
-		}
-		
-		Vector3 a = Vector3.zero;
-		Vector3 b = Vector3.zero;
-
-		for(int i = 0; i < polygon.pointsList.Count; i++) {
-
-			Vector2D p0 = polygon.pointsList[i];
-			Vector2D p1 = polygon.pointsList[(i + 1) % polygon.pointsList.Count];
-
-			a = LightingPosition.GetPosition3DWorld(p0.ToVector2(), position);
-			b = LightingPosition.GetPosition3DWorld(p1.ToVector2(), position);
-
-			Gizmos.DrawLine(a, b);
-		}
-    }
-
-	static public void DrawPolygons(List<Polygon2> polygons, Vector3 position) {
+    static public void DrawPolygons(List<Polygon2> polygons, Vector3 position) {
 		if (polygons == null) {
 			return;
 		}
@@ -116,6 +87,10 @@ public static class GizmosHelper {
     }
 
 	static public void DrawPolygon(Polygon2 polygon, Vector3 position) {
+		if (polygon == null) {
+			return;
+		}
+		
 		Vector3 a = Vector3.zero;
 		Vector3 b = Vector3.zero;
 

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
-namespace Rendering.Day {
-
-    public static class SpriteRenderer2D {
+namespace Rendering.Day
+{
+    public static class SpriteRenderer2D
+	{
 		static public Texture2D currentTexture = null;
 
 		static public void Draw(DayLightCollider2D id, Vector2 offset) {
@@ -13,7 +15,8 @@ namespace Rendering.Day {
 			}
 
 			Material material = Lighting2D.materials.mask.GetDayMask();
-			GLExtended.color = Color.white;
+
+			GLExtended.color = DayMaskColor.Get(id);
 
 			foreach(DayLightColliderShape shape in id.shapes) {
 				UnityEngine.SpriteRenderer spriteRenderer = shape.spriteShape.GetSpriteRenderer();
@@ -45,7 +48,7 @@ namespace Rendering.Day {
 				position.x += offset.x;
 				position.y += offset.y;
 
-				Rendering.Universal.Sprite.Pass.Draw(id.spriteMeshObject, spriteRenderer, position, shape.transform2D.scale, shape.transform2D.rotation);
+				Universal.Sprite.Pass.Draw(id.spriteMeshObject, spriteRenderer, position, shape.transform2D.scale, shape.transform2D.rotation);
 			}
 		}
 

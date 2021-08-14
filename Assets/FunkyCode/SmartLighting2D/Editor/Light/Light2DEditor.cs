@@ -34,6 +34,8 @@ public class Light2DEditor : Editor {
 	SerializedProperty spriteFlipY;
 	SerializedProperty sprite;
 
+	SerializedProperty ignoreWhenInsideCollider;
+
 	private bool foldoutSprite = false;
 	private bool foldoutBumpMap = false;
 
@@ -61,6 +63,8 @@ public class Light2DEditor : Editor {
 		maskTranslucency = serializedObject.FindProperty("maskTranslucency");
 
 		maskTranslucencyIntensity = serializedObject.FindProperty("maskTranslucencyIntensity");
+
+		ignoreWhenInsideCollider = serializedObject.FindProperty("ignoreWhenInsideCollider");
 	}
 
 	private void OnEnable(){
@@ -142,7 +146,7 @@ public class Light2DEditor : Editor {
 		
 		// EditorGUILayout.PropertyField(textureSize, new GUIContent ("Buffer Size"));
 
-		textureSize.intValue = EditorGUILayout.Popup("Buffer Size", (int)Lighting2D.Profile.qualitySettings.lightTextureSize, LightingSettings.QualitySettings.LightingSourceTextureSizeArray);
+		textureSize.intValue = EditorGUILayout.Popup("Resolution", (int)Lighting2D.Profile.qualitySettings.lightTextureSize, LightingSettings.QualitySettings.LightingSourceTextureSizeArray);
 		
 		EditorGUI.EndDisabledGroup();
 		
@@ -199,9 +203,8 @@ public class Light2DEditor : Editor {
 		light2D.applyRotation = EditorGUILayout.Toggle("Apply Rotation", light2D.applyRotation);
 
 		EditorGUILayout.Space();
-	
-		light2D.ignoreWhenInsideCollider = EditorGUILayout.Toggle("Ignore When Inside Collider", light2D.ignoreWhenInsideCollider);
 
+		ignoreWhenInsideCollider.boolValue = EditorGUILayout.Toggle("Ignore When Inside Collider", light2D.ignoreWhenInsideCollider);
 	
 		serializedObject.ApplyModifiedProperties();	
 

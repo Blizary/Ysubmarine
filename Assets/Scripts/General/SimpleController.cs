@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class SimpleController : MonoBehaviour
 {
-    //movement
 	public float baseSpeed = 1f;
+    public float speedUpModifier;
+    public float speedDownModifier;
     private float currentSpeed;
-
-    //rotation
     public float rotSpeed = 50f;
 
     public bool physicsController;
@@ -21,6 +20,12 @@ public class SimpleController : MonoBehaviour
 
     private float lastClickTime;
     private const float doubleClick = 0.5f;
+
+    private void Start()
+    {
+        currentSpeed = baseSpeed;
+    }
+
 
     private void Update()
     {
@@ -86,11 +91,11 @@ public class SimpleController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W) && Vector3.Magnitude(rb.velocity) <= 2)
             {
-                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * baseSpeed);
+                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * currentSpeed);
             }
             else if (Input.GetKey(KeyCode.S) && Vector3.Magnitude(rb.velocity) >= -2)
             {
-                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * baseSpeed);
+                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * currentSpeed);
             }
         }
         else

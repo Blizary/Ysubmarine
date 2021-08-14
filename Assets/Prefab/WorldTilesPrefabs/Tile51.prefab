@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 6689523041096571038}
   - component: {fileID: 972049770423536050}
   - component: {fileID: 3803014356033081650}
-  - component: {fileID: -8462537552454516151}
   m_Layer: 0
   m_Name: Tile51
   m_TagString: Untagged
@@ -85,7 +84,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e327f3959e780b5419ed4dd722768102, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -328,60 +327,6 @@ PolygonCollider2D:
       - {x: 0.275, y: 0.97499996}
       - {x: 0.39499998, y: 1.095}
       - {x: 0.555, y: 1.115}
---- !u!114 &-8462537552454516151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2789975314651185670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5783dbbad6a59184fa58aa75d79bcc02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shadowType: 3
-  shadowLayer: 0
-  shadowDistance: 0
-  shadowDistanceMin: 1.44
-  shadowDistanceMax: 3.45
-  shadowTranslucency: 0.323
-  maskType: 5
-  maskLit: 2
-  maskPivot: 0
-  maskLayer: 0
-  maskLitCustom: 1
-  maskTranslucency: 1
-  isStatic: 0
-  bumpMapMode:
-    type: 0
-    textureType: 0
-    texture: {fileID: 0}
-    sprite: {fileID: 0}
-    invertX: 0
-    invertY: 0
-    depth: 1
-    spriteRenderer: {fileID: 972049770423536050}
-  applyToChildren: 0
-  usingEvents: 0
-  mainShape:
-    shadowType: 3
-    maskType: 5
-    maskPivot: 0
-    shadowDistance: 0
-    shadowTranslucency: 0.323
-    maskTranslucency: 1
-    isStatic: 0
-    transform: {fileID: 6689523041096571038}
-  shapes:
-  - shadowType: 3
-    maskType: 5
-    maskPivot: 0
-    shadowDistance: 0
-    shadowTranslucency: 0.323
-    maskTranslucency: 1
-    isStatic: 0
-    transform: {fileID: 6689523041096571038}
 --- !u!1 &8911318466333045054
 GameObject:
   m_ObjectHideFlags: 0

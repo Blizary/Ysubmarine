@@ -5,8 +5,8 @@
 		[HideInInspector] _MainTex ("Sprite Texture", 2D) = "white" {}
         _EmissiveTex ("Emissive Texture", 2D) = "black" {}
 		_Color ("Tint", Color) = (1,1,1,1)
-		_Lit ("Lit", Range(0,1)) = 1
 		_Emission ("Emission", Range(1,5)) = 2
+		_Lit ("Lit", Range(0,1)) = 1
 	}
 
 	SubShader
@@ -33,6 +33,7 @@
 			#pragma fragment frag
 
 			#include "UnityCG.cginc"
+			#include "../../LitShaders/LitCore.cginc"
 			
 			struct appdata_t
 			{
@@ -53,18 +54,7 @@
             sampler2D _EmissiveTex;
 
 			fixed4 _Color;
-			float _Lit;
 			float _Emission;
-
-            // Cam 1
-			sampler2D _Cam1_Texture;
-            vector _Cam1_Rect;
-            float _Cam1_Rotation;
-
-			 // Cam 2
-			sampler2D _Cam2_Texture;
-			vector _Cam2_Rect;
-            float _Cam2_Rotation;
 
 			v2f vert(appdata_t IN)
 			{
@@ -79,85 +69,28 @@
 				return OUT;
 			}
 
-			// change rectPos/rectSize into vector4
-            bool InCamera (float2 pos, float2 rectPos, float2 rectSize) {
-				rectPos -= rectSize / 2;
-                return (pos.x < rectPos.x || pos.x > rectPos.x + rectSize.x || pos.y < rectPos.y || pos.y > rectPos.y + rectSize.y) == false;
-            }
-
-			float2 TransformToCamera(float2 pos, float rotation) {
-				float c = cos(-rotation);
-				float s = sin(-rotation);
-		
-				float x = pos.x;
-				float y = pos.y;
-
-				pos.x = x * c - y * s;
-				pos.y = x * s + y * c;
-
-                return(pos);
-            }
-
-			fixed4 LightColor(float id, float2 texcoord) {
-				if (id < 0.5f) {
-					return(tex2D (_Cam1_Texture, texcoord));
-				} else if (id < 1.5f) {
-					return(tex2D (_Cam2_Texture, texcoord));
-				}
-				
-				return(fixed4(0, 0, 0, 0));
-			}
-
-			fixed4 InputColor(v2f IN) {
-				return(tex2D (_MainTex, IN.texcoord) * IN.color);
-			}
-
-			fixed4 OutputColor(v2f IN, float2 posInCamera, float2 cameraSize, float id) {
-				float2 texcoord = (posInCamera + cameraSize / 2) / cameraSize;
+			fixed4 OutputColor(fixed4 spritePixel, v2f IN) {
+				fixed4 lightPixel = LightColor(IN.worldPos);
 			
-				fixed4 lightPixel = LightColor(id, texcoord);
-				fixed4 spritePixel = InputColor(IN);
-
                 fixed4 emissivePixel = tex2D (_EmissiveTex, IN.texcoord) * _Emission;
 
                 lightPixel.r += emissivePixel.r;
                 lightPixel.g += emissivePixel.g;
                 lightPixel.b += emissivePixel.b;
 
-				lightPixel.r = min(_Emission, lightPixel.r);
-				lightPixel.g = min(_Emission, lightPixel.g);
-				lightPixel.b = min(_Emission, lightPixel.b);
-
+				lightPixel = min(lightPixel, _Emission);
 				lightPixel = lerp(lightPixel, fixed4(1, 1, 1, 1), 1 - _Lit);
 
-				spritePixel = spritePixel * lightPixel;
-				spritePixel.rgb *= spritePixel.a; 
-
-				return spritePixel;
+				return spritePixel * lightPixel;
 			}
         
 			fixed4 frag(v2f IN) : SV_Target
 			{
-                if (_Cam1_Rect.z > 0) {
-					float2 camera_1_Size = float2(_Cam1_Rect.z, _Cam1_Rect.w);
-					float2 posInCamera1 = TransformToCamera(IN.worldPos - float2(_Cam1_Rect.x, _Cam1_Rect.y),  _Cam1_Rotation);
+				fixed4 spritePixel = tex2D (_MainTex, IN.texcoord) * IN.color;
 
-					if (InCamera(posInCamera1, float2(0, 0), camera_1_Size)) {
-                    	return OutputColor(IN, posInCamera1, camera_1_Size, 0);
-					}
-				}
-
-				if (_Cam2_Rect.z > 0) {
-					float2 camera_2_Size = float2(_Cam2_Rect.z, _Cam2_Rect.w);
-					float2 posInCamera2 = TransformToCamera(IN.worldPos - float2(_Cam2_Rect.x, _Cam2_Rect.y),  _Cam2_Rotation);
-					
-					if (InCamera(posInCamera2, float2(0, 0), camera_2_Size)) {
-						return OutputColor(IN, posInCamera2, camera_2_Size, 1);
-					}
-                }
-
-				fixed4 spritePixel = InputColor(IN);
+				spritePixel = OutputColor(spritePixel, IN);
 				spritePixel.rgb *= spritePixel.a; 
+
 				return spritePixel;
 			}
 

@@ -7,7 +7,7 @@ namespace LightSettings {
 	// Light 2D
 	public class LightEvent : UnityEvent <Light2D> {} // ??
 
-	public enum MaskLit {Lit, Unlit, Isometric, Custom}
+	public enum MaskLit {Lit, Unlit, LitAbove, Isometric, Custom}
 
 	public enum LightLayerType {ShadowAndMask, ShadowOnly, MaskOnly}
 

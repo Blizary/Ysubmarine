@@ -58,7 +58,7 @@ public class LightMainBuffer2D {
 			}
 		}
 
-		if (Lighting2D.BufferPresets.Length <= lightmap.bufferID) {
+		if (Lighting2D.LightmapPresets.Length <= lightmap.bufferID) {
 			Debug.LogWarning("Lighting2D: Not enough buffer settings initialized");
 
 			return(null);
@@ -76,13 +76,13 @@ public class LightMainBuffer2D {
 	}
 
 	public LightmapPreset GetLightmapPreset() {
-		if (Lighting2D.BufferPresets.Length <= cameraLightmap.bufferID) {
+		if (Lighting2D.LightmapPresets.Length <= cameraLightmap.bufferID) {
 			Debug.LogWarning("Lighting2D: Not enough buffer settings initialized");
 
 			return(null);
 		}
 
-		return(Lighting2D.BufferPresets[cameraLightmap.bufferID]);
+		return(Lighting2D.LightmapPresets[cameraLightmap.bufferID]);
 	}
 
 	public void ClearMaterial() {
@@ -137,7 +137,6 @@ public class LightMainBuffer2D {
 			RenderTexture previous = RenderTexture.active;
 
 			RenderTexture.active = renderTexture.renderTexture;
-			GL.Clear(true, true, Color.white); // Clear Darkness Color
 
 			Rendering.LightMainBuffer.Render(this);
 

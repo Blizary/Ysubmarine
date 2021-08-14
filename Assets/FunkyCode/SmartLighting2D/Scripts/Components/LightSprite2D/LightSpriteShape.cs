@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
 [System.Serializable]
 public class LightSpriteTransform {
@@ -80,10 +81,10 @@ public class LightSpriteShape {
 		return(worldrect);
 	}
 
-    private Polygon2D worldPolygon = null;
+    private Polygon2 worldPolygon = null;
     private Rect worldrect = new Rect();
 
-	public Polygon2D GetSpriteWorldPolygon() {
+	public Polygon2 GetSpriteWorldPolygon() {
         if (worldPolygon != null) {
             return(worldPolygon);
         }
@@ -122,31 +123,31 @@ public class LightSpriteShape {
 	
 		worldPolygon = GetPolygon();
 		
-		worldPolygon.pointsList[0].x = v1.x;
-		worldPolygon.pointsList[0].y = v1.y;
+		worldPolygon.points[0].x = v1.x;
+		worldPolygon.points[0].y = v1.y;
 
-		worldPolygon.pointsList[1].x = v2.x;
-		worldPolygon.pointsList[1].y = v2.y;
+		worldPolygon.points[1].x = v2.x;
+		worldPolygon.points[1].y = v2.y;
 
-		worldPolygon.pointsList[2].x = v3.x;
-		worldPolygon.pointsList[2].y = v3.y;
+		worldPolygon.points[2].x = v3.x;
+		worldPolygon.points[2].y = v3.y;
 
-		worldPolygon.pointsList[3].x = v4.x;
-		worldPolygon.pointsList[3].y = v4.y;
+		worldPolygon.points[3].x = v4.x;
+		worldPolygon.points[3].y = v4.y;
 
         worldrect = worldPolygon.GetRect();
 
 		return(worldPolygon);
 	}
 
-	private Polygon2D polygon = null;
-	private Polygon2D GetPolygon() {
+	private Polygon2 polygon = null;
+	private Polygon2 GetPolygon() {
 		if (polygon == null) {
-			polygon = new Polygon2D();
-			polygon.AddPoint(0, 0);
-			polygon.AddPoint(0, 0);
-			polygon.AddPoint(0, 0);
-			polygon.AddPoint(0, 0);
+			polygon = new Polygon2(4);
+			polygon.points[0] = Vector2.zero;
+			polygon.points[1] = Vector2.zero;
+			polygon.points[2] = Vector2.zero;
+			polygon.points[3] = Vector2.zero;
 		}
 
 		return(polygon);

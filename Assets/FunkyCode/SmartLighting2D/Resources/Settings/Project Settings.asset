@@ -15,9 +15,10 @@ MonoBehaviour:
   renderingMode: 2
   editorView:
     drawGizmos: 1
-    drawGizmosBounds: 0
+    drawGizmosBounds: 1
     drawGizmosChunks: 0
     drawGizmosShadowCasters: 0
+    drawIcons: 0
     sceneViewLayer: 0
     gameViewLayer: 0
   chunks:

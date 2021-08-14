@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
 public class DemoLightColorChange : MonoBehaviour {
     public float speed = 1f;

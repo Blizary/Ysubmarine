@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightingSettings;
+using FunkyCode.Utilities;
 
 namespace EventHandling {
 
@@ -10,16 +11,16 @@ namespace EventHandling {
         static public void GetCollisions(List<LightCollision2D> collisions, Light2D lightingSource) {
             List<LightCollider2D> colliderList = LightCollider2D.ListEventReceivers;
 
-            foreach (LightCollider2D id in colliderList) { // Why all and not selected? + Specific layer
-                if (id.usingEvents == false) {
-                    continue;
-                }
+            // Why all and not selected? + Specific layer
+
+            for(int i = 0; i < colliderList.Count; i++) {
+                LightCollider2D id = colliderList[i];
 
                 if (id.mainShape.shadowType == LightCollider2D.ShadowType.None) {
                     continue;
                 }
 
-                if (id.InLight(lightingSource) == false) {
+                if (!id.InLight(lightingSource)) {
                     continue;
                 }
 
@@ -29,8 +30,8 @@ namespace EventHandling {
                     continue;
                 }
 
-                Polygon2 polygon = polygons[0].Copy();
-                polygon.ToOffsetSelf(-lightingSource.transform.position);
+                Polygon2 polygon = polygons[0];
+       
 
                 LightCollision2D collision = new LightCollision2D();
                 collision.light = lightingSource;
@@ -38,9 +39,14 @@ namespace EventHandling {
                 collision.points = new List<Vector2>();
       
                 foreach(Vector2 point in polygon.points) {
-                    if (point.magnitude < lightingSource.size) {
+                    Vector2 p = point;
+
+                    p.x -= lightingSource.transform.position.x;
+                    p.y -= lightingSource.transform.position.y;
+
+                    if (p.magnitude < lightingSource.size) {
                    
-                        float direction = point.Atan2(Vector2.zero) * Mathf.Rad2Deg;
+                        float direction = p.Atan2(Vector2.zero) * Mathf.Rad2Deg;
 
                         if (lightingSource.applyRotation) {
                             direction -= lightingSource.transform2D.rotation;
@@ -49,7 +55,7 @@ namespace EventHandling {
                         direction = (direction + 1080 - 90) % 360;
 
                         if (direction <= lightingSource.spotAngle / 2 || direction >= 360 - lightingSource.spotAngle / 2) {
-                            collision.points.Add(point);
+                            collision.points.Add(p);
                         }
                     }
                 }

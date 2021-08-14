@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunkyCode.Utilities;
 
 public class LightFlicker : MonoBehaviour {
     public float flickersPerSecond = 15f;

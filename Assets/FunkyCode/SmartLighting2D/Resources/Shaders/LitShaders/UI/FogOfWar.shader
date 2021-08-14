@@ -53,6 +53,7 @@
 
             #include "UnityCG.cginc"
             #include "UnityUI.cginc"
+            #include "../../LitShaders/LitCore.cginc"
 
             #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
             #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
@@ -82,16 +83,6 @@
 
             sampler2D _MainTex;		
 
-            // Cam 1
-			sampler2D _Cam1_Texture;
-            vector _Cam1_Rect;
-            float _Cam1_Rotation;
-
-            // Cam 2
-			sampler2D _Cam2_Texture;
-			vector _Cam2_Rect;
-            float _Cam2_Rotation;
-
             v2f vert(appdata_t v)
             {
                 v2f OUT;
@@ -108,44 +99,8 @@
                 return OUT;
             }
 
-            bool InCamera (float2 pos, float2 rectPos, float2 rectSize) {
-				rectPos -= rectSize / 2;
-                return (pos.x < rectPos.x || pos.x > rectPos.x + rectSize.x || pos.y < rectPos.y || pos.y > rectPos.y + rectSize.y) == false;
-            }
-
-			float2 TransformToCamera(float2 pos, float rotation) {
-				float c = cos(-rotation);
-				float s = sin(-rotation);
-		
-				float x = pos.x;
-				float y = pos.y;
-
-				pos.x = x * c - y * s;
-				pos.y = x * s + y * c;
-
-                return(pos);
-            }
-
-            fixed4 LightColor(float id, float2 texcoord) {
-				if (id < 0.5f) {
-					return(tex2D (_Cam1_Texture, texcoord));
-				} else if (id < 1.5f) {
-					return(tex2D (_Cam2_Texture, texcoord));
-				}
-				
-				return(fixed4(0, 0, 0, 0));
-			}
-
-            fixed4 InputColor(v2f IN) {
-				fixed4 spritePixel = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
-				return(spritePixel);
-			}
-
-			fixed4 OutputColor(v2f IN, float2 posInCamera, float2 cameraSize, float id) {
-				float2 texcoord = (posInCamera + cameraSize / 2) / cameraSize;
-			
-				fixed4 lightPixel = LightColor(id, texcoord);
-				fixed4 spritePixel = InputColor(IN);
+			fixed4 OutputColor(fixed4 spritePixel, v2f IN) {
+				fixed4 lightPixel = LightColor(IN.worldPos);
 
 				float multiplier = (lightPixel.r + lightPixel.g + lightPixel.b) / 3;
 
@@ -160,28 +115,10 @@
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                fixed4 c = InputColor(IN);
+                fixed4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 
-                if (_Cam1_Rect.z > 0) {
-					float2 camera_1_Size = float2(_Cam1_Rect.z, _Cam1_Rect.w);
-					float2 posInCamera1 = TransformToCamera(IN.worldPos - float2(_Cam1_Rect.x, _Cam1_Rect.y),  _Cam1_Rotation);
-
-					if (InCamera(posInCamera1, float2(0, 0), camera_1_Size)) {
-                    	c = OutputColor(IN, posInCamera1, camera_1_Size, 0);
-					}
-				}
-
-				if (_Cam2_Rect.z > 0) {
-					float2 camera_2_Size = float2(_Cam2_Rect.z, _Cam2_Rect.w);
-					float2 posInCamera2 = TransformToCamera(IN.worldPos - float2(_Cam2_Rect.x, _Cam2_Rect.y),  _Cam2_Rotation);
-					
-					if (InCamera(posInCamera2, float2(0, 0), camera_2_Size)) {
-						c = OutputColor(IN, posInCamera2, camera_2_Size, 1);
-					}
-                }
-
-                fixed4 color = c;
-
+                color = OutputColor(color, IN);
+         
                 #ifdef UNITY_UI_CLIP_RECT
                     color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 #endif

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LightingSettings;
+using FunkyCode.Utilities;
 
 [ExecuteInEditMode]
 public class LightSprite2D : MonoBehaviour {
