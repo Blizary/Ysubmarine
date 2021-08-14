@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    public float cameraZ;
     public float cameraDistanceMax;
     public float cameraDistanceMin;
     public float cameraDistance;
@@ -20,7 +21,8 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position;
+        Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y, cameraZ);
+        transform.position = pos;
        // CameraMove();
         //CameraZoom();
     }
