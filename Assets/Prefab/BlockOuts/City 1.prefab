@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 663444938769239955}
   m_Layer: 5
   m_Name: Upgrade
-  m_TagString: Untagged
+  m_TagString: Defense
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -610,7 +610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 95.29999, y: 132.27547}
+  m_AnchoredPosition: {x: 95.29999, y: 93.27547}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &663444938769239953
@@ -694,7 +694,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 663444938769239952}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 74740535}
+        m_TargetAssemblyTypeName: CityShop, Assembly-CSharp
+        m_MethodName: UpgradingSub
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &663444938806631001
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 189, y: 184}
+  m_AnchoredPosition: {x: 189, y: 145}
   m_SizeDelta: {x: 253.93, y: 156.9691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &663444938820962133
@@ -920,6 +932,7 @@ MonoBehaviour:
   player: {fileID: 0}
   isInCity: 0
   shopInventory: {fileID: 663444940074182512}
+  upgradeSub: {fileID: 663444938769239957}
 --- !u!1 &663444938979707573
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 199, y: 240.37547}
+  m_AnchoredPosition: {x: 199, y: 201.37547}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &663444938979707568
@@ -1035,7 +1048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 95.20001, y: 169.17548}
+  m_AnchoredPosition: {x: 95.20001, y: 130.17548}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &663444939631692268
@@ -1322,7 +1335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 95.29999, y: 205.77547}
+  m_AnchoredPosition: {x: 95.29999, y: 166.77547}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &663444939804227072
@@ -1504,7 +1517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &663444940074182513
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1707,7 +1720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 129.65746, y: 0}
+  m_AnchoredPosition: {x: 129.65746, y: -3}
   m_SizeDelta: {x: 153.3104, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &663444940283204531
@@ -1751,7 +1764,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Upgrade - I've seen better submaries
+  m_Text: "Upgrade - Get more life on your\n\t\t\t\t\tsubmarine"
 --- !u!1 &663444940305516408
 GameObject:
   m_ObjectHideFlags: 0
