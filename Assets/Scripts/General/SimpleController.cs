@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class SimpleController : MonoBehaviour
 {
-	public float moveSpeed = 1f;
+    //movement
+	public float baseSpeed = 1f;
+    private float currentSpeed;
+
+    //rotation
     public float rotSpeed = 50f;
 
     public bool physicsController;
@@ -36,6 +40,23 @@ public class SimpleController : MonoBehaviour
             transform.Rotate(Vector3.forward * rotSpeed * Time.deltaTime);
         }
 
+
+        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
+        {
+            //fast speed
+            currentSpeed = baseSpeed * 2;
+        }
+        else if(Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.W))
+        {
+            //slow speed
+            currentSpeed = baseSpeed / 2;
+        }
+        else
+        {
+            currentSpeed = baseSpeed;
+        }
+
+
         /*if(Input.GetKey(KeyCode.W))
         {
             float timeSinceLastClick = Time.deltaTime - lastClickTime;
@@ -65,16 +86,16 @@ public class SimpleController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W) && Vector3.Magnitude(rb.velocity) <= 2)
             {
-                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * moveSpeed);
+                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * baseSpeed);
             }
             else if (Input.GetKey(KeyCode.S) && Vector3.Magnitude(rb.velocity) >= -2)
             {
-                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * moveSpeed);
+                rb.AddForce(new Vector2(moveProj.x, moveProj.y) * baseSpeed);
             }
         }
         else
         {
-            rb.MovePosition(rb.position + new Vector2(moveProj.x, moveProj.y) * moveSpeed * Time.deltaTime);
+            rb.MovePosition(rb.position + new Vector2(moveProj.x, moveProj.y) * currentSpeed * Time.deltaTime);
         }
 
     }

@@ -11,7 +11,9 @@ public class PlayerManager : MonoBehaviour
     public int currentHealth;
     public TextMeshProUGUI playerHealth;
 
-    public GameObject gameOver;
+    //public GameObject gameOver;
+
+    //public Animator deathAnim;
 
     //public GameObject player;
 
@@ -19,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        //deathAnim.SetBool("isDead", false);
     }
 
     // Update is called once per frame
@@ -30,8 +33,9 @@ public class PlayerManager : MonoBehaviour
             TakeDamage(2);
             playerHealth.text = "" + currentHealth.ToString() + " / " + maxHealth.ToString();
 
-            if(currentHealth <= 0)
+            if(currentHealth == 0)
             {
+                //deathAnim.SetBool("isDead", true);
                 GameOver();
             }
         }
@@ -39,12 +43,20 @@ public class PlayerManager : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        if(currentHealth > 0)
+        {
+            currentHealth -= damage;
+        }
+        else if(currentHealth <= 0)
+        {
+            //stop doing damage
+            currentHealth = 0;
+        }
     }
 
     void GameOver()
     {
-        this.gameObject.SetActive(false);
-        gameOver.SetActive(true);
+        //this.gameObject.SetActive(false);
+        //gameOver.SetActive(true);
     }
 }

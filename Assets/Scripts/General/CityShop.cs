@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CityShop : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CityShop : MonoBehaviour
 
     public bool isInCity;
     public GameObject shopInventory;
+
+    public GameObject upgradeSub;
 
     private void Start()
     {
@@ -26,7 +29,7 @@ public class CityShop : MonoBehaviour
             Debug.Log("No shooting!");
             player.GetComponent<Shooting>().enabled = false;
 
-            if(shopInventory.activeInHierarchy)
+            if (shopInventory.activeInHierarchy)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -55,6 +58,7 @@ public class CityShop : MonoBehaviour
         {
             cityPopUp.SetActive(true);
             isInCity = true;
+            UpgradingSub();
         }
     }
 
@@ -66,6 +70,15 @@ public class CityShop : MonoBehaviour
             cityPopUp.SetActive(false);
             isInCity = false;
             shopInventory.SetActive(false);
+        }
+    }
+
+    public void UpgradingSub()
+    {
+        if(upgradeSub.gameObject.CompareTag("Defense"))
+        {
+            Debug.Log("Your life increased!");
+
         }
     }
 }

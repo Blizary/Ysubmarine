@@ -11,6 +11,10 @@ TagManager:
   - CitySpawn
   - LightSpawn
   - BeaconSpawn
+  - Defense
+  - Booster
+  - Rudder
+  - Cannon
   layers:
   - Default
   - TransparentFX
