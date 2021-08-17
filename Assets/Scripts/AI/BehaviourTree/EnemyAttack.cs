@@ -5,13 +5,9 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 
 [TaskCategory("DeepDark/Action")]
-public class ChangeTarget : Action
+public class EnemyAttack : Action
 {
-    public SharedVector3 originaltarget;
-    public SharedVector3 newTarget;
-
     private EnemyManager currentManager;
-
     public override void OnAwake()
     {
         currentManager = GetComponent<EnemyManager>();
@@ -19,10 +15,7 @@ public class ChangeTarget : Action
 
     public override TaskStatus OnUpdate()
     {
-
-        currentManager.destination = newTarget.Value;
-        originaltarget.Value = newTarget.Value;
-
+        currentManager.Attack();
         return TaskStatus.Success;
     }
 }

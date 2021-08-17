@@ -35,15 +35,14 @@ public class PlayerManager : MonoBehaviour
 
             if(currentHealth == 0)
             {
-                //deathAnim.SetBool("isDead", true);
                 GameOver();
             }
         }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
-        if(currentHealth > 0)
+        if (currentHealth > 0)
         {
             currentHealth -= damage;
         }
@@ -52,6 +51,7 @@ public class PlayerManager : MonoBehaviour
             //stop doing damage
             currentHealth = 0;
         }
+        playerHealth.text = "" + currentHealth.ToString() + " / " + maxHealth.ToString();
     }
 
     void GameOver()

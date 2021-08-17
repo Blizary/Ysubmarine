@@ -62,23 +62,6 @@ public class SimpleController : MonoBehaviour
         }
 
 
-        /*if(Input.GetKey(KeyCode.W))
-        {
-            float timeSinceLastClick = Time.deltaTime - lastClickTime;
-
-            if(timeSinceLastClick <= doubleClick)
-            {
-                //double click
-                Debug.Log("double clickee!!");
-            }
-            else
-            {
-                //normal click
-                Debug.Log("click!");
-            }
-        }*/
-
-        //pew pew time
 
     }
 
@@ -86,7 +69,6 @@ public class SimpleController : MonoBehaviour
     {
         Vector3 moveProj = transform.up * movement.y;
 
-        //movement (w/ and whithout phycysssss)
         if (physicsController)
         {
             if (Input.GetKey(KeyCode.W) && Vector3.Magnitude(rb.velocity) <= 2)
@@ -105,21 +87,5 @@ public class SimpleController : MonoBehaviour
 
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        cityPopUp.SetActive(true);
-        if (Input.GetKey("up"))
-        {
-            //Its not working, I will try and do it with GetButtonDown
-            //After getting button down, make a pop up appear with some words
-            Debug.Log("Entering City!");
-        }
-        //Debug.Log("Found a city!");
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        cityPopUp.SetActive(false);
-        //Debug.Log("No city found");
-    }*/
 }
