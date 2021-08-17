@@ -15,6 +15,9 @@ TagManager:
   - Booster
   - Rudder
   - Cannon
+  - Rocks
+  - Enemy
+  - Queen
   layers:
   - Default
   - TransparentFX

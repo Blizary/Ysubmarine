@@ -3,26 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
+using PolyNav;
 
 [TaskCategory("DeepDark/Action")]
-public class ChangeTarget : Action
+public class ChaseTarget : Action
 {
-    public SharedVector3 originaltarget;
-    public SharedVector3 newTarget;
-
-    private EnemyManager currentManager;
+    public string targetString;
+    private GameObject target;
+    public SharedVector3 targetPos;
 
     public override void OnAwake()
     {
-        currentManager = GetComponent<EnemyManager>();
+        target = GameObject.FindGameObjectWithTag(targetString);
     }
 
     public override TaskStatus OnUpdate()
     {
-
-        currentManager.destination = newTarget.Value;
-        originaltarget.Value = newTarget.Value;
-
+        targetPos.Value = target.transform.position;
         return TaskStatus.Success;
     }
 }

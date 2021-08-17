@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
+using PolyNav;
 
 [TaskCategory("DeepDark/Action")]
-public class ChangeTarget : Action
+public class ChooseStrategy : Action
 {
-    public SharedVector3 originaltarget;
-    public SharedVector3 newTarget;
-
     private EnemyManager currentManager;
 
     public override void OnAwake()
@@ -19,10 +17,8 @@ public class ChangeTarget : Action
 
     public override TaskStatus OnUpdate()
     {
-
-        currentManager.destination = newTarget.Value;
-        originaltarget.Value = newTarget.Value;
-
-        return TaskStatus.Success;
+        currentManager.ChooseBehaviourStrategy();
+        return TaskStatus.Failure;
     }
+
 }

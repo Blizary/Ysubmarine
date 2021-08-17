@@ -8,6 +8,7 @@ using PolyNav;
 [TaskCategory("DeepDark/Action")]
 public class WaitTimer : Action
 {
+    public bool randomWait;
     public float waitTimerMax;
     public SharedFloat waitTimerTick;
     private PolyNavAgent polyAgent;
@@ -25,12 +26,20 @@ public class WaitTimer : Action
         {
             currentManager.hasTarget = false;
             currentManager.destination = Vector3.zero;
-            int coinFlip = Random.Range(0, 2);
-            if(coinFlip!=0)
+            if(randomWait)
             {
-                waitTimerTick.Value = Random.Range(1, waitTimerMax);
-                return TaskStatus.Success;
+                int coinFlip = Random.Range(0, 2);
+                if (coinFlip != 0)
+                {
+                    waitTimerTick.Value = Random.Range(1, waitTimerMax);
+                    return TaskStatus.Success;
+                }
             }
+            else
+            {
+                waitTimerTick.Value = waitTimerMax;
+            }
+            
         }
         else
         {
