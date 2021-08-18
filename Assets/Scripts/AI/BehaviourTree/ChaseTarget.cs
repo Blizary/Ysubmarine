@@ -14,12 +14,14 @@ public class ChaseTarget : Action
 
     public override void OnAwake()
     {
-        target = GameObject.FindGameObjectWithTag(targetString);
+        
     }
 
     public override TaskStatus OnUpdate()
     {
-        targetPos.Value = target.transform.position;
+        target = GameObject.FindGameObjectWithTag(targetString);
+        Vector3 targetPosGround = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
+        targetPos.Value = targetPosGround;
         return TaskStatus.Success;
     }
 }

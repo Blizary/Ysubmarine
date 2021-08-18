@@ -29,6 +29,21 @@ public class EvolutionManager : MonoBehaviour
     public float timeAliveInfluence;
     public float distanceTravelledInfluence;
 
+    [Header("Breeding variables")]
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeedBoost;
+    [SerializeField] private float minSpeedBoost;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float minHealth;
+    [SerializeField] private float maxStamina;
+    [SerializeField] private float minStamina;
+    [SerializeField] private float maxLight;
+    [SerializeField] private float minLight;
+    [SerializeField] private float maxAttackpower;
+    [SerializeField] private float minAttackPower;
+
+
     public bool originalBreedingDone = false;
 
 
@@ -65,7 +80,7 @@ public class EvolutionManager : MonoBehaviour
             {
                 if(i!=j)
                 {
-                    List<int> breedDNACode = CombineDNA(bestDNA[i].dnaCode, bestDNA[j].dnaCode);
+                    List<float> breedDNACode = CombineDNA(bestDNA[i].dnaCode, bestDNA[j].dnaCode);
                     DNA breedDNA = new DNA();
                     breedDNA.GenerateDNA(portfolio, breedDNACode, damageDoneInfluence, timeAliveInfluence, distanceTravelledInfluence);
                     nextDNAs.Add(breedDNA);
@@ -78,7 +93,7 @@ public class EvolutionManager : MonoBehaviour
         //add the mutated dna to prevent platou
         for (int i=0;i< numOfMutations;i++)
         {
-            List<int> dnaCode = new List<int>();
+            List<float> dnaCode = new List<float>();
             for (int j = 0; j < portfolio.Count; j++)
             {
                 //dna goes from 0 to 10
@@ -90,6 +105,8 @@ public class EvolutionManager : MonoBehaviour
             newdna.GenerateDNA(portfolio, dnaCode, damageDoneInfluence, timeAliveInfluence, distanceTravelledInfluence);
             nextDNAs.Add(newdna);
         }
+
+        oldDNAs.Clear();
         
     }
 
@@ -98,7 +115,8 @@ public class EvolutionManager : MonoBehaviour
         for(int i=0;i< numberPerGeneration;i++)
         {
             //generate random dna strands
-            List<int> dnaCode = new List<int>();
+            //generate strand part of portfolio components
+            List<float> dnaCode = new List<float>();
             for(int j=0;j< portfolio.Count;j++)
             {
                 //dna goes from 0 to 10
@@ -106,6 +124,27 @@ public class EvolutionManager : MonoBehaviour
                 dnaCode.Add(randomint);
 
             }
+            //generate biological components
+            //1st number == speed
+            float speed = Random.Range(minSpeed + 0.0f, maxSpeed + 0.01f);
+            dnaCode.Add(speed);
+            //2nd == speed boost when used when chasing or fleeing
+            float speedBoost = Random.Range(minSpeedBoost, maxSpeedBoost);
+            dnaCode.Add(speedBoost);
+            //3rd == Health
+            float health = Random.Range(minHealth, maxHealth);
+            dnaCode.Add(health);
+            //4th == Stamina
+            float stamina = Random.Range(minStamina, maxStamina);
+            dnaCode.Add(stamina);
+            //5th == Light
+            float light = Random.Range(minLight, maxLight);
+            dnaCode.Add(light);
+            //6th == Attack Power
+            float attackPower = Random.Range(minAttackPower, maxAttackpower);
+            dnaCode.Add(attackPower);
+
+
             DNA newdna = new DNA();
             newdna.GenerateDNA(portfolio, dnaCode, damageDoneInfluence, timeAliveInfluence, distanceTravelledInfluence);
             nextDNAs.Add(newdna);
@@ -134,14 +173,15 @@ public class EvolutionManager : MonoBehaviour
         DNA newDNA = new DNA() ;
         newDNA.GenerateDNA(portfolio, nextDNAs[0].dnaCode, damageDoneInfluence, timeAliveInfluence, distanceTravelledInfluence);
         newEnemy.GetComponent<EnemyManager>().currentDNA = newDNA;
+        newEnemy.GetComponent<EnemyManager>().enabled = true;
         availableEnemies.Add(newEnemy);
         newEnemy.SetActive(true);
         nextDNAs.RemoveAt(0);
     }
 
-    private List<int> CombineDNA(List<int> _dna1, List<int> _dna2)
+    private List<float> CombineDNA(List<float> _dna1, List<float> _dna2)
     {
-        List<int> newDNA = new List<int>();
+        List<float> newDNA = new List<float>();
         switch(evoType)
         {
             case EvolutionType.flipCoin:
@@ -177,6 +217,25 @@ public class EvolutionManager : MonoBehaviour
 
         //check if its time to breed
         CheckPopulation();
+    }
+
+
+    public float Gethealth()
+    {
+        float minMaxhealth = maxHealth / minHealth;
+        return minMaxhealth;
+    }
+
+    public Vector2 GetSpeedBoost()
+    {
+        Vector2 minMaxSpeedBoost = new Vector2(minSpeedBoost, maxSpeedBoost);
+        return minMaxSpeedBoost;
+    }
+
+    public Vector2 GetAttackPower()
+    {
+        Vector2 minMaxAP = new Vector2(minAttackPower, maxAttackpower);
+        return minMaxAP;
     }
 
 
