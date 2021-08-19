@@ -1,5 +1,141 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &461491609414413842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1997896790811037750}
+  - component: {fileID: 8688466999244725005}
+  - component: {fileID: 1794178397538119285}
+  m_Layer: 0
+  m_Name: PolyNavObstacle (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1997896790811037750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461491609414413842}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4158827275817156089}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8688466999244725005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461491609414413842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeType: 0
+  extraOffset: 0
+  invertPolygon: 1
+--- !u!60 &1794178397538119285
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461491609414413842}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.01, y: 12.01}
+    newSize: {x: 12.01, y: 12.01}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.5, y: 4.275}
+      - {x: 2.375, y: 4.4649997}
+      - {x: 2.685, y: 4.765}
+      - {x: 2.855, y: 4.845}
+      - {x: 2.985, y: 4.765}
+      - {x: 3.475, y: 4.755}
+      - {x: 3.635, y: 4.7349997}
+      - {x: 3.7849998, y: 4.725}
+      - {x: 3.915, y: 4.4649997}
+      - {x: 4.005, y: 4.4049997}
+      - {x: 4.105, y: 4.395}
+      - {x: 4.355, y: 4.395}
+      - {x: 4.535, y: 4.495}
+      - {x: 4.855, y: 4.565}
+      - {x: 4.9049997, y: 4.485}
+      - {x: 4.995, y: 4.455}
+      - {x: 5.1949997, y: 4.4449997}
+      - {x: 5.625, y: 4.515}
+      - {x: 5.775, y: 4.615}
+      - {x: 5.9449997, y: 4.6749997}
+      - {x: 6.0049996, y: 4.6549997}
+      - {x: 6.0049996, y: 6.0049996}
+      - {x: -6.0049996, y: 6.0049996}
+      - {x: -6.0049996, y: 4.775}
+      - {x: -5.995, y: 4.765}
+      - {x: -5.7149997, y: 4.7349997}
+      - {x: -5.4649997, y: 4.4449997}
+      - {x: -5.365, y: 4.345}
+      - {x: -5.285, y: 4.285}
+      - {x: -4.895, y: 4.295}
+      - {x: -4.825, y: 4.355}
+      - {x: -4.575, y: 4.555}
+      - {x: -4.475, y: 4.775}
+      - {x: -4.4249997, y: 4.805}
+      - {x: -4.1349998, y: 4.855}
+      - {x: -3.975, y: 4.855}
+      - {x: -3.8249998, y: 4.725}
+      - {x: -3.645, y: 4.6949997}
+      - {x: -3.5149999, y: 4.605}
+      - {x: -3.3049998, y: 4.535}
+      - {x: -2.865, y: 4.575}
+      - {x: -2.595, y: 4.725}
+      - {x: -2.5049999, y: 4.685}
+      - {x: -2.425, y: 4.575}
+      - {x: -2.225, y: 4.355}
+      - {x: -2.135, y: 4.305}
+      - {x: -1.9449999, y: 4.325}
+      - {x: -1.775, y: 4.4249997}
+      - {x: -1.655, y: 4.515}
+      - {x: -1.425, y: 4.495}
+      - {x: -0.635, y: 4.485}
+      - {x: -0.255, y: 4.435}
+      - {x: -0.044999998, y: 4.335}
+      - {x: 0.044999998, y: 4.305}
+      - {x: 0.16499999, y: 4.315}
+      - {x: 0.445, y: 4.455}
+      - {x: 0.66499996, y: 4.535}
+      - {x: 0.715, y: 4.455}
+      - {x: 0.805, y: 4.375}
+      - {x: 1.0749999, y: 4.225}
+      - {x: 1.235, y: 4.225}
+      - {x: 1.425, y: 4.245}
+      - {x: 1.885, y: 4.275}
+      - {x: 1.885, y: 4.235}
 --- !u!1 &4887832041677645665
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +167,7 @@ Transform:
   m_Children:
   - {fileID: 1633795305895500916}
   - {fileID: 4366933395084177379}
+  - {fileID: 1997896790811037750}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

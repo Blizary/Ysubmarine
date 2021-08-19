@@ -113,6 +113,139 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2369841603001750373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750286030047503767}
+  - component: {fileID: 5685017352581597227}
+  - component: {fileID: 2922874742664632399}
+  m_Layer: 0
+  m_Name: PolyNavObstacle (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1750286030047503767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369841603001750373}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6901836877074147017}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5685017352581597227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369841603001750373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeType: 0
+  extraOffset: 0
+  invertPolygon: 1
+--- !u!60 &2922874742664632399
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369841603001750373}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.01, y: 12.01}
+    newSize: {x: 12.01, y: 12.01}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.155, y: 1.915}
+      - {x: -1.125, y: 2.085}
+      - {x: -1.125, y: 2.115}
+      - {x: -1.3149999, y: 2.315}
+      - {x: -1.405, y: 2.405}
+      - {x: -1.415, y: 2.5149999}
+      - {x: -1.535, y: 2.615}
+      - {x: -1.645, y: 2.655}
+      - {x: -1.905, y: 2.725}
+      - {x: -2.055, y: 2.875}
+      - {x: -2.385, y: 2.985}
+      - {x: -2.5249999, y: 3.175}
+      - {x: -2.495, y: 3.3149998}
+      - {x: -2.435, y: 3.405}
+      - {x: -2.415, y: 3.725}
+      - {x: -2.445, y: 3.865}
+      - {x: -2.5449998, y: 4.075}
+      - {x: -2.575, y: 4.205}
+      - {x: -2.415, y: 4.305}
+      - {x: -2.2549999, y: 4.435}
+      - {x: -2.215, y: 4.495}
+      - {x: -2.225, y: 4.975}
+      - {x: -1.985, y: 5.055}
+      - {x: -1.805, y: 5.305}
+      - {x: -1.805, y: 5.575}
+      - {x: -1.875, y: 5.975}
+      - {x: -1.895, y: 6.0049996}
+      - {x: -6.0049996, y: 6.0049996}
+      - {x: -6.0049996, y: 1.885}
+      - {x: -5.865, y: 1.8449999}
+      - {x: -5.545, y: 1.8449999}
+      - {x: -5.455, y: 1.8149999}
+      - {x: -5.365, y: 1.8249999}
+      - {x: -5.145, y: 2.0349998}
+      - {x: -5.035, y: 2.145}
+      - {x: -4.855, y: 2.235}
+      - {x: -4.6749997, y: 2.2749999}
+      - {x: -4.565, y: 2.075}
+      - {x: -4.4649997, y: 2.0249999}
+      - {x: -4.345, y: 2.105}
+      - {x: -4.225, y: 2.095}
+      - {x: -4.105, y: 2.175}
+      - {x: -4.095, y: 2.235}
+      - {x: -3.895, y: 2.125}
+      - {x: -3.905, y: 2.085}
+      - {x: -3.8049998, y: 2.0149999}
+      - {x: -3.5649998, y: 2.0449998}
+      - {x: -3.425, y: 2.065}
+      - {x: -3.205, y: 2.155}
+      - {x: -3.145, y: 2.0049999}
+      - {x: -3.0649998, y: 1.895}
+      - {x: -2.885, y: 1.885}
+      - {x: -2.8049998, y: 1.8549999}
+      - {x: -2.605, y: 1.675}
+      - {x: -2.345, y: 1.495}
+      - {x: -2.2749999, y: 1.4649999}
+      - {x: -1.985, y: 1.4449999}
+      - {x: -1.905, y: 1.4449999}
+      - {x: -1.785, y: 1.505}
+      - {x: -1.495, y: 1.5649999}
+      - {x: -1.235, y: 1.795}
 --- !u!1 &2714067579005877329
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +279,9 @@ Transform:
   - {fileID: 8044430812628353832}
   - {fileID: 3552671363602015900}
   - {fileID: 2556294280585430039}
+  - {fileID: 3586666348687108119}
+  - {fileID: 1750286030047503767}
+  - {fileID: 6452195307702822848}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -723,6 +859,201 @@ PolygonCollider2D:
       - {x: 5.935, y: 1.9749999}
       - {x: 6.0049996, y: 2.0049999}
       - {x: 6.0049996, y: 2.7549999}
+--- !u!1 &3749407457639299228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3586666348687108119}
+  - component: {fileID: 8772460256791724819}
+  - component: {fileID: 448464021131777126}
+  m_Layer: 0
+  m_Name: PolyNavObstacle (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3586666348687108119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749407457639299228}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6901836877074147017}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8772460256791724819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749407457639299228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeType: 0
+  extraOffset: 0
+  invertPolygon: 1
+--- !u!60 &448464021131777126
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749407457639299228}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.01, y: 12.01}
+    newSize: {x: 12.01, y: 12.01}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 5.6349998, y: -1.8549999}
+      - {x: 5.455, y: -1.905}
+      - {x: 5.285, y: -1.9649999}
+      - {x: 5.095, y: -1.995}
+      - {x: 5.005, y: -2.055}
+      - {x: 4.9249997, y: -2.145}
+      - {x: 4.785, y: -2.215}
+      - {x: 4.595, y: -2.235}
+      - {x: 4.285, y: -2.315}
+      - {x: 4.065, y: -2.435}
+      - {x: 4.025, y: -2.485}
+      - {x: 3.965, y: -2.975}
+      - {x: 3.955, y: -3.155}
+      - {x: 4.045, y: -3.2649999}
+      - {x: 4.165, y: -3.375}
+      - {x: 4.065, y: -3.495}
+      - {x: 3.905, y: -3.615}
+      - {x: 3.745, y: -3.7849998}
+      - {x: 3.585, y: -3.855}
+      - {x: 3.445, y: -3.895}
+      - {x: 3.365, y: -3.925}
+      - {x: 3.355, y: -4.035}
+      - {x: 3.215, y: -4.075}
+      - {x: 3.115, y: -4.185}
+      - {x: 3.0249999, y: -4.205}
+      - {x: 2.845, y: -4.125}
+      - {x: 2.565, y: -4.145}
+      - {x: 2.445, y: -4.185}
+      - {x: 2.375, y: -4.2149997}
+      - {x: 2.2949998, y: -4.115}
+      - {x: 2.205, y: -4.025}
+      - {x: 1.5749999, y: -3.615}
+      - {x: 1.425, y: -3.475}
+      - {x: 1.405, y: -3.335}
+      - {x: 1.235, y: -3.075}
+      - {x: 1.255, y: -2.915}
+      - {x: 1.245, y: -2.5549998}
+      - {x: 1.2049999, y: -2.425}
+      - {x: 1.285, y: -2.2749999}
+      - {x: 1.265, y: -2.0149999}
+      - {x: 1.2049999, y: -1.755}
+      - {x: 1.1949999, y: -1.425}
+      - {x: 1.2149999, y: -1.395}
+      - {x: 1.305, y: -1.1949999}
+      - {x: 1.3249999, y: -0.92499995}
+      - {x: 1.485, y: -0.835}
+      - {x: 1.5649999, y: -0.78499997}
+      - {x: 1.7249999, y: -0.615}
+      - {x: 1.745, y: -0.505}
+      - {x: 1.7149999, y: -0.375}
+      - {x: 1.7149999, y: -0.114999995}
+      - {x: 1.675, y: -0.035}
+      - {x: 1.545, y: 0.175}
+      - {x: 1.435, y: 0.305}
+      - {x: 1.355, y: 0.305}
+      - {x: 1.3349999, y: 0.265}
+      - {x: 0.97499996, y: 0.265}
+      - {x: 0.895, y: 0.24499999}
+      - {x: 0.775, y: 0.185}
+      - {x: 0.685, y: 0.125}
+      - {x: 0.545, y: -0.015}
+      - {x: 0.195, y: -0.095}
+      - {x: 0.035, y: -0.225}
+      - {x: 0.044999998, y: -0.315}
+      - {x: 0.085, y: -0.39499998}
+      - {x: 0.085, y: -0.715}
+      - {x: -0.285, y: -0.835}
+      - {x: -0.48499998, y: -0.965}
+      - {x: -0.49499997, y: -1.275}
+      - {x: -0.545, y: -1.3349999}
+      - {x: -0.865, y: -1.475}
+      - {x: -0.97499996, y: -1.535}
+      - {x: -1.2149999, y: -1.605}
+      - {x: -1.275, y: -1.665}
+      - {x: -1.345, y: -1.795}
+      - {x: -1.495, y: -1.9749999}
+      - {x: -1.545, y: -2.055}
+      - {x: -1.805, y: -2.0449998}
+      - {x: -1.915, y: -2.0049999}
+      - {x: -2.085, y: -1.995}
+      - {x: -2.325, y: -2.105}
+      - {x: -2.595, y: -2.195}
+      - {x: -2.745, y: -2.2649999}
+      - {x: -2.735, y: -2.305}
+      - {x: -2.705, y: -2.325}
+      - {x: -2.7949998, y: -2.485}
+      - {x: -2.905, y: -2.615}
+      - {x: -2.985, y: -2.655}
+      - {x: -3.085, y: -2.715}
+      - {x: -3.175, y: -2.7749999}
+      - {x: -3.235, y: -2.825}
+      - {x: -3.195, y: -2.985}
+      - {x: -3.235, y: -3.085}
+      - {x: -3.2649999, y: -3.385}
+      - {x: -3.395, y: -3.5449998}
+      - {x: -3.445, y: -3.585}
+      - {x: -3.445, y: -3.655}
+      - {x: -3.415, y: -3.735}
+      - {x: -3.5049999, y: -3.885}
+      - {x: -3.585, y: -3.8249998}
+      - {x: -3.5749998, y: -3.675}
+      - {x: -3.625, y: -3.595}
+      - {x: -3.7649999, y: -3.475}
+      - {x: -3.845, y: -3.355}
+      - {x: -3.895, y: -3.135}
+      - {x: -4.075, y: -2.865}
+      - {x: -4.255, y: -2.615}
+      - {x: -4.375, y: -2.425}
+      - {x: -4.505, y: -2.175}
+      - {x: -4.535, y: -2.135}
+      - {x: -4.585, y: -2.055}
+      - {x: -4.6949997, y: -1.9549999}
+      - {x: -4.825, y: -1.865}
+      - {x: -5.005, y: -1.7049999}
+      - {x: -5.055, y: -1.675}
+      - {x: -5.245, y: -1.625}
+      - {x: -5.365, y: -1.635}
+      - {x: -5.785, y: -1.665}
+      - {x: -5.995, y: -1.765}
+      - {x: -6.0049996, y: -1.775}
+      - {x: -6.0049996, y: -6.0049996}
+      - {x: 6.0049996, y: -6.0049996}
+      - {x: 6.0049996, y: -1.8449999}
 --- !u!1 &3763923802744665500
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +1084,121 @@ Transform:
   m_Father: {fileID: 6901836877074147017}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5177498095646445885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6452195307702822848}
+  - component: {fileID: 7999995407349061835}
+  - component: {fileID: 7251562436404788590}
+  m_Layer: 0
+  m_Name: PolyNavObstacle (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6452195307702822848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177498095646445885}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6901836877074147017}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7999995407349061835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177498095646445885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeType: 0
+  extraOffset: 0
+  invertPolygon: 1
+--- !u!60 &7251562436404788590
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177498095646445885}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.01, y: 12.01}
+    newSize: {x: 12.01, y: 12.01}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 6.0049996, y: 6.0049996}
+      - {x: 1.8349999, y: 6.0049996}
+      - {x: 1.7049999, y: 5.895}
+      - {x: 1.545, y: 5.6949997}
+      - {x: 1.495, y: 5.4849997}
+      - {x: 1.495, y: 5.365}
+      - {x: 1.795, y: 4.9849997}
+      - {x: 1.8249999, y: 4.915}
+      - {x: 1.925, y: 4.795}
+      - {x: 2.305, y: 4.595}
+      - {x: 2.365, y: 4.555}
+      - {x: 2.455, y: 4.4649997}
+      - {x: 2.495, y: 4.285}
+      - {x: 2.585, y: 4.145}
+      - {x: 2.665, y: 3.845}
+      - {x: 2.705, y: 3.735}
+      - {x: 2.5249999, y: 3.5649998}
+      - {x: 2.5049999, y: 3.465}
+      - {x: 2.565, y: 3.395}
+      - {x: 2.565, y: 2.955}
+      - {x: 2.585, y: 2.875}
+      - {x: 2.7649999, y: 2.7649999}
+      - {x: 3.135, y: 2.685}
+      - {x: 3.215, y: 2.595}
+      - {x: 3.3049998, y: 2.565}
+      - {x: 3.715, y: 2.725}
+      - {x: 3.845, y: 2.7849998}
+      - {x: 3.975, y: 2.985}
+      - {x: 4.045, y: 3.0349998}
+      - {x: 4.395, y: 2.975}
+      - {x: 4.395, y: 2.5349998}
+      - {x: 4.415, y: 2.485}
+      - {x: 4.525, y: 2.345}
+      - {x: 4.525, y: 2.235}
+      - {x: 4.665, y: 1.995}
+      - {x: 4.785, y: 1.9749999}
+      - {x: 4.935, y: 1.805}
+      - {x: 5.115, y: 1.685}
+      - {x: 5.185, y: 1.685}
+      - {x: 5.2349997, y: 1.7149999}
+      - {x: 5.6549997, y: 1.7249999}
+      - {x: 5.9849997, y: 1.795}
+      - {x: 6.0049996, y: 1.8149999}
 --- !u!1 &6517515445226138554
 GameObject:
   m_ObjectHideFlags: 0
