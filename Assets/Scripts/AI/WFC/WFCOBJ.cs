@@ -23,16 +23,6 @@ public class WFCOBJ
         connectRight = new List<int>();
         connectUp = new List<int>();
     }
-
-
-    public void ResetAllWFC()
-    {
-        connectUp.Clear();
-        connectDown.Clear();
-        connectLeft.Clear();
-        connectRight.Clear();
-        probability = 0;
-    }
 }
 
 //Container for writing data to json

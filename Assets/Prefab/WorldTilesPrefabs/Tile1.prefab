@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3110992229720644107}
   - component: {fileID: 4709594978381625416}
   - component: {fileID: 7112600092717820358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PolyNavObstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 2217356329272822226}
   - component: {fileID: 7175171807756338985}
   - component: {fileID: 6975529930578018705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PolyNavObstacle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 741094185849219036}
   - component: {fileID: 3511928437538552764}
   - component: {fileID: 6431013856911853947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PolyNavObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 8320282396480718945}
   - component: {fileID: 1074493409474612323}
   - component: {fileID: 7972995430610297068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PolyNavObstacle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -73,7 +73,39 @@ public class WFCOBJController : MonoBehaviour
         foreach (WFCOBJ availableOBJ in readList)
         {
             virtualTiles.Add(availableOBJ.original, availableOBJ);
+
+
+            Debug.Log("Tile = " + availableOBJ.tileName);
+            string upCon = "connections Up: ";
+            foreach (int i in availableOBJ.connectUp)
+            {
+                upCon+=" "+i+",";
+            }
+            Debug.Log(upCon);
+
+            string downCon = "connections down: ";
+            foreach (int i in availableOBJ.connectDown)
+            {
+                downCon += " " + i + ",";
+            }
+            Debug.Log(downCon);
+
+            string rightCon = "connections right: ";
+            foreach (int i in availableOBJ.connectRight)
+            {
+                rightCon += " " + i + ",";
+            }
+            Debug.Log(rightCon);
+
+            string leftCon = "connections left: ";
+            foreach (int i in availableOBJ.connectLeft)
+            {
+                leftCon += " " + i + ",";
+            }
+            Debug.Log(leftCon);
+
         }
+
 
 
 
@@ -131,7 +163,6 @@ public class WFCOBJController : MonoBehaviour
     /// </summary>
     public void UpdateWFC()
     {
-        //Debug.Log("Mark 1");
         availableTileOBJ = new List<GameObject>();
         List<string> verifyUniqueTile = new List<string>();
 
@@ -273,6 +304,7 @@ public class WFCOBJController : MonoBehaviour
     /// </summary>
     void ProcessPropagateQueu()
     {
+        //Debug.Break();
         if (!ispropagating)
         {
 
@@ -354,11 +386,11 @@ public class WFCOBJController : MonoBehaviour
         //down neighbour
         if (i + 1 < lineSize)//is within the size of the grid
         {
+            //get all the connection available to the right of this obj
+            List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Down);
+
             if (!world[i + 1, j].hasBeenChoosen)//tile to the right is not yet set
             {
-                //get all the connection available to the right of this obj
-                List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Down);
-
                 if (connections.Count != readList.Count)
                 {
                     //updates the available option on the next tile and also checks if there where changes 
@@ -382,6 +414,15 @@ public class WFCOBJController : MonoBehaviour
                 }
 
             }
+            else//check if valid
+            {
+                if(!connections.Contains(world[i + 1, j].availableOptions[0]))
+                {
+                    Debug.LogError("No solution found backtracking!");
+                    ResetWorldToLastChoice();
+                    interrupt = true;
+                }
+            }
 
         }
 
@@ -391,9 +432,9 @@ public class WFCOBJController : MonoBehaviour
             //up neightbour
             if (i - 1 >= 0)
             {
+                List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Up);
                 if (!world[i - 1, j].hasBeenChoosen)//tile to the right is not yet set
                 {
-                    List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Up);
 
                     if (connections.Count != readList.Count)
                     {
@@ -420,7 +461,17 @@ public class WFCOBJController : MonoBehaviour
                         }
                     }
                 }
+                else//check if valid
+                {
+                    if (!connections.Contains(world[i - 1, j].availableOptions[0]))
+                    {
+                        Debug.LogError("No solution found backtracking!");
+                        ResetWorldToLastChoice();
+                        interrupt = true;
+                    }
+                }
             }
+           
         }
 
 
@@ -430,10 +481,10 @@ public class WFCOBJController : MonoBehaviour
             //right neightbour
             if (j + 1 < columSize)
             {
+                //get alll the connection available to the left of this obj
+                List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Right);
                 if (!world[i, j + 1].hasBeenChoosen)//tile to the right is not yet set
                 {
-                    //get alll the connection available to the left of this obj
-                    List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Right);
 
                     if (connections.Count != readList.Count)
                     {
@@ -461,6 +512,15 @@ public class WFCOBJController : MonoBehaviour
                     }
 
                 }
+                else//check if valid
+                {
+                    if (!connections.Contains(world[i , j+1].availableOptions[0]))
+                    {
+                        Debug.LogError("No solution found backtracking!");
+                        ResetWorldToLastChoice();
+                        interrupt = true;
+                    }
+                }
             }
         }
 
@@ -470,11 +530,10 @@ public class WFCOBJController : MonoBehaviour
             //left neightbour
             if (j - 1 >= 0)
             {
+                //get alll the connection available to the left of this obj
+                List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Left);
                 if (!world[i, j - 1].hasBeenChoosen)//tile to the right is not yet set
                 {
-                    //get alll the connection available to the left of this obj
-                    List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Left);
-
                     if (connections.Count != readList.Count)
                     {
                         //updates the available option on the next tile and also checks if there where changes 
@@ -499,6 +558,15 @@ public class WFCOBJController : MonoBehaviour
                             }
                         }
 
+                    }
+                }
+                else//check if valid
+                {
+                    if (!connections.Contains(world[i, j -1].availableOptions[0]))
+                    {
+                        Debug.LogError("No solution found backtracking!");
+                        ResetWorldToLastChoice();
+                        interrupt = true;
                     }
                 }
             }
@@ -644,7 +712,7 @@ public class WFCOBJController : MonoBehaviour
         {
             int randomObj;
             List<int> newAvailable = new List<int>();
-            int rand = Random.Range(0, _tile.availableOptions.Count - 1);
+            int rand = Random.Range(0, _tile.availableOptions.Count);
             randomObj = _tile.availableOptions[rand];
             choice.decision = randomObj;
             newAvailable.Add(randomObj);
@@ -657,7 +725,7 @@ public class WFCOBJController : MonoBehaviour
         {
             int randomObj;
             List<int> newAvailable = new List<int>();
-            int rand = Random.Range(0, _tile.availableOptions.Count - 1);
+            int rand = Random.Range(0, _tile.availableOptions.Count);
             randomObj = _tile.availableOptions[rand];
             choice.decision = randomObj;
             newAvailable.Add(randomObj);
