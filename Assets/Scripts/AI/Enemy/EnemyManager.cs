@@ -10,8 +10,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private EnemyVision coneOfVision;
     [SerializeField] private EnemyProximity proximityDetection;
     [SerializeField] private Animator animationController;
-    [SerializeField] private GameObject frontLight;
-    [SerializeField] private List<GameObject> bodylights;
+    [SerializeField] private GameObject frontLight;// light on the head of the enemy used by dna to change the enemies visibility
+    [SerializeField] private List<GameObject> bodylights;//all the lights on the body of the enemy used to show what is the more likely strategy this enemy will take
+
 
     [Header("Stats")]
     [SerializeField] private float maxLife;
@@ -21,8 +22,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public float stamina;
 
     [Header("Evolution visuals")]
-    [SerializeField] private List<Color> portfolioColors;
-    [SerializeField] private Color balancedPortfolio;
+    [SerializeField] private List<Color> portfolioColors;//each color of this list corresponds to one of the available portfolios of behaviours
+    [SerializeField] private Color balancedPortfolio;// this is the color used if no specific behaviour is more probable than others in the dna strand of this enemy
 
     public Vector3 destination;
     public bool hasTarget;
@@ -68,7 +69,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// check if the enemy is moving and update its animation
+    /// </summary>
     void CheckMovement()
     {
         if(polyAgent.hasPath)
@@ -81,6 +84,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks the life enemy 
+    /// </summary>
     void CheckLife()
     {
         if(currentlife<=0)
@@ -113,7 +119,9 @@ public class EnemyManager : MonoBehaviour
         return (currentlife/maxLife);
     }
 
-
+    /// <summary>
+    /// Changes aspects of the enemy based on the given dna strand
+    /// </summary>
     public void DNAInterpretacion()
     {
         //check values on portfolio part of DNA
@@ -195,6 +203,10 @@ public class EnemyManager : MonoBehaviour
         attackPower = currentDNA.dnaCode[skipBaseDna + 6];
     }
 
+    /// <summary>
+    /// changes the color of the enemy
+    /// </summary>
+    /// <param name="_newColor"></param>
     private void ChangeColor(Color _newColor)
     {
         foreach(GameObject g in bodylights)
@@ -206,6 +218,10 @@ public class EnemyManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// gets the list of visible objs from the cone of vision obj
+    /// </summary>
+    /// <returns></returns>
     public List<GameObject> CheckVision()
     {
         List<GameObject> visibleObjs = new List<GameObject>();
@@ -220,6 +236,11 @@ public class EnemyManager : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    ///  gets the list of objs from the proximity obj
+    /// </summary>
+    /// <returns></returns>
     public List<GameObject> CheckProximity()
     {
         List<GameObject> closeOBJs = new List<GameObject>();
@@ -237,6 +258,13 @@ public class EnemyManager : MonoBehaviour
         return proximityDetection.closeWall;
     }
 
+    /// <summary>
+    /// Function that changes the speed of the enemy
+    /// Allows for both speeding up or down
+    /// It uses the maxspeed to calculate the new speed preventing it
+    /// from continue to change even if called multiple times
+    /// </summary>
+    /// <param name="_difference"></param>
     public void ChangeSpeed(float _difference)
     {
         polyAgent.maxSpeed = originalSpeed + _difference;
@@ -246,6 +274,13 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Function used to change the life of the enemy
+    /// Can be used for both adding or removing life
+    /// Currently in used by collision with bullets from player
+    /// </summary>
+    /// <param name="_difference"></param>
     public void ChangeLife(float _difference)
     {
         float nextLife = currentlife + _difference;
@@ -264,7 +299,9 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Simple function called to trigger the attack animation
+    /// </summary>
     public void Attack()
     {
         if(canAttack)
@@ -275,7 +312,16 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// This function is responsable for choosing the next behaviour the enemy will follow once the player has been spotted
+    /// It makes use of the RouleteSelection function that obtains this behaviour based on the probability of each part of the 
+    /// DNA strand that refers to the portfolio
+    /// Then stops the behaviour tree to prevent bugs 
+    /// Applies the new external behaviour
+    /// And resumes the behaviour tree
+    /// WARNING : there is still an error apering on the comand log even if this function disables the behaviour prior to 
+    /// changing it however it doest not couse any actual bug with the behaviour
+    /// </summary>
 
     public void ChooseBehaviourStrategy()
     {
@@ -300,7 +346,10 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Function used to calculate the time an enemy has been engaged with the player
+    /// For passive enemies this also counts as the time since they have spoted the enemy and their death
+    /// </summary>
     private void CalculateEngagedVariable()
     {
         if(engaged==true)
@@ -315,6 +364,14 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used to pick what strategy the enemy will follow
+    /// its based in probability starts by calculating the total in order to obtain the percent for each part of the dna strand
+    /// that refers to the portfolio options
+    /// then gets a random number between 0 and 1 and finds out between what gap of the dna strand it is
+    /// </summary>
+    /// <param name="_dnaStrand"></param>
+    /// <returns></returns>
     private int RouleteSelection(List<float> _dnaStrand)
     {
         //get max value basecly the 100%

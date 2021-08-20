@@ -5,6 +5,9 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+
+//Action used to chase a target 
+//target tag can be inputed in the behaviour tree designer
 [TaskCategory("DeepDark/Action")]
 public class ChaseTarget : Action
 {

@@ -5,6 +5,8 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+// task used to trigger an effect in case this enemy was shoot
+// it checks if its life has changed
 [TaskCategory("DeepDark/Conditional")]
 public class WasShoot : Conditional
 {

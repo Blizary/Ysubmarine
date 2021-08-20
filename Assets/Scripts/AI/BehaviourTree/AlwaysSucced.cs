@@ -5,6 +5,8 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+//Simple action that always returns success
+//Used in the end of selectors inside sequences in order to continue
 [TaskCategory("DeepDark/Action")]
 public class AlwaysSucced : Action
 {

@@ -5,6 +5,8 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+
+// conditional to check if the wait timer has passed and the enemy can attack again
 [TaskCategory("DeepDark/Conditional")]
 public class CanAttack : Conditional
 {

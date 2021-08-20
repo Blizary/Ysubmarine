@@ -5,6 +5,9 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+
+//Action used to adjust the speed of the enemy
+//the variable can be changed in the beheavior tree designer
 [TaskCategory("DeepDark/Action")]
 public class ChangeSpeed : Action
 {

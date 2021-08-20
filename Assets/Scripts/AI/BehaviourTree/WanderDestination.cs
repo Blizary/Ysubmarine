@@ -5,6 +5,8 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+// Action  used to pick a random place valid within the navmesh
+// distance of the point can be defined in the behaviour designer 
 [TaskCategory("DeepDark/Action")]
 public class WanderDestination : Action
 {
@@ -29,9 +31,6 @@ public class WanderDestination : Action
         }
         else //pick a target within range
         {
-
-            //pick a random angle infront of the creature
-
             Vector2 pos = new Vector2(transform.position.x, transform.position.y);
             Vector3 randompos = (Random.insideUnitCircle.normalized * targetDistance + pos);
             if(currentManager.GetComponent<PolyNavAgent>().map.PointIsValid(randompos))

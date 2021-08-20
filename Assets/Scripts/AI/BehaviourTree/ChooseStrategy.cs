@@ -5,6 +5,8 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+
+// Action used to ask the enemy manager to pick the next behaviour tree depending on the dna code
 [TaskCategory("DeepDark/Action")]
 public class ChooseStrategy : Action
 {
