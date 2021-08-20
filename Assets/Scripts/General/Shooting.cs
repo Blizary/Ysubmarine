@@ -49,7 +49,6 @@ public class Shooting : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("coneVision"))
                 {
-                    Debug.Log("pew pew!");
                     Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 }
             }

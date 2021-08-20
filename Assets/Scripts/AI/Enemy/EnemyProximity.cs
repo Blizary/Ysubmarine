@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyProximity : MonoBehaviour
 {
+    public List<GameObject> visibleObjs;
     public Vector3 closeWall;
     private GameObject closeWallOBJ;
     // Start is called before the first frame update
@@ -18,9 +19,27 @@ public class EnemyProximity : MonoBehaviour
         
     }
 
+    public void ValidateObjs()
+    {
+        foreach (GameObject obj in visibleObjs)
+        {
+            if (obj == null)
+            {
+                visibleObjs.Remove(obj);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            if (!visibleObjs.Contains(collision.gameObject))
+            {
+                visibleObjs.Add(collision.gameObject);
+            }
+
+        }
 
         if (collision.CompareTag("Rocks"))
         {
@@ -42,6 +61,15 @@ public class EnemyProximity : MonoBehaviour
                 closeWall = Vector3.zero;
                 closeWallOBJ = null;
             }
+        }
+
+        if (collision.CompareTag("Player"))
+        {
+            if (visibleObjs.Contains(collision.gameObject))
+            {
+                visibleObjs.Remove(collision.gameObject);
+            }
+
         }
     }
 }

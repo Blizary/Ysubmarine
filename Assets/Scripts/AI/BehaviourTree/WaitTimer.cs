@@ -5,6 +5,11 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+//simple action that acts as a clock
+// it has a setting to allow for random wait timers or set wait timers
+// random wait timers are used for the base behaviour of wandering
+// set wait timers are used in the attack behaviour
+
 [TaskCategory("DeepDark/Action")]
 public class WaitTimer : Action
 {
@@ -26,7 +31,8 @@ public class WaitTimer : Action
         {
             currentManager.hasTarget = false;
             currentManager.destination = Vector3.zero;
-            if(randomWait)
+            currentManager.canAttack = true;
+            if (randomWait)
             {
                 int coinFlip = Random.Range(0, 2);
                 if (coinFlip != 0)

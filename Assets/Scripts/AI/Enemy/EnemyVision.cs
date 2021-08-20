@@ -33,7 +33,7 @@ public class EnemyVision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag);
+   
         if(collision.CompareTag("Rocks")|| collision.CompareTag("Player"))
         {
             if(!visibleObjs.Contains(collision.gameObject))

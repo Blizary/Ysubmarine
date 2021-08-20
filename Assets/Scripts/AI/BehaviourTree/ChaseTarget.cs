@@ -5,6 +5,9 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+
+//Action used to chase a target 
+//target tag can be inputed in the behaviour tree designer
 [TaskCategory("DeepDark/Action")]
 public class ChaseTarget : Action
 {
@@ -14,12 +17,14 @@ public class ChaseTarget : Action
 
     public override void OnAwake()
     {
-        target = GameObject.FindGameObjectWithTag(targetString);
+        
     }
 
     public override TaskStatus OnUpdate()
     {
-        targetPos.Value = target.transform.position;
+        target = GameObject.FindGameObjectWithTag(targetString);
+        Vector3 targetPosGround = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
+        targetPos.Value = targetPosGround;
         return TaskStatus.Success;
     }
 }

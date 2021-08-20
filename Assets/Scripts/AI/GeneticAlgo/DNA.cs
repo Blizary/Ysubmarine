@@ -8,12 +8,14 @@ using System;
 public class DNA 
 {
     public List<ExternalBehavior> portfolio;
-    public List<int> dnaCode;
+    public List<float> dnaCode;
     public float fitness;
 
     private float damageDoneInfluence;
     private float timeAliveInfluence;
     private float distanceTravelledInfluence;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -27,17 +29,17 @@ public class DNA
         
     }
 
-    public void GenerateDNA(List<ExternalBehavior> _availableStrategies, List<int> _newDNACode, float _damageDoneInfluence, float _timeAliveInfluence, float _distanceTravelledInfluence)
+    public void GenerateDNA(List<ExternalBehavior> _availableStrategies, List<float> _newDNACode, float _damageDoneInfluence, float _timeAliveInfluence, float _distanceTravelledInfluence)
     {
         portfolio = new List<ExternalBehavior>();
-        dnaCode = new List<int>();
+        dnaCode = new List<float>();
 
         foreach (ExternalBehavior strat in _availableStrategies)
         {
             portfolio.Add(strat);
         }
 
-        foreach (int code in _newDNACode)
+        foreach (float code in _newDNACode)
         {
             dnaCode.Add(code);
         }

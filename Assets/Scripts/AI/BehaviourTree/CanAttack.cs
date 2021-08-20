@@ -6,9 +6,9 @@ using BehaviorDesigner.Runtime;
 using PolyNav;
 
 
-// Action used to ask the enemy manager to pick the next behaviour tree depending on the dna code
-[TaskCategory("DeepDark/Action")]
-public class ChooseStrategy : Action
+// conditional to check if the wait timer has passed and the enemy can attack again
+[TaskCategory("DeepDark/Conditional")]
+public class CanAttack : Conditional
 {
     private EnemyManager currentManager;
 
@@ -19,8 +19,11 @@ public class ChooseStrategy : Action
 
     public override TaskStatus OnUpdate()
     {
-        currentManager.ChooseBehaviourStrategy();
+        if (currentManager.canAttack)
+        {
+            return TaskStatus.Success;
+        }
+
         return TaskStatus.Failure;
     }
-
 }

@@ -5,6 +5,8 @@ using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using PolyNav;
 
+
+// Used by enemy to avoid the walls
 [TaskCategory("DeepDark/Action")]
 public class AvoidWall : Action
 {
@@ -19,13 +21,6 @@ public class AvoidWall : Action
     }
     public override TaskStatus OnUpdate()
     {
-        /*
-        float randomAngle = Random.Range(0, 180);
-        Quaternion rotation = Quaternion.Euler(randomAngle, randomAngle, 0);
-        Vector3 myVector = closeWall.Value - transform.position;
-        myVector = myVector.normalized;
-        Vector3 rotateVector = rotation * myVector;
-        */
 
         Vector3 rotateVector = closeWall.Value - transform.position;
         if(currentManager.GetComponent<PolyNavAgent>().map.PointIsValid(rotateVector))

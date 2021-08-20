@@ -4,6 +4,8 @@ using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 
+
+//conditional task to check if enemy has spoted something
 [TaskCategory("DeepDark/Conditional")]
 public class CheckSight : Conditional
 {
@@ -16,7 +18,7 @@ public class CheckSight : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(currentManager.CheckVision().Count!=0)
+        if(currentManager.CheckVision().Count!=0 || currentManager.CheckProximity().Count != 0)
         {
             return TaskStatus.Success;
         }

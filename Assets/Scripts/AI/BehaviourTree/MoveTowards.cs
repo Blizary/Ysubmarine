@@ -29,7 +29,6 @@ public class MoveTowards : Action
         else
         {
             polyAgent.SetDestination(target.Value);
-            //move to it
 
         }
 
