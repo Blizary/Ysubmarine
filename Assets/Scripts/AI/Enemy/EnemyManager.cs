@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private EnemyProximity proximityDetection;
     [SerializeField] private Animator animationController;
     [SerializeField] private GameObject frontLight;
+    [SerializeField] private List<GameObject> bodylights;
 
     [Header("Stats")]
     [SerializeField] private float maxLife;
@@ -19,6 +20,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public float attackPower;
     [SerializeField] public float stamina;
 
+    [Header("Evolution visuals")]
+    [SerializeField] private List<Color> portfolioColors;
+    [SerializeField] private Color balancedPortfolio;
 
     public Vector3 destination;
     public bool hasTarget;
@@ -28,6 +32,7 @@ public class EnemyManager : MonoBehaviour
     private bool deathTriggered;
     private EvolutionManager evolutionBrain;
     public DNA currentDNA;
+    [HideInInspector] public bool canAttack;
 
     private bool engaged;
     public float timeEngaged;
@@ -103,8 +108,70 @@ public class EnemyManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public float StateOfLife()
+    {
+        return (currentlife/maxLife);
+    }
+
+
     public void DNAInterpretacion()
     {
+        //check values on portfolio part of DNA
+        //check if balanced
+        //in this case since the portfolio values can only vary between 0-10 
+        //offbalanced is considered when ever there is a variation higher that half aka 5
+
+        bool offBalance = false;
+        for (int i = 0; i < currentDNA.portfolio.Count; i++)
+        {
+            for (int j = 0+i; j < currentDNA.portfolio.Count-1; j++)
+            {
+                if (!offBalance && i!=j)
+                {
+                    if (Mathf.Abs(currentDNA.dnaCode[i] - currentDNA.dnaCode[j]) >= 5)
+                    {
+                        offBalance = true;
+                    }
+                }
+            }  
+        }
+
+        int portfolioH = 0;
+        float maxValue = 0;
+        if (offBalance)
+        {
+            //Find the highest probabilty porfolio
+            
+            for (int i = 0; i < currentDNA.portfolio.Count; i++)
+            {
+                if (currentDNA.dnaCode[i] > maxValue)
+                {
+                    maxValue = currentDNA.dnaCode[i];
+                    portfolioH = i;
+                }
+                else if (currentDNA.dnaCode[i] == maxValue)
+                {
+                    portfolioH = -1;
+                }
+            }
+        }
+        else
+        {
+            portfolioH = -1;
+        }
+        
+
+        //switch color based on the max probability
+        if(portfolioH == -1)//there are several options with the same high probabily or values arent different enought
+        {
+            ChangeColor(balancedPortfolio);
+        }
+        else
+        {
+            ChangeColor(portfolioColors[portfolioH]);
+        }
+
+
         //set bases
         averageSize = transform.localScale.x;
 
@@ -116,6 +183,7 @@ public class EnemyManager : MonoBehaviour
         boostSpeed = currentDNA.dnaCode[skipBaseDna + 2];
         //3rd == Health
         maxLife = currentDNA.dnaCode[skipBaseDna + 3];
+        currentlife = maxLife;
         float newSize = (maxLife * averageSize) / evolutionBrain.Gethealth();
         gameObject.transform.GetChild(0).transform.localScale = new Vector3(newSize, newSize, 0);
         //4th == Stamina
@@ -126,6 +194,17 @@ public class EnemyManager : MonoBehaviour
         //6th == Attack Power
         attackPower = currentDNA.dnaCode[skipBaseDna + 6];
     }
+
+    private void ChangeColor(Color _newColor)
+    {
+        foreach(GameObject g in bodylights)
+        {
+            g.GetComponent<Light2D>().color = _newColor;
+        }
+
+        frontLight.GetComponent<Light2D>().color = _newColor;
+    }
+
 
     public List<GameObject> CheckVision()
     {
@@ -138,6 +217,18 @@ public class EnemyManager : MonoBehaviour
 
         
         return visibleObjs;
+
+    }
+
+    public List<GameObject> CheckProximity()
+    {
+        List<GameObject> closeOBJs = new List<GameObject>();
+        proximityDetection.ValidateObjs();
+        foreach (GameObject obj in proximityDetection.visibleObjs)
+        {
+            closeOBJs.Add(obj);
+        }
+        return closeOBJs;
 
     }
 
@@ -176,7 +267,11 @@ public class EnemyManager : MonoBehaviour
 
     public void Attack()
     {
-        animationController.SetTrigger("bite");
+        if(canAttack)
+        {
+            animationController.SetTrigger("bite");
+        }
+        
     }
 
 
@@ -239,24 +334,15 @@ public class EnemyManager : MonoBehaviour
            
         }
 
-        //debug
-        foreach(float f in probabilies)
-        {
-            Debug.Log("probabily: " + f);
-        }
-
         //get a random number and check probabilities
         float randNum = Random.Range(0.0f, 1.0f);
 
-        Debug.Log("random number: " + randNum);
         for(int f = 0; f < probabilies.Count;f++)
         {
-            Debug.Log("testing: " + f);
             if(f==0)
             {
                 if(randNum<= probabilies[f])
                 {
-                    Debug.Log("option: " + f + " was choosen");
                     return f;
                 }
             }
@@ -265,7 +351,6 @@ public class EnemyManager : MonoBehaviour
                 int g = f - 1;
                 if(randNum> probabilies[g] && randNum< probabilies[f])
                 {
-                    Debug.Log("this option was choosen: "+ f);
                     return f;
                 }
             }

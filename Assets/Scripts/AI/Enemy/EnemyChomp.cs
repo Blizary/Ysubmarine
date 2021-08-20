@@ -10,7 +10,13 @@ public class EnemyChomp : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerManager>().TakeDamage((int)manager.attackPower);
+            Debug.Log(collision.gameObject.name);
+            if(manager.canAttack)
+            {
+                collision.GetComponent<PlayerManager>().TakeDamage((int)manager.attackPower);
+                manager.canAttack = false;
+            }
+            
         }
     }
 

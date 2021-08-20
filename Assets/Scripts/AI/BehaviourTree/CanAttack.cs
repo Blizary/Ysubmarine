@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
+using PolyNav;
 
 [TaskCategory("DeepDark/Conditional")]
-public class CheckSight : Conditional
+public class CanAttack : Conditional
 {
     private EnemyManager currentManager;
 
@@ -16,7 +17,7 @@ public class CheckSight : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(currentManager.CheckVision().Count!=0 || currentManager.CheckProximity().Count != 0)
+        if (currentManager.canAttack)
         {
             return TaskStatus.Success;
         }

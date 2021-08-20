@@ -7,8 +7,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 
-    public int maxHealth = 10;
-    public int currentHealth;
+    public float maxHealth = 10;
+    public float currentHealth;
     public TextMeshProUGUI playerHealth;
 
     //public GameObject gameOver;
@@ -30,8 +30,8 @@ public class PlayerManager : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(2);
-            playerHealth.text = "" + currentHealth.ToString() + " / " + maxHealth.ToString();
+            AddLife(5);
+            //TakeDamage(2);
 
             if(currentHealth == 0)
             {
@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (currentHealth > 0)
         {
@@ -50,6 +50,17 @@ public class PlayerManager : MonoBehaviour
         {
             //stop doing damage
             currentHealth = 0;
+        }
+        playerHealth.text = "" + currentHealth.ToString() + " / " + maxHealth.ToString();
+    }
+
+    public void AddLife(float _life)
+    {
+
+        currentHealth += _life;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
         playerHealth.text = "" + currentHealth.ToString() + " / " + maxHealth.ToString();
     }

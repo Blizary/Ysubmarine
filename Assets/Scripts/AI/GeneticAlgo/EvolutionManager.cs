@@ -71,7 +71,7 @@ public class EvolutionManager : MonoBehaviour
         List<DNA> bestDNA = new List<DNA>();
         for(int i=0;i<numOfChoosenDNA;i++)
         {
-            bestDNA.Add(oldDNAs[i]);
+            bestDNA.Add(oldDNAs[oldDNAs.Count-1-i]);
         }
 
         for (int i = 0; i < numOfChoosenDNA; i++)
@@ -101,6 +101,27 @@ public class EvolutionManager : MonoBehaviour
                 dnaCode.Add(randomint);
 
             }
+
+            //generate biological components
+            //1st number == speed
+            float speed = Random.Range(minSpeed + 0.0f, maxSpeed + 0.01f);
+            dnaCode.Add(speed);
+            //2nd == speed boost when used when chasing or fleeing
+            float speedBoost = Random.Range(minSpeedBoost, maxSpeedBoost);
+            dnaCode.Add(speedBoost);
+            //3rd == Health
+            float health = Random.Range(minHealth, maxHealth);
+            dnaCode.Add(health);
+            //4th == Stamina
+            float stamina = Random.Range(minStamina, maxStamina);
+            dnaCode.Add(stamina);
+            //5th == Light
+            float light = Random.Range(minLight, maxLight);
+            dnaCode.Add(light);
+            //6th == Attack Power
+            float attackPower = Random.Range(minAttackPower, maxAttackpower);
+            dnaCode.Add(attackPower);
+
             DNA newdna = new DNA();
             newdna.GenerateDNA(portfolio, dnaCode, damageDoneInfluence, timeAliveInfluence, distanceTravelledInfluence);
             nextDNAs.Add(newdna);
@@ -222,7 +243,7 @@ public class EvolutionManager : MonoBehaviour
 
     public float Gethealth()
     {
-        float minMaxhealth = maxHealth / minHealth;
+        float minMaxhealth = (maxHealth + minHealth)/2;
         return minMaxhealth;
     }
 

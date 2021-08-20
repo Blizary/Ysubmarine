@@ -15,7 +15,6 @@ public class WFCOBJController : MonoBehaviour
 {
     public List<WFCScriptableOBJ> dataList; // list of all the available pieces in the board
     [Header("Settings")]
-    public bool showPropagation;//if triggered will illustrate the propagation of the wave function collapse
     public bool trueRandom;//if triggered the probability of each tile based on the example is ignored(allows for the creation of bigger maps than the example)
     public bool surroundedByWater;//if triggered maps the map be surrounded by water
 
@@ -26,16 +25,8 @@ public class WFCOBJController : MonoBehaviour
     public int lineSize; // the horizontal size of the maps
     public int columSize;//the vertical size of the maps
 
-
-
-
     [Header("Solution")]
     public GameObject solutionWold;// gameobj where the solution will go
-    public int solutionSize;// number of tiles in the solution, it is a square
-    public Tile posibility;//tile that show while the wave hasnt collapsed for this tile
-    public Tile propagated;// tile that ilustrates the propagation of the wave function collaspe
-    public Tile water;//tile for the water
-
 
     public Vector2Int posOfSample;// this is the current position being checked on the example by the function UpdateExample
     private WFCpossibility[,] possibilites;//matrix of the possibilites on the tile map
@@ -308,7 +299,6 @@ public class WFCOBJController : MonoBehaviour
                         entropyOrder.Remove(waterTile);
                         waterQueu.RemoveAt(0);
                         propagateQueu.Add(waterTile.location);
-                        //Debug.Break();
                     }
                     else
                     {
@@ -335,11 +325,13 @@ public class WFCOBJController : MonoBehaviour
                     }
                     else
                     {
-                        //the wave function has collapsed
+
                         waveFunctionComplete = true;
                         GenerateWorld();
                         Debug.Log("wave function has collapsed!");
+                        Debug.Log("valid: " + ValidateWorld());
                         worldManager.StartManager();
+
                     }
                 }
 
@@ -354,7 +346,7 @@ public class WFCOBJController : MonoBehaviour
 
     void Propagate(int i, int j)
     {
-        //Debug.Log("Propagating at [" + i + "][" + j + "]");
+        //Debug.Break();
         //remove options on the neighbour that doesnt correspond to 
         //the allowed tiles listed in te WFCscriptableOBj for the list of available tiles
 
@@ -369,7 +361,7 @@ public class WFCOBJController : MonoBehaviour
         {
             if (!world[i + 1, j].hasBeenChoosen)//tile to the right is not yet set
             {
-                //get alll the connection available to the right of this obj
+                //get all the connection available to the right of this obj
                 List<int> connections = Connections(currentWFCOBJ, ConnectionSide.Down);
 
                 if (connections.Count != readList.Count)
@@ -378,9 +370,6 @@ public class WFCOBJController : MonoBehaviour
                     //made and if more propagation is needed
                     if (world[i + 1, j].UpdateOptions(connections))
                     {
-                        //add to queu
-                        //Debug.Log("Added [" + (i + 1) + "][" + j + "] to the list of propagate");
-
                         float entropy = world[i + 1, j].CheckIfChoosen();
                         //Check if it has been choosen and update its entropy
                         if (entropy > 0)
@@ -469,7 +458,7 @@ public class WFCOBJController : MonoBehaviour
                             }
                             else if (entropy < 0)
                             {
-                                Debug.LogError("No solution found backtracking!");
+                                Debug.Log("No solution found backtracking!");
                                 ResetWorldToLastChoice();
                                 interrupt = true;
                             }
@@ -656,7 +645,6 @@ public class WFCOBJController : MonoBehaviour
         }
 
 
-        //Debug.Log("PULLED TILE FROM ENTROPY");
         if (trueRandom)
         {
             int randomObj;
@@ -689,12 +677,8 @@ public class WFCOBJController : MonoBehaviour
             worldStates.Add(choice);
         }
 
-        Debug.Log(_tile.availableOptions[0]);
-        Debug.Log(_tile.hasBeenChoosen);
-        Debug.Log(_tile.entropy);
         entropyOrder.Remove(_tile);
         propagateQueu.Add(_tile.location);
-        //Debug.Break();
 
     }
 
@@ -805,9 +789,64 @@ public class WFCOBJController : MonoBehaviour
             }
         }
 
+        OrganizebyEntropy();
         propagateQueu.Clear();
         worldStates.RemoveAt(worldStates.Count - 1);
     }
+
+
+    private bool ValidateWorld()
+    {
+        for (int i = 0; i < columSize; i++)
+        {
+            for (int j = 0; j < lineSize; j++)
+            {
+                //top limitation
+                if (i != 0)
+                {
+                    //Check top neighbour
+                    if (!virtualTiles[world[i, j].availableOptions[0]].connectUp.Contains(world[i - 1, j].availableOptions[0]))
+                    {
+                        return false;
+                    }
+                }
+
+                //bottom limitation
+                if (i < lineSize - 1)
+                {
+                    //check bottom neighbour
+                    if (!virtualTiles[world[i, j].availableOptions[0]].connectDown.Contains(world[i + 1, j].availableOptions[0]))
+                    {
+                        return false;
+                    }
+
+                }
+
+                //left limitation
+                if (j != 0)
+                {
+                    //check right neightbour
+                    if (!virtualTiles[world[i, j].availableOptions[0]].connectRight.Contains(world[i, j-1].availableOptions[0]))
+                    {
+                        return false;
+                    }
+
+                }
+
+                //right limitation
+                if (j < columSize - 1)
+                {
+                    //check left neightbour
+                    if (!virtualTiles[world[i, j].availableOptions[0]].connectLeft.Contains(world[i, j+1].availableOptions[0]))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+   
 
 
 }

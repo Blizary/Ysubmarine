@@ -26,7 +26,8 @@ public class WaitTimer : Action
         {
             currentManager.hasTarget = false;
             currentManager.destination = Vector3.zero;
-            if(randomWait)
+            currentManager.canAttack = true;
+            if (randomWait)
             {
                 int coinFlip = Random.Range(0, 2);
                 if (coinFlip != 0)
