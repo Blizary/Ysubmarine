@@ -13,7 +13,6 @@ public enum ConnectionSide { Up, Down, Left, Right };
 
 public class WFCOBJController : MonoBehaviour
 {
-    public List<WFCScriptableOBJ> dataList; // list of all the available pieces in the board
     [Header("Settings")]
     public bool trueRandom;//if triggered the probability of each tile based on the example is ignored(allows for the creation of bigger maps than the example)
     public bool surroundedByWater;//if triggered maps the map be surrounded by water
@@ -27,10 +26,6 @@ public class WFCOBJController : MonoBehaviour
 
     [Header("Solution")]
     public GameObject solutionWold;// gameobj where the solution will go
-
-    public Vector2Int posOfSample;// this is the current position being checked on the example by the function UpdateExample
-    private WFCpossibility[,] possibilites;//matrix of the possibilites on the tile map
-    private List<WFCpossibility> possibilityList;//keeps the possibilites available and is used to sort them by entropy
     //private List<WFCpossibility> propagateQueu;//stores the tiles that need to be propagate while they wait for their turn\
 
     private bool ispropagating;
